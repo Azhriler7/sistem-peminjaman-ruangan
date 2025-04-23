@@ -11,12 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('akses', function (Blueprint $table) {
-            $table->id();
-            $table->string('no_kartu', 20);
-            $table->dateTime('waktu');
+        Schema::create('users', function (Blueprint $table) {
+            $table->id(); // id
+            $table->string('username')->unique();
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->string('role')->default('user');
             $table->timestamps();
         });
+        
     }
 
     /**
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('akses');
+        Schema::dropIfExists('users');
     }
 };

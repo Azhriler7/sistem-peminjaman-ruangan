@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id('id_user');
-            $table->string('nama_user', 50);
-            $table->string('username', 20)->unique();
-            $table->string('password');
-            $table->enum('level', ['admin', 'user']);
+        Schema::create('ruangan', function (Blueprint $table) {
+            $table->id('id_ruangan');
+            $table->string('nama_ruangan', 50);
+            $table->enum('status', ['tersedia', 'dipinjam'])->default('tersedia');
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('ruangan');
     }
 };

@@ -1,16 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 Route::get('/', function () {
-    return response()->file(public_path('index.html'));
+    return view('index');
 });
 
-Route::get('/login', function () {
-    return view('login');
-})->name('login');
+Route::get('/pages/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::get('/pages/register', [AuthController::class, 'showRegisterForm'])->name('register');
 
-Route::get('/register', function () {
-    return view('register');
-})->name('register');
-
+require __DIR__.'/auth.php';

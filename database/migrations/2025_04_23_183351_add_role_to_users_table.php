@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ruangan', function (Blueprint $table) {
-            $table->id('id_ruangan');
-            $table->string('nama_ruangan', 50);
-            $table->enum('status', ['tersedia', 'dipinjam'])->default('tersedia');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            //
         });
     }
 
@@ -24,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ruangan');
+        Schema::table('users', function (Blueprint $table) {
+            //
+        });
     }
 };

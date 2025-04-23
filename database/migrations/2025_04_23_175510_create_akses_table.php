@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id('id_user');
-            $table->string('nama_user', 50);
-            $table->string('username', 20)->unique();
-            $table->string('password');
-            $table->enum('level', ['admin', 'user']);
+        Schema::create('akses', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('id_user')->constrained('users')->onDelete('cascade');
+            $table->foreignId('id_ruang')->constrained('ruangan')->onDelete('cascade');
+            $table->timestamp('waktu_akses')->useCurrent();
             $table->timestamps();
         });
+        
     }
 
     /**
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('akses');
     }
 };

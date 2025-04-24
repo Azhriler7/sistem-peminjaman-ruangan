@@ -1,15 +1,32 @@
-<!doctype html>
-<body="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Register</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="register.css" rel="stylesheet">
-    <link rel="shortcut icon" href="icon/Untirta-Logo-Transparan.webp" type="image/x-icon">
-  </head>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Login - SIJARU</title>
+
+  <!-- Favicons -->
+  <link rel="shortcut icon" href="{{ asset('assets/img/Untirta-Logo-Transparan.webp') }}" type="image/x-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Open+Sans&family=Montserrat&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+  <!-- Bootstrap Core CSS -->
+  <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+
+  <!-- Global Theme Style (main) -->
+  <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
+
+  <!-- Custom Login Page Style -->
+  <link href="{{ asset('assets/css/register.css') }}" rel="stylesheet">
+</head>
 
   
   <header id="header" class="header sticky-top">
@@ -35,22 +52,22 @@
     <div class="branding bg-white border-bottom py-3">
       <div class="container d-flex align-items-center justify-content-between flex-wrap">
         <!-- Logo -->
-        <a href="index.html" class="logo d-flex align-items-center text-decoration-none">
+        <a href="{{ url('/') }}" class="logo d-flex align-items-center">
           <h1 class="sitename m-0">SIJARU</h1>
         </a>
   
         <nav id="navmenu" class="navmenu">
           <ul>
-            <li><a href="#hero">Home</a></li>
-            <li><a href="#about">Ruangan</a></li>
-            <li><a href="#peminjaman">Peminjaman</a></li>
+            <li><a href="{{ url('/') }}#hero" class="active">Home</a></li>
+            <li><a href="{{ url('/') }}#ruangan">Ruangan</a></li>
+            <li><a href="{{ url('/') }}#peminjaman">Peminjaman</a></li>
             <li class="dropdown">
-              <a href="#"><span>Data Pinjam</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Data Histori Peminjaman</a></li>
+              <a href="#"><span>Data Pinjaman</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+              <ul>
+                <li><a href="{{ url('/') }}#data-pinjaman">Data Histori Peminjaman</a></li>
               </ul>
             </li>
-            <li><a href="#contact">Kontak</a></li>
+            <li><a href="{{ url('/') }}#contact">Kontak</a></li>
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
@@ -63,8 +80,8 @@
             <div class="row g-0">
                 <!-- Bagian Gambar -->
                 <div class="col-md-6 d-flex justify-content-center align-items-center">
-                  <img src="pic\kampus.jpg" class="img-fluid" alt="Gambar">
-              </div>
+                <img src="{{ asset('img/kampus.jpg') }}" class="img-fluid" alt="Gambar">
+                </div>
     
                 <!-- Bagian Formulir Login -->
                 <div class="col-md-6">
@@ -96,9 +113,9 @@
                                   <button type="submit" class="btn btn-primary">REGISTER</button>
                               </div>
                         </form>
-                            <a href="login.html" class="btn btn-secondary register-btn">
-                              LOGIN <i class="bi bi-play-circle"></i>
-                            </a>
+                        <a href="{{ route('login') }}" class="btn btn-outline-primary register-btn">
+                          LOGIN <i class="bi bi-box-arrow-in-right"></i>
+                        </a>
                     </div>
                 </div>
             </div>

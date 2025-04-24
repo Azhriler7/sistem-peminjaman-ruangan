@@ -56,16 +56,17 @@
         </a>
         <nav id="navmenu" class="navmenu">
           <ul>
-            <li><a href="index.html#hero">Home</a></li>
-            <li><a href="index.html#about">Ruangan</a></li>
-            <li><a href="index.html#services">Status Ruangan</a></li>
-            <li><a href="index.html#peminjaman">Peminjaman</a></li>
-            <li class="dropdown"><a href="#"><span>Riwayat</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <li><a href="{{ url('/') }}#hero">Home</a></li>
+            <li><a href="{{ url('/') }}#ruangan">Ruangan</a></li>
+            <li><a href="{{ url('/') }}#services">Status Ruangan</a></li>
+            <li><a href="{{ url('/') }}#peminjaman">Peminjaman</a></li>
+            <li class="dropdown">
+              <a href="#"><span>Riwayat</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
               <ul>
-                <li><a href="#">Data Histori Peminjaman</a></li>
+                <li><a href="{{ url('/') }}#data-pinjaman">Data Histori Peminjaman</a></li>
               </ul>
             </li>
-            <li><a href="index.html#contact">Kontak</a></li>
+            <li><a href="{{ url('/') }}#contact">Kontak</a></li>
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>

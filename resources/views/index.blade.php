@@ -58,7 +58,7 @@
     <div class="branding d-flex align-items-cente">
 
       <div class="container position-relative d-flex align-items-center justify-content-between">
-        <a href="index.html" class="logo d-flex align-items-center">
+        <a href="#hero" class="logo d-flex align-items-center">
           <!-- Uncomment the line below if you also wish to use an image logo -->
           <!-- <img src="assets/img/logo.png" alt=""> -->
           <h1 class="sitename">SIJARU</h1>
@@ -96,10 +96,12 @@
             <h1>Selamat datang di <span>SIJARU</span></h1>
             <p>Sistem Peminjaman Ruangan.</p>
             <div class="d-flex">
-              <a href="{{ route('login') }}" class="btn-get-started">Login</a>
-              <a href="{{ route('register') }}" class="glightbox btn-get-started d-flex align-items-center">
-                <i class="bi bi-play-circle"></i><span>Sign in</span>
-              </a>
+            <a href="{{ route('login') }}" class="btn btn-outline-primary me-2">
+            <i class="bi bi-box-arrow-in-right me-1"></i> Login
+            </a>
+            <a href="{{ route('register') }}" class="btn btn-outline-primary register-btn">
+              REGISTER <i class="bi bi-person-plus"></i>
+            </a>
             </div>
           </div>
         </div>
@@ -177,7 +179,7 @@
                 <h4>Aula Fakultas Teknik</h4>
                 <p>Gedung Aula Utama</p>
                 <a href="assets/img/ruangan/aula.jpg" class="glightbox preview-link" title="Lihat Foto"><i class="bi bi-zoom-in"></i></a>
-                <a href="ruang-aula.html" class="details-link" title="Detail"><i class="bi bi-link-45deg"></i></a>
+                <a href="{{ route('ruang.aula') }}" class="details-link" title="Detail"><i class="bi bi-link-45deg"></i></a>
               </div>
             </div>
           </div>

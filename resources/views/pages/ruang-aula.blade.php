@@ -45,6 +45,7 @@
           <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
           <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
           <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+          <a href="{{ route('akun_user') }}" class="akun"><i class="bi bi-person"></i></a>
         </div>
       </div>
     </div>

@@ -7,32 +7,24 @@
 
   <title>Login - SIJARU</title>
 
-  <!-- Favicons -->
   <link rel="shortcut icon" href="{{ asset('assets/img/Untirta-Logo-Transparan.webp') }}" type="image/x-icon">
 
-  <!-- Google Fonts -->
+  <!-- Fonts & Icons -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Open+Sans&family=Montserrat&display=swap" rel="stylesheet">
-
-  <!-- Bootstrap Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
 
-  <!-- Bootstrap Core CSS -->
+  <!-- Bootstrap & CSS -->
   <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-
-  <!-- Global Theme Style (main) -->
   <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
-
-  <!-- Custom Login Page Style -->
   <link href="{{ asset('assets/css/login.css') }}" rel="stylesheet">
 </head>
 
+<body>
 
-<body class="index-page">
-
+  <!-- Header with Topbar -->
   <header id="header" class="header sticky-top">
-
     <div class="topbar d-flex align-items-center">
       <div class="container d-flex justify-content-center justify-content-md-between">
         <div class="contact-info d-flex align-items-center">
@@ -46,86 +38,80 @@
           <a href="https://www.linkedin.com/school/universitassultanagengtirtayasa" class="linkedin"><i class="bi bi-linkedin"></i></a>
         </div>
       </div>
-    </div><!-- End Top Bar -->
-
-    <div class="branding d-flex align-items-cente">
-
-      <div class="container position-relative d-flex align-items-center justify-content-between">
-        <a href="{{ url('/') }}" class="logo d-flex align-items-center">
-          <h1 class="sitename">SIJARU</h1>
-        </a>
-
-        <nav id="navmenu" class="navmenu">
-          <ul>
-            <li><a href="{{ url('/') }}#hero" class="active">Home</a></li>
-            <li><a href="{{ url('/') }}#ruangan">Ruangan</a></li>
-            <li><a href="{{ url('/') }}#peminjaman">Peminjaman</a></li>
-            <li class="dropdown">
-              <a href="#"><span>Data Pinjaman</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-              <ul>
-                <li><a href="{{ url('/') }}#data-pinjaman">Data Histori Peminjaman</a></li>
-              </ul>
-            </li>
-            <li><a href="{{ url('/') }}#contact">Kontak</a></li>
-          </ul>
-          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-        </nav>
-
-      </div>
-
     </div>
-
   </header>
 
+  <!-- Login Content -->
+  <div class="container py-5">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-lg-10">
+        <div class="card shadow border-0" style="border-radius: 1rem;">
+          <div class="row g-0 align-items-center">
 
-  <body>
-    
-    <div class="global-container">
-      <div class="card login form">
-          <div class="row g-0">
-              <!-- Bagian Gambar -->
-              <div class="col-md-6 d-flex justify-content-center align-items-center">
-              <img src="{{ asset('img/kampus.jpg') }}" class="img-fluid" alt="Gambar">
-              </div>
-  
-              <!-- Bagian Formulir Login -->
-              <div class="col-md-6">
-                  <div class="card-body">
-                      <h1 class="card-title text-center">LOGIN</h1>
-                      <form method="POST" action="{{ route('login') }}">
-                        @csrf
-                          <div class="mb-3">
-                              <label for="inputUsername" class="form-label">Username</label>
-                              <input type="text" class="form-control" id="inputUsername" required>
-                          </div>
-                          <div class="mb-3">
-                              <label for="exampleInputEmail1" class="form-label">Email address</label>
-                              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                          </div>
-                          <div class="mb-3">
-                              <label for="exampleInputPassword1" class="form-label">Password</label>
-                              <input type="password" class="form-control" id="exampleInputPassword1">
-                          </div>
-                          <div class="mb-3 form-check">
-                              <input type="checkbox" class="form-check-input larger-checkbox" id="showPasswordCheck">
-                              <label class="form-check-label" for="showPasswordCheck">Tampilkan Password</label>
-                          </div>
-                          <div class="d-flex justify-content-start">
-                            <button type="submit" class="btn btn-primary">LOGIN</button>
-                        </div>
-                      </form>
-                      <a href="{{ route('register') }}" class="btn btn-outline-primary register-btn">
-                        REGISTER <i class="bi bi-person-plus"></i>
-                      </a>
+            <!-- Gambar Kampus -->
+             <div class="col-md-5 d-none d-md-block">
+              <img src="{{ asset('img/kampus.jpeg') }}"
+              alt="Gambar Kampus"
+              class="img-fluid h-100 w-100"
+              style="object-fit: cover; border-radius: 1rem 0 0 1rem;">
+            </div>
+
+
+            <!-- Form Login -->
+            <div class="col-md-7">
+              <div class="card-body px-4 px-lg-5 py-4">
+
+                <div class="text-center mb-3">
+                  <img src="{{ asset('assets/img/logo.png') }}"
+                       alt="Logo SIJARU"
+                       style="max-width: 250px; height: auto;">
+                </div>
+                
+                <p class="text-center text-muted mb-4" style="font-size: 14px;">
+                  Masuk untuk mengakses dashboard Anda.
+                </p>
+
+                <form method="POST" action="{{ route('login') }}">
+                  @csrf
+                  <!-- Username -->
+                   <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" name="username" id="username" class="form-control" required>
                   </div>
+
+                  <!-- Email -->
+                  <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" name="email" id="email" class="form-control" required>
+                  </div>
+
+                  <!-- Password -->
+                  <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" name="password" id="exampleInputPassword1" class="form-control" required>
+                  </div>
+
+                  <!-- Tampilkan Password -->
+                  <div class="form-check mb-3">
+                    <input type="checkbox" class="form-check-input" id="showPasswordCheck">
+                    <label class="form-check-label" for="showPasswordCheck">Tampilkan Password</label>
+                  </div>
+
+                  <div class="d-grid">
+                    <button type="submit" class="btn btn-primary btn-lg">Login</button>
+                  </div>
+                </form>
+              
               </div>
+
+            </div>
+            
           </div>
+        </div>
       </div>
-  </div>
 
-  <script src="js/bootstrap.js"></script>
+  <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
   <script src="{{ asset('assets/js/login.js') }}"></script>
-
 </body>
 
 </html>

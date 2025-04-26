@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Detail Ruangan - Aula Fakultas Teknik</title>
+  <title>Detail Ruangan - Ruang Kelas BR</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
@@ -84,14 +84,14 @@
         <nav class="breadcrumbs">
           <ol>
             <li><a href="index.html">Home</a></li>
-            <li class="current">Aula Fakultas Teknik</li>
+            <li class="current">Ruang Kelas BR</li>
           </ol>
         </nav>
       </div>
     </div>
 
     <!-- Ruang Aula Section -->
-    <section id="ruang-aula" class="portfolio-details section">
+    <section id="ruang-br" class="portfolio-details section">
       <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="row gy-4">
 
@@ -99,7 +99,7 @@
             <div class="portfolio-details-slider swiper">
               <div class="swiper-wrapper align-items-center">
                 <div class="swiper-slide">
-                  <img src="assets/img/ruangan/aula.jpg" class="img-fluid" alt="Aula Fakultas Teknik">
+                  <img src="assets/img/ruangan/BR.jpg" class="img-fluid" alt="Aula Fakultas Teknik">
                 </div>
               </div>
               <div class="swiper-pagination"></div>
@@ -110,10 +110,11 @@
             <div class="portfolio-info" data-aos="fade-up" data-aos-delay="200">
               <h3>Informasi Ruangan</h3>
               <ul>
-                <li><strong>Nama Ruangan:</strong> Aula Fakultas Teknik</li>
-                <li><strong>Gedung:</strong> Aula Utama</li>
-                <li><strong>Kapasitas:</strong> 100 orang</li>
-                <li><strong>Fasilitas:</strong> Proyektor, Mic, Sound System, AC</li>
+                <li><strong>Nama Ruangan:</strong> Ruangan Kelas BR</li>
+                <li><strong>Gedung:</strong> BR</li>
+                <li><strong>Jumlah Ruangan:</strong> 9 Ruangan Kelas </li>
+                <li><strong>Kapasitas:</strong> Tiap kelas dapat diisi 50 orang </li>
+                <li><strong>Fasilitas:</strong> AC, Whiteboard, Proyektor</li>
               </ul>
             </div>
             <div class="portfolio-description" data-aos="fade-up" data-aos-delay="300">

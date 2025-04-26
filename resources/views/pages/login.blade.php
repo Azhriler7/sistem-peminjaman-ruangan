@@ -44,7 +44,7 @@
           <a href="https://www.facebook.com/untirtabantenofficial" class="facebook"><i class="bi bi-facebook"></i></a>
           <a href="https://www.instagram.com/untirta_official" class="instagram"><i class="bi bi-instagram"></i></a>
           <a href="https://www.linkedin.com/school/universitassultanagengtirtayasa" class="linkedin"><i class="bi bi-linkedin"></i></a>
-          <a href="{{ route('akun_user') }}"><i class="bi bi-person"></i></a>
+          <a href="{{ route('user.dashboard') }}"><i class="bi bi-person"></i></a>
         </div>
       </div>
     </div><!-- End Top Bar -->
@@ -93,19 +93,19 @@
               <div class="col-md-6">
                   <div class="card-body">
                       <h1 class="card-title text-center">LOGIN</h1>
-                      <form method="POST" action="{{ route('login') }}">
+                      <form method="POST" action="{{ route('login.submit') }}">
                         @csrf
                           <div class="mb-3">
                               <label for="inputUsername" class="form-label">Username</label>
-                              <input type="text" class="form-control" id="inputUsername" required>
+                              <input type="text" name="username" class="form-control" id="inputUsername" required>
                           </div>
                           <div class="mb-3">
                               <label for="exampleInputEmail1" class="form-label">Email address</label>
-                              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                              <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                           </div>
                           <div class="mb-3">
                               <label for="exampleInputPassword1" class="form-label">Password</label>
-                              <input type="password" class="form-control" id="exampleInputPassword1">
+                              <input type="password" name="password" class="form-control" id="exampleInputPassword1">
                           </div>
                           <div class="mb-3 form-check">
                               <input type="checkbox" class="form-check-input larger-checkbox" id="showPasswordCheck">
@@ -115,9 +115,6 @@
                             <button type="submit" class="btn btn-primary">LOGIN</button>
                         </div>
                       </form>
-                      <a href="{{ route('register') }}" class="btn btn-outline-primary register-btn">
-                        REGISTER <i class="bi bi-person-plus"></i>
-                      </a>
                   </div>
               </div>
           </div>

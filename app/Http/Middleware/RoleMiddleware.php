@@ -17,22 +17,12 @@ class RoleMiddleware
      * @param  string  $role
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function handle(Request $request, Closure $next, string $role): Response
-    {
-        // Periksa apakah user sudah login
-        if (!Auth::check()) {
-            return redirect()->route('login')->with('error', 'Anda harus login terlebih dahulu.');
-        }
-
-        // Ambil user yang login
-        $user = Auth::user();
-
-        // Periksa apakah role user sesuai dengan yang diharapkan
-        if ($user->role !== $role) {
-            abort(403, 'Akses ditolak. Anda tidak memiliki hak akses.');
-        }
-
-        // Lanjutkan permintaan
+    public function handle($request, Closure $next, $role)
+{
+    if (Auth::check() && Auth::user()->role === $role) {
         return $next($request);
     }
+
+    abort(403, 'Unauthorized');
+}
 }

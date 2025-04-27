@@ -25,7 +25,7 @@
   <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
 
   <!-- Custom Login Page Style -->
-  <link href="{{ asset('assets/css/register.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/css/password.request.css') }}" rel="stylesheet">
 </head>
 
   
@@ -87,7 +87,7 @@
                 <!-- Bagian Formulir Login -->
                 <div class="col-md-6">
                     <div class="card-body">
-                        <h1 class="card-title text-center">REGISTER</h1>
+                        <h1 class="card-title text-center">RESTART PASSWORD</h1>
                         <form>
                             <div class="mb-3">
                                 <label for="inputUsername" class="form-label">Username</label>
@@ -98,7 +98,7 @@
                                 <input type="email" class="form-control" id="inputEmail" required>
                               </div>
                               <div class="mb-3">
-                                  <label for="inputPassword" class="form-label">Password</label>
+                                  <label for="inputPassword" class="form-label">New Password</label>
                                   <input type="password" class="form-control" id="inputPassword" required>
                                 </div>
                                 <div class="mb-3">
@@ -111,7 +111,7 @@
                                   <label class="form-check-label" for="showPasswordCheck">Tampilkan Password</label>
                                 </div>                                        
                                 <div class="d-flex justify-content-start">
-                                  <button type="submit" class="btn btn-primary">REGISTER</button>
+                                  <button type="submit" class="btn btn-primary">SAVE</button>
                               </div>
                         </form>
                         <a href="{{ route('login') }}" class="btn btn-outline-primary register-btn">
@@ -123,6 +123,6 @@
         </div>
     </div>
     <script src="js/bootstrap.js"></script>
-    <script src="register.js"></script>
+    <script src="password.request.js"></script>
 </body>
 </html>

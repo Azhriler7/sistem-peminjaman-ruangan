@@ -4,12 +4,13 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>SIJARU UNTIRTA</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
+  <link href="{{ asset('assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -17,14 +18,14 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/aos/aos.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
   <!-- Main CSS File -->
-  <link href="assets/css/main.css" rel="stylesheet">
+  <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: BizLand
@@ -38,56 +39,53 @@
 <body class="index-page">
 
   <header id="header" class="header sticky-top">
+
     <div class="topbar d-flex align-items-center">
-      <div class="container d-flex flex-column flex-md-row justify-content-center justify-content-md-between">
-        <div class="contact-info d-flex align-items-center justify-content-center justify-content-md-start mb-2 mb-md-0">
-          <i class="bi bi-envelope me-2"></i>
-          <a href="mailto:pusdainfo@untirta.ac.id">pusdainfo@untirta.ac.id</a>
+      <div class="container d-flex justify-content-center justify-content-md-between">
+        <div class="contact-info d-flex align-items-center">
+          <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:pusdainfo@untirta.ac.id">pusdainfo@untirta.ac.id</a></i>
           <i class="bi bi-phone d-flex align-items-center ms-4"><span>+62254 280330</span></i>
         </div>
-        <div class="social-links d-flex align-items-center justify-content-center justify-content-md-end gap-3">
-          <a href="https://x.com/HumasUntirta"><i class="bi bi-twitter-x"></i></a>
-          <a href="https://www.facebook.com/untirtabantenofficial"><i class="bi bi-facebook"></i></a>
-          <a href="https://www.instagram.com/untirta_official"><i class="bi bi-instagram"></i></a>
-          <a href="https://www.linkedin.com/school/universitassultanagengtirtayasa"><i class="bi bi-linkedin"></i></a>
+        <div class="social-links d-none d-md-flex align-items-center">
+          <a href="https://x.com/HumasUntirta" class="twitter"><i class="bi bi-twitter-x"></i></a>
+          <a href="https://www.facebook.com/untirtabantenofficial" class="facebook"><i class="bi bi-facebook"></i></a>
+          <a href="https://www.instagram.com/untirta_official" class="instagram"><i class="bi bi-instagram"></i></a>
+          <a href="https://www.linkedin.com/school/universitassultanagengtirtayasa" class="linkedin"><i class="bi bi-linkedin"></i></a>
+          <a href="{{ route('user.profile') }}" class="akun"><i class="bi bi-person"></i></a>
         </div>
       </div>
-    </div>
+    </div><!-- End Top Bar -->
 
-    <div class="branding bg-white border-bottom py-3">
-      <div class="container d-flex align-items-center justify-content-between flex-wrap">
-        <a href="{{ route('user.dashboard') }}" class="logo d-flex align-items-center text-decoration-none">
-          <h1 class="sitename m-0">SIJARU</h1>
+    <div class="branding d-flex align-items-cente">
+      
+      <div class="container position-relative d-flex align-items-center justify-content-between">
+        <a href="#hero" class="logo d-flex align-items-center">
+          <img src="{{ asset('assets/img/logo.png') }}" alt="">
         </a>
 
         <nav id="navmenu" class="navmenu">
           <ul>
-            <li><a href="{{ route('user.dashboard') }}">Home</a></li>
-            <li><a href="{{ route('user.ruangan') }}">Ruangan</a></li>
-            <li><a href="{{ route('user.peminjaman') }}">Peminjaman</a></li>
+            <li><a href="#hero" class="active">Home</a></li>
+            <li><a href="#ruangan">Ruangan</a></li>
+            <li><a href="#peminjaman">Peminjaman</a></li>
             <li class="dropdown">
-              <a href="#"><span>Data Pinjam</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-              <ul class="dropdown-menu">
-                <li><a href="{{ route('user.data.pinjaman') }}">Histori Peminjaman</a></li>
+              <a href="#"><span>Data Pinjaman</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+              <ul>
+                <li><a href="{{ route('user.peminjaman.saya') }}">Pinjaman Saya</a></li>
+              </ul>
+              <ul>
+                <li><a href="#">Data Histori Peminjaman</a></li>
               </ul>
             </li>
-            <li class="dropdown">
-              <a href="#"><span>Profil</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-              <ul class="dropdown-menu">
-                <li><a href="{{ route('user.profile') }}">Akun Saya</a></li>
-                <li>
-                  <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit" class="dropdown-item text-danger" style="background:none;border:none;padding:8px 16px;text-align:left;">Logout</button>
-                  </form>
-                </li>
-              </ul>
-            </li>
+            <li><a href="#contact">Kontak</a></li>
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
+
       </div>
+
     </div>
+
   </header>
 
   <main class="main">
@@ -98,7 +96,7 @@
       <div class="container">
         <div class="row gy-4">
           <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center" data-aos="zoom-out">
-            <h1>Selamat datang di <span>SIJARU</span></h1>
+            <h1>Selamat datang user di <span>SIJARU</span></h1>
             <p>Sistem Informasi Peminjaman Ruangan UNTIRTA.</p>
             <div class="d-flex">
               <a href="#featured-services" class="btn btn-primary me-2">
@@ -171,6 +169,38 @@
     </section><!-- /Featured Introduction Section -->
 
 
+    <!-- Jika ingin section ini menjadi dinamis (otomatis muncul berdasarkan data dari database), 
+    maka gunakan looping @foreach pada data ruangan yang dikirim dari controller.
+
+    Pastikan controller mengirimkan data ruangan ke view, contoh:
+    $ruangan = Ruangan::all();
+    return view('pages.user.dashboard', compact('ruangan'));
+
+    Berikut contoh penggunaan dynamic card:
+    
+
+    <div class="container">
+      <div class="row gy-4">
+
+        @foreach ($ruangan as $item)
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="ruangan-item service-item text-center shadow-sm rounded">
+            <img src="{{ asset('storage/' . $item->gambar) }}" class="img-fluid rounded-top" alt="{{ $item->nama_ruangan }}">
+            <div class="ruangan-info p-3">
+              <h4>{{ $item->nama_ruangan }}</h4>
+              <p>{{ $item->gedung }}</p>
+              <a href="{{ route('user.ruangan-detail', $item->id) }}" class="btn btn-outline-primary btn-sm">
+                View Detail
+              </a>
+            </div>
+          </div>
+        </div>
+        @endforeach
+
+      </div>
+    </div>-->
+    
+
     <!-- Ruangan Section -->
     <section id="ruangan" class="ruangan section light-background">
 
@@ -185,72 +215,78 @@
           <!-- Ruangan -->
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
             <div class="ruangan-item service-item text-center shadow-sm rounded">
-              <img src="assets/img/ruangan/aula.jpg" class="img-fluid rounded-top" alt="Ruang Aula">
+              <img src="{{ asset('assets/img/ruangan/aula.jpg') }}" class="img-fluid rounded-top" alt="Ruang Aula">
               <div class="ruangan-info p-3">
                 <h4>Aula Fakultas Teknik</h4>
                 <p>Gedung Aula Utama</p>
-                <a href="assets/img/ruangan/aula.jpg" class="glightbox preview-link" title="Lihat Foto"><i class="bi bi-zoom-in"></i></a>
-                <a href="{{ route('ruang.aula') }}" class="details-link" title="Detail"><i class="bi bi-link-45deg"></i></a>
+                <a href="{{ route('user.ruangan-aula') }}" class="btn btn-outline-primary btn-sm">
+                  View Detail
+                </a>
               </div>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="150">
             <div class="ruangan-item service-item text-center shadow-sm rounded">
-              <img src="assets/img/ruangan/dekanat.jpg" class="img-fluid rounded-top" alt="Ruang 102">
+              <img src="{{ asset('assets/img/ruangan/dekanat.jpg') }}" class="img-fluid rounded-top" alt="Ruang 102">
               <div class="ruangan-info p-3">
                 <h4>Aula Dekanat</h4>
                 <p>Gedung Dekanat</p>
-                <a href="assets/img/ruangan/dekanat.jpg" class="glightbox preview-link" title="Lihat Foto"><i class="bi bi-zoom-in"></i></a>
-                <a href="ruang-102.html" class="details-link" title="Detail"><i class="bi bi-link-45deg"></i></a>
+                <a href="{{ route('user.ruangan-dekanat') }}" class="btn btn-outline-primary btn-sm">
+                  View Detail
+                </a>
               </div>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
             <div class="ruangan-item service-item text-center shadow-sm rounded">
-              <img src="assets/img/ruangan/vicon.jpg" class="img-fluid rounded-top" alt="Ruang 201">
+              <img src="{{ asset('assets/img/ruangan/vicon.jpg') }}" class="img-fluid rounded-top" alt="Ruang 201">
               <div class="ruangan-info p-3">
                 <h4>VICON</h4>
                 <p>Gedung Vicon</p>
-                <a href="assets/img/ruangan/vicon.jpg" class="glightbox preview-link" title="Lihat Foto"><i class="bi bi-zoom-in"></i></a>
-                <a href="ruang-201.html" class="details-link" title="Detail"><i class="bi bi-link-45deg"></i></a>
+                <a href="{{ route('user.ruangan-vicon') }}" class="btn btn-outline-primary btn-sm">
+                  View Detail
+                </a>
               </div>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="250">
             <div class="ruangan-item service-item text-center shadow-sm rounded">
-              <img src="assets/img/ruangan/exFK.jpg" class="img-fluid rounded-top" alt="Ruang 202">
+              <img src="{{ asset('assets/img/ruangan/exFK.jpg') }}" class="img-fluid rounded-top" alt="Ruang 202">
               <div class="ruangan-info p-3">
                 <h4>Ruang Kelas CoE</h4>
                 <p>Gedung CoE</p>
-                <a href="assets/img/ruangan/exFK.jpg" class="glightbox preview-link" title="Lihat Foto"><i class="bi bi-zoom-in"></i></a>
-                <a href="ruang-202.html" class="details-link" title="Detail"><i class="bi bi-link-45deg"></i></a>
+                <a href="{{ route('user.ruangan-coe') }}" class="btn btn-outline-primary btn-sm">
+                  View Detail
+                </a>
               </div>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
             <div class="ruangan-item service-item text-center shadow-sm rounded">
-              <img src="assets/img/ruangan/R.jpg" class="img-fluid rounded-top" alt="Ruang 301">
+              <img src="{{ asset('assets/img/ruangan/R.jpg') }}" class="img-fluid rounded-top" alt="Ruang 301">
               <div class="ruangan-info p-3">
                 <h4>Ruang Kelas R</h4>
-                <p>Gedung LabKom</p>
-                <a href="assets/img/ruangan/R.jpg" class="glightbox preview-link" title="Lihat Foto"><i class="bi bi-zoom-in"></i></a>
-                <a href="ruang-301.html" class="details-link" title="Detail"><i class="bi bi-link-45deg"></i></a>
+                <p>Gedung U</p>
+                <a href="{{ route('user.ruangan-U') }}" class="btn btn-outline-primary btn-sm">
+                  View Detail
+                </a>
               </div>
             </div>
           </div>
 
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="350">
             <div class="ruangan-item service-item text-center shadow-sm rounded">
-              <img src="assets/img/ruangan/BR.jpg" class="img-fluid rounded-top" alt="Ruang 302">
+              <img src="{{ asset('assets/img/ruangan/LabKom.jpg') }}" class="img-fluid rounded-top" alt="Ruang 302">
               <div class="ruangan-info p-3">
-                <h4>Ruang Kelas BR</h4>
-                <p>Gedung BR</p>
-                <a href="assets/img/ruangan/BR.jpg" class="glightbox preview-link" title="Lihat Foto"><i class="bi bi-zoom-in"></i></a>
-                <a href="{{ route('ruang.br') }}" class="details-link" title="Detail"><i class="bi bi-link-45deg"></i></a>
+                <h4>LabKom</h4>
+                <p>Gedung LabKom</p>
+                <a href="{{ route('user.ruangan-LabKom') }}" class="btn btn-outline-primary btn-sm">
+                  View Detail
+                </a>
               </div>
             </div>
           </div>
@@ -260,8 +296,12 @@
 
     </section><!-- Ruangan Section -->
 
-    <section id="calendar-section" class="calendar section">
+    <!-- kalender Section -->
+    <section id="peminjaman" class="peminjaman">
       <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="section-title text-center mb-5">
+            <h2>Kalender Peminjaman</h2>
+        </div>
         <div class="row">
           <div class="col-lg-3">
             <div class="mb-3">
@@ -280,7 +320,7 @@
                 <span class="badge bg-secondary">Dibatalkan</span>
               </div>
             </div>
-            <img src="assets/img/illustration.jpeg" alt="Illustration" class="img-fluid d-none d-lg-block mt-4">
+            <img src="{{ asset('assets/img/illustration.jpeg') }}" alt="Illustration" class="img-fluid d-none d-lg-block mt-4">
           </div>
           <div class="col-lg-9">
             <div class="card card-calendar">
@@ -394,7 +434,6 @@
 
     </section><!-- /Faq Section -->
 
-
     <!-- Contact Section -->
     <section id="contact" class="contact section light-background">
 
@@ -458,46 +497,44 @@
 
     <div class="container footer-top">
       <div class="row gy-4">
+        
         <div class="col-lg-4 col-md-6 footer-about">
-          <a href="index.html" class="d-flex align-items-center">
-            <span class="sitename">BizLand</span>
+          <a href="/" class="d-flex align-items-center">
+            <span class="sitename">SIJARU UNTIRTA</span>
           </a>
           <div class="footer-contact pt-3">
-            <p>A108 Adam Street</p>
-            <p>New York, NY 535022</p>
-            <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-            <p><strong>Email:</strong> <span>info@example.com</span></p>
+            <p>Jl. Raya Jakarta Km. 4, Pakupatan, Serang, Banten 42124</p>
+            <p class="mt-3"><strong>Phone:</strong> <span>+62 254 280330</span></p>
+            <p><strong>Email:</strong> <span>pusdainfo@untirta.ac.id</span></p>
           </div>
         </div>
 
         <div class="col-lg-2 col-md-3 footer-links">
           <h4>Useful Links</h4>
           <ul>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Services</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Terms of service</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="/">Home</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="https://untirta.ac.id" target="_blank">Website UNTIRTA</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="https://untirta.ac.id/kontak-kami/" target="_blank">Kontak Kami</a></li>
           </ul>
         </div>
 
         <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Our Services</h4>
+          <h4>Other Links</h4>
           <ul>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Web Design</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Web Development</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Product Management</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Marketing</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="https://sso.untirta.ac.id" target="_blank">SSO UNTIRTA</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="https://siakad.untirta.ac.id" target="_blank">SIAKAD</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="https://pmb.untirta.ac.id" target="_blank">PMB UNTIRTA</a></li>
           </ul>
         </div>
 
         <div class="col-lg-4 col-md-12">
           <h4>Follow Us</h4>
-          <p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>
+          <p>Ikuti berita terbaru UNTIRTA melalui media sosial resmi kami.</p>
           <div class="social-links d-flex">
-            <a href=""><i class="bi bi-twitter-x"></i></a>
-            <a href=""><i class="bi bi-facebook"></i></a>
-            <a href=""><i class="bi bi-instagram"></i></a>
-            <a href=""><i class="bi bi-linkedin"></i></a>
+            <a href="https://twitter.com/untirtaofficial" target="_blank"><i class="bi bi-twitter"></i></a>
+            <a href="https://www.facebook.com/UntirtaOfficial" target="_blank"><i class="bi bi-facebook"></i></a>
+            <a href="https://www.instagram.com/untirta.official/" target="_blank"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.linkedin.com/school/universitas-sultan-ageng-tirtayasa/" target="_blank"><i class="bi bi-linkedin"></i></a>
           </div>
         </div>
 
@@ -505,13 +542,9 @@
     </div>
 
     <div class="container copyright text-center mt-4">
-      <p>© <span>Copyright</span> <strong class="px-1 sitename">SIJARU UNTIRTA</strong> <span>All Rights Reserved</span></p>
+      <p>© <span>2025</span> <strong class="px-1 sitename">SIJARU UNTIRTA</strong> <span>All Rights Reserved</span></p>
       <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you've purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-        Designed by <a href="https://bootstrapmade.com/">Kelompok 4 Kelas B</a>
+        Developed by <a href="#">Kelompok 4 Kelas B</a>
       </div>
     </div>
 
@@ -529,64 +562,142 @@
   </div>
 
   <!-- Vendor JS Files -->
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
+  <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
+  <script src="{{ asset('assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+  <script src="{{ asset('assets/vendor/waypoints/noframework.waypoints.js') }}"></script>
+  <script src="{{ asset('assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
+  <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+  <script src="{{ asset('assets/vendor/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
+  <script src="{{ asset('assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
 
   <!-- Main JS File -->
-  <script src="assets/js/main.js"></script>
+  <script src="{{ asset('assets/js/main.js') }}"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/fullcalendar/index.global.min.js"></script>
+  <script src="{{ asset('assets/vendor/fullcalendar/index.global.min.js') }}"></script>
 
+  <!-- Modal Event -->
+  <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content shadow">
+        <div class="modal-header border-0">
+          <h5 class="modal-title fw-bold" id="eventModalLabel">Detail Acara</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-2">
+            <strong>Nama Acara:</strong> <span id="modal-nama-acara"></span>
+          </div>
+          <div class="mb-2">
+            <strong>Nama Ruang:</strong> <span id="modal-nama-ruang"></span>
+          </div>
+          <div class="mb-2">
+            <strong>Waktu Mulai:</strong> <span id="modal-waktu-mulai"></span>
+          </div>
+          <div class="mb-2">
+            <strong>Waktu Selesai:</strong> <span id="modal-waktu-selesai"></span>
+          </div>
+          <div class="mb-2">
+            <strong>Status Pinjaman:</strong> <span id="modal-status"></span>
+          </div>
+          <div class="mb-2">
+            <strong>Pemohon:</strong> <span id="modal-pemohon"></span>
+          </div>
+        </div>
+        <div class="modal-footer border-0">
+          <button type="button" class="btn btn-secondary w-100" data-bs-dismiss="modal">Tutup</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script Calendar -->
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const eventsByRoom = {
-        aula: [
-          { title: 'Rakor Inflasi', start: '2025-04-14', className: 'bg-warning text-dark' },
-          { title: 'Verifikasi', start: '2025-04-15', className: 'bg-success text-white' },
-          { title: 'WORKSHOP', start: '2025-04-17', className: 'bg-success text-white' },
-          { title: 'Sosialisasi', start: '2025-04-23', className: 'bg-success text-white' },
-          { title: 'Kegiatan P', start: '2025-04-24', className: 'bg-success text-white' },
-          { title: 'PELATIHAN', start: '2025-04-29', className: 'bg-success text-white' }
-        ],
-        labkom: [
-          { title: 'Pelatihan Komputer', start: '2025-04-10', className: 'bg-warning text-dark' },
-          { title: 'Tes Aplikasi', start: '2025-04-18', className: 'bg-success text-white' }
-        ]
-      };
+  document.addEventListener('DOMContentLoaded', function () {
+    const eventsByRoom = {
+      aula: [
+        { title: 'Seminar IT', start: '2025-04-14T07:30:00', end: '2025-04-14T11:30:00', ruang: 'Aula Fakultas Teknik', status: 'Diajukan', pemohon: 'Alex' },
+        { title: 'Kuliah Umum', start: '2025-04-15T08:00:00', end: '2025-04-15T12:00:00', ruang: 'Aula Fakultas Teknik', status: 'Disetujui', pemohon: 'Dosen Terkait' },
+        { title: 'Workshop', start: '2025-04-17T09:00:00', end: '2025-04-17T13:00:00', ruang: 'Aula Fakultas Teknik', status: 'Disetujui', pemohon: 'HMIF' }
+      ]
+    };
 
-      const calendarEl = document.getElementById('calendar');
-      const calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
-        headerToolbar: {
-          start: 'title',
-          center: '',
-          end: 'today prev,next'
+    const calendarEl = document.getElementById('calendar');
+    const calendar = new FullCalendar.Calendar(calendarEl, {
+      initialView: 'dayGridMonth',
+      themeSystem: 'bootstrap5',
+      headerToolbar: {
+        start: 'prev,next today',
+        center: 'title',
+        end: 'dayGridMonth,listMonth'
+      },
+      buttonText: {
+        today: 'Today',
+        dayGridMonth: 'Month View',
+        listMonth: 'List View'
+      },
+      customButtons: {
+        dayGridMonth: {
+          text: 'Month View',
+          click: function() {
+            calendar.changeView('dayGridMonth');
+          }
         },
-        selectable: true,
-        editable: false,
-        height: 650,
-        events: eventsByRoom['aula'],
-        eventClassNames: function (arg) {
-          return arg.event.classNames || [];
+        listMonth: {
+          text: 'List View',
+          click: function() {
+            calendar.changeView('listMonth');
+          }
         }
-      });
-
-      calendar.render();
-
-      document.getElementById('filter-btn').addEventListener('click', function () {
-        const selectedRoom = document.getElementById('room-filter').value;
-        calendar.removeAllEvents();
-        eventsByRoom[selectedRoom].forEach(event => calendar.addEvent(event));
-      });
+      },
+      selectable: true,
+      editable: false,
+      height: 650,
+      events: eventsByRoom['aula'].map(event => ({
+        ...event,
+        classNames: statusColor(event.status)
+      })),
+      eventClick: function(info) {
+        showModal(info.event);
+      }
     });
+
+    calendar.render();
+
+    function statusColor(status) {
+      switch (status) {
+        case 'Diajukan': return ['bg-warning', 'text-dark'];
+        case 'Disetujui': return ['bg-success', 'text-white'];
+        case 'Ditolak': return ['bg-danger', 'text-white'];
+        case 'Dibatalkan': return ['bg-secondary', 'text-white'];
+        default: return [];
+      }
+    }
+
+    function showModal(event) {
+      document.getElementById('modal-nama-acara').innerText = event.title || '-';
+      document.getElementById('modal-nama-ruang').innerText = event.extendedProps.ruang || '-';
+      document.getElementById('modal-waktu-mulai').innerText = formatDate(event.start);
+      document.getElementById('modal-waktu-selesai').innerText = formatDate(event.end);
+      document.getElementById('modal-status').innerHTML = `<span class="badge ${statusColor(event.extendedProps.status).join(' ')}">${event.extendedProps.status}</span>`;
+      document.getElementById('modal-pemohon').innerText = event.extendedProps.pemohon || '-';
+      const modal = new bootstrap.Modal(document.getElementById('eventModal'));
+      modal.show();
+    }
+
+    function formatDate(date) {
+      if (!date) return '-';
+      return new Intl.DateTimeFormat('id-ID', {
+        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', 
+        hour: '2-digit', minute: '2-digit'
+      }).format(date);
+    }
+  });
   </script>
+
+
+
 
 </body>
 

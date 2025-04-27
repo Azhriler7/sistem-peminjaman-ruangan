@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Detail Ruangan - Ruang Kelas BR</title>
+  <title>Detail Ruangan - Aula Fakultas Teknik</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
@@ -45,18 +45,19 @@
           <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
           <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
           <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+          <a href="{{ route('akun_user') }}" class="akun"><i class="bi bi-person"></i></a>
         </div>
       </div>
     </div>
 
     <div class="branding d-flex align-items-center">
       <div class="container position-relative d-flex align-items-center justify-content-between">
-        <a href="#hero" class="logo d-flex align-items-center">
-          <img src="assets/img/logo.png" alt="">
+        <a href="index.html" class="logo d-flex align-items-center">
+          <h1 class="sitename">SIJARU</h1>
         </a>
         <nav id="navmenu" class="navmenu">
           <ul>
-            <li><a href="{{ url('/') }}#index">Home</a></li>
+            <li><a href="{{ url('/') }}#hero">Home</a></li>
             <li><a href="{{ url('/') }}#ruangan">Ruangan</a></li>
             <li><a href="{{ url('/') }}#services">Status Ruangan</a></li>
             <li><a href="{{ url('/') }}#peminjaman">Peminjaman</a></li>
@@ -84,14 +85,14 @@
         <nav class="breadcrumbs">
           <ol>
             <li><a href="index.html">Home</a></li>
-            <li class="current">Ruang Kelas BR</li>
+            <li class="current">Aula Fakultas Teknik</li>
           </ol>
         </nav>
       </div>
     </div>
 
     <!-- Ruang Aula Section -->
-    <section id="ruang-br" class="portfolio-details section">
+    <section id="ruang-aula" class="portfolio-details section">
       <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="row gy-4">
 
@@ -99,7 +100,7 @@
             <div class="portfolio-details-slider swiper">
               <div class="swiper-wrapper align-items-center">
                 <div class="swiper-slide">
-                  <img src="assets/img/ruangan/BR.jpg" class="img-fluid" alt="Aula Fakultas Teknik">
+                  <img src="assets/img/ruangan/aula.jpg" class="img-fluid" alt="Aula Fakultas Teknik">
                 </div>
               </div>
               <div class="swiper-pagination"></div>
@@ -110,11 +111,10 @@
             <div class="portfolio-info" data-aos="fade-up" data-aos-delay="200">
               <h3>Informasi Ruangan</h3>
               <ul>
-                <li><strong>Nama Ruangan:</strong> Ruangan Kelas BR</li>
-                <li><strong>Gedung:</strong> BR</li>
-                <li><strong>Jumlah Ruangan:</strong> 9 Ruangan Kelas </li>
-                <li><strong>Kapasitas:</strong> Tiap kelas dapat diisi 50 orang </li>
-                <li><strong>Fasilitas:</strong> AC, Whiteboard, Proyektor</li>
+                <li><strong>Nama Ruangan:</strong> Aula Fakultas Teknik</li>
+                <li><strong>Gedung:</strong> Aula Utama</li>
+                <li><strong>Kapasitas:</strong> 100 orang</li>
+                <li><strong>Fasilitas:</strong> Proyektor, Mic, Sound System, AC</li>
               </ul>
             </div>
             <div class="portfolio-description" data-aos="fade-up" data-aos-delay="300">
@@ -122,11 +122,8 @@
               <p>
                 Aula ini digunakan untuk kegiatan besar seperti seminar, workshop, dan acara seremonial. Terletak di Gedung Aula Utama dan memiliki akses parkir yang mudah.
               </p>
-              <!-- Tombol Booking -->
-              <div class="d-grid">
-                <a href="{{ route('peminjaman') }}" class="btn btn-primary btn-lg">
-                  <i class="bi bi-pencil-square me-1"></i> Ajukan Peminjaman
-                </a>
+              <div class="mt-4">
+                <a href="login.html" class="btn btn-primary w-100">Booking Ruangan</a>
               </div>
             </div>
           </div>
@@ -141,7 +138,7 @@
   <footer id="footer" class="footer">
     <div class="container text-center py-4">
       <p>&copy; <strong>SIJARU UNTIRTA</strong>. All Rights Reserved</p>
-      <div class="credits">Designed by <a href="https://bootstrapmade.com/">Kelompok 4 Kelas B</a></div>
+      <div class="credits">Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a></div>
     </div>
   </footer>
 

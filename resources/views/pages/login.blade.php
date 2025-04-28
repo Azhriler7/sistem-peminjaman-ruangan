@@ -55,23 +55,6 @@
         <a href="{{ url('/') }}" class="logo d-flex align-items-center">
           <h1 class="sitename">SIJARU</h1>
         </a>
-
-        <nav id="navmenu" class="navmenu">
-          <ul>
-            <li><a href="{{ url('/') }}#hero" class="active">Home</a></li>
-            <li><a href="{{ url('/') }}#ruangan">Ruangan</a></li>
-            <li><a href="{{ url('/') }}#peminjaman">Peminjaman</a></li>
-            <li class="dropdown">
-              <a href="#"><span>Data Pinjaman</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-              <ul>
-                <li><a href="{{ url('/') }}#data-pinjaman">Data Histori Peminjaman</a></li>
-              </ul>
-            </li>
-            <li><a href="{{ url('/') }}#contact">Kontak</a></li>
-          </ul>
-          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-        </nav>
-
       </div>
 
     </div>
@@ -111,9 +94,10 @@
                               <input type="checkbox" class="form-check-input larger-checkbox" id="showPasswordCheck">
                               <label class="form-check-label" for="showPasswordCheck">Tampilkan Password</label>
                           </div>
-                          <div class="d-flex justify-content-start">
+                          <div class="d-flex justify-content-between align-items-center mt-2">
                             <button type="submit" class="btn btn-primary">LOGIN</button>
-                        </div>
+                            <a href="{{ route('password.request') }}" class="text-decoration-none">Lupa Password?</a>
+                        </div> 
                       </form>
                   </div>
               </div>

@@ -42,4 +42,5 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/gedung/edit/{id_ruang}', [RuanganController::class, 'edit'])->name('admin.gedung.edit');
     Route::put('/admin/gedung/update/{id_ruang}', [RuanganController::class, 'update'])->name('admin.gedung.update');
     Route::delete('/admin/gedung/delete/{id_ruang}', [RuanganController::class, 'destroy'])->name('admin.gedung.delete');
+    Route::get('/admin/notifikasi', [AdminController::class, 'notifikasi'])->name('admin.notifikasi');
    });

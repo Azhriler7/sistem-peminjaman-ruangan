@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+<head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Data Pinjaman</title>
@@ -9,7 +9,7 @@
         <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
         <link href="css/bootstrap.css" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link href="data_pinjaman.css" rel="stylesheet">
+        <link href="data-pinjaman.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <link rel="shortcut icon" href="icon/Untirta-Logo-Transparan.webp" type="image/x-icon">
@@ -22,74 +22,83 @@
 
     <header id="header" class="header sticky-top">
 
-      <!-- Topbar -->
-      <div class="topbar d-flex align-items-center">
-        <div class="container d-flex flex-column flex-md-row justify-content-center justify-content-md-between">
-          <div class="contact-info d-flex align-items-center justify-content-center justify-content-md-start mb-2 mb-md-0">
-            <i class="bi bi-envelope me-2"></i>
-            <a href="mailto:pusdainfo@untirta.ac.id">pusdainfo@untirta.ac.id</a>
-            <i class="bi bi-phone d-flex align-items-center ms-4"><span>+62254 280330</span></i>
-          </div>
-          <div class="social-links d-flex align-items-center justify-content-center justify-content-md-end gap-3">
-            <a href="https://x.com/HumasUntirta"><i class="bi bi-twitter-x"></i></a>
-            <a href="https://www.facebook.com/untirtabantenofficial"><i class="bi bi-facebook"></i></a>
-            <a href="https://www.instagram.com/untirta_official"><i class="bi bi-instagram"></i></a>
-            <a href="https://www.linkedin.com/school/universitassultanagengtirtayasa"><i class="bi bi-linkedin"></i></a>
-            <a href="{{ route('akun_user') }}" class="akun"><i class="bi bi-person"></i></a>
-          </div>
-        </div>
-      </div>
+<!-- Topbar -->
+<div class="topbar d-flex align-items-center">
+  <div class="container d-flex flex-column flex-md-row justify-content-center justify-content-md-between">
+    <div class="contact-info d-flex align-items-center justify-content-center justify-content-md-start mb-2 mb-md-0">
+      <i class="bi bi-envelope me-2"></i>
+      <a href="mailto:pusdainfo@untirta.ac.id">pusdainfo@untirta.ac.id</a>
+      <i class="bi bi-phone d-flex align-items-center ms-4"><span>+62254 280330</span></i>
+    </div>
+    <div class="social-links d-flex align-items-center justify-content-center justify-content-md-end gap-3">
+      <a href="https://x.com/HumasUntirta"><i class="bi bi-twitter-x"></i></a>
+      <a href="https://www.facebook.com/untirtabantenofficial"><i class="bi bi-facebook"></i></a>
+      <a href="https://www.instagram.com/untirta_official"><i class="bi bi-instagram"></i></a>
+      <a href="https://www.linkedin.com/school/universitassultanagengtirtayasa"><i class="bi bi-linkedin"></i></a>
+      <a href="akun.html"><i class="bi bi-person"></i></a>
+    </div>
+  </div>
+</div>
+
+<!-- Branding + Navigation -->
+<div class="branding bg-white border-bottom py-3">
+  <div class="container d-flex align-items-center justify-content-between flex-wrap">
+    <!-- Logo -->
+    <a href="index.html" class="logo d-flex align-items-center text-decoration-none">
+      <h1 class="sitename m-0">SIJARU</h1>
+    </a>
+
+    <nav id="navmenu" class="navmenu">
+      <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">Ruangan</a></li>
+        <li><a href="#peminjaman">Peminjaman</a></li>
+        <li class="dropdown">
+          <a href="#"><span>Data Pinjam</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Data Histori Peminjaman</a></li>
+          </ul>
+        </li>
+        <li><a href="#contact">Kontak</a></li>
+      </ul>
+      <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+    </nav>
     
-      <!-- Branding + Navigation -->
-      <div class="branding bg-white border-bottom py-3">
-        <div class="container d-flex align-items-center justify-content-between flex-wrap">
-          <!-- Logo -->
-          <a href="index.html" class="logo d-flex align-items-center text-decoration-none">
-            <h1 class="sitename m-0">SIJARU</h1>
-          </a>
-    
-          <nav id="navmenu" class="navmenu">
-            <ul>
-              <li><a href="#hero">Home</a></li>
-              <li><a href="#about">Ruangan</a></li>
-              <li><a href="#peminjaman">Peminjaman</a></li>
-              <li class="dropdown">
-                <a href="#"><span>Data Pinjam</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Data Histori Peminjaman</a></li>
-                </ul>
-              </li>
-              <li><a href="#contact">Kontak</a></li>
-            </ul>
-            <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-          </nav>
-          
-    </header>
+</header>
 
 <body>
-  <div class="container bg-white p-4 rounded shadow">
-    <h3 class="mb-3">DATA PINJAMAN</h3>
+    <div class="container bg-white p-4 rounded shadow">
+        <h3 class="mb-3">DATA PINJAMAN</h3>
+        <a href="{{ route('form-peminjaman') }}" class="btn btn-primary btn-add">+ Tambah Pinjaman</a>
 
-    <a href="form-peminjaman.html" class="btn btn-primary btn-add">+ Tambah Pinjaman</a>
-
-    <table id="tabelPinjaman" class="table table-bordered table-striped">
-      <thead>
-        <tr>
-          <th>No</th>
-          <th>Tanggal Acara <br><small>Waktu Mulai - Selesai</small></th>
-          <th>Nama Ruang <br><small>Nama Gedung</small></th>
-          <th>Nama Acara</th>
-          <th>Status Acara</th>
-          <th>Aksi</th>
-        </tr>
-      </thead>
-    </table>
-  </div>
+        <table id="tabelPinjaman" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Tanggal Acara <br><small>Waktu Mulai - Selesai</small></th>
+                    <th>Nama Ruang <br><small>Nama Gedung</small></th>
+                    <th>Nama Acara</th>
+                    <th>Status Acara</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($pinjamen as $key => $pinjaman)
+                    <tr>
+                        <td>{{ $key + 1 }}</td>
+                        <td>{{ $pinjaman->tanggal_acara }} <br><small>{{ $pinjaman->waktu_mulai }} - {{ $pinjaman->waktu_selesai }}</small></td>
+                        <td>{{ $pinjaman->nama_ruang }} <br><small>{{ $pinjaman->nama_gedung }}</small></td>
+                        <td>{{ $pinjaman->nama_acara }}</td>
+                        <td>{{ $pinjaman->status_acara }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="data_pinjaman.js"></script>
+    <script src="{{ asset('js/bootstrap.js') }}"></script>
+    <script src="{{ asset('js/data-pinjaman.js') }}"></script>
 </body>
 </html>

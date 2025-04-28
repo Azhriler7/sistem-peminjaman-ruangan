@@ -4,7 +4,6 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Index - BizLand Bootstrap Template</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
@@ -39,51 +38,56 @@
 <body class="index-page">
 
   <header id="header" class="header sticky-top">
-
     <div class="topbar d-flex align-items-center">
-      <div class="container d-flex justify-content-center justify-content-md-between">
-        <div class="contact-info d-flex align-items-center">
-          <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:pusdainfo@untirta.ac.id">pusdainfo@untirta.ac.id</a></i>
+      <div class="container d-flex flex-column flex-md-row justify-content-center justify-content-md-between">
+        <div class="contact-info d-flex align-items-center justify-content-center justify-content-md-start mb-2 mb-md-0">
+          <i class="bi bi-envelope me-2"></i>
+          <a href="mailto:pusdainfo@untirta.ac.id">pusdainfo@untirta.ac.id</a>
           <i class="bi bi-phone d-flex align-items-center ms-4"><span>+62254 280330</span></i>
         </div>
-        <div class="social-links d-none d-md-flex align-items-center">
-          <a href="https://x.com/HumasUntirta" class="twitter"><i class="bi bi-twitter-x"></i></a>
-          <a href="https://www.facebook.com/untirtabantenofficial" class="facebook"><i class="bi bi-facebook"></i></a>
-          <a href="https://www.instagram.com/untirta_official" class="instagram"><i class="bi bi-instagram"></i></a>
-          <a href="https://www.linkedin.com/school/universitassultanagengtirtayasa" class="linkedin"><i class="bi bi-linkedin"></i></a>
-          <a href="{{ route('akun_user') }}" class="akun"><i class="bi bi-person"></i></a>
+        <div class="social-links d-flex align-items-center justify-content-center justify-content-md-end gap-3">
+          <a href="https://x.com/HumasUntirta"><i class="bi bi-twitter-x"></i></a>
+          <a href="https://www.facebook.com/untirtabantenofficial"><i class="bi bi-facebook"></i></a>
+          <a href="https://www.instagram.com/untirta_official"><i class="bi bi-instagram"></i></a>
+          <a href="https://www.linkedin.com/school/universitassultanagengtirtayasa"><i class="bi bi-linkedin"></i></a>
         </div>
       </div>
-    </div><!-- End Top Bar -->
+    </div>
 
-    <div class="branding d-flex align-items-cente">
-
-      <div class="container position-relative d-flex align-items-center justify-content-between">
-        <a href="#hero" class="logo d-flex align-items-center">
-          <!-- Uncomment the line below if you also wish to use an image logo -->
-          <!-- <img src="assets/img/logo.png" alt=""> -->
-          <h1 class="sitename">SIJARU</h1>
+    <div class="branding bg-white border-bottom py-3">
+      <div class="container d-flex align-items-center justify-content-between flex-wrap">
+        <a href="{{ route('user.dashboard') }}" class="logo d-flex align-items-center text-decoration-none">
+          <h1 class="sitename m-0">SIJARU</h1>
         </a>
 
         <nav id="navmenu" class="navmenu">
           <ul>
-            <li><a href="#hero" class="active">Home</a></li>
-            <li><a href="#ruangan">Ruangan</a></li>
-            <li><a href="#peminjaman">Peminjaman</a></li>
-            <li class="dropdown"><a href="#"><span>Data Pinjaman</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-              <ul>
-                <li><a href="#">Data Histori Peminjaman </a></li>
+            <li><a href="{{ route('user.dashboard') }}">Home</a></li>
+            <li><a href="{{ route('user.ruangan') }}">Ruangan</a></li>
+            <li><a href="{{ route('user.peminjaman') }}">Peminjaman</a></li>
+            <li class="dropdown">
+              <a href="#"><span>Data Pinjam</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+              <ul class="dropdown-menu">
+                <li><a href="{{ route('user.data.pinjaman') }}">Histori Peminjaman</a></li>
               </ul>
             </li>
-            <li><a href="#contact">Kontak</a></li>
+            <li class="dropdown">
+              <a href="#"><span>Profil</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+              <ul class="dropdown-menu">
+                <li><a href="{{ route('user.profile') }}">Akun Saya</a></li>
+                <li>
+                  <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="dropdown-item text-danger" style="background:none;border:none;padding:8px 16px;text-align:left;">Logout</button>
+                  </form>
+                </li>
+              </ul>
+            </li>
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
-
       </div>
-
     </div>
-
   </header>
 
   <main class="main">
@@ -95,14 +99,11 @@
         <div class="row gy-4">
           <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center" data-aos="zoom-out">
             <h1>Selamat datang di <span>SIJARU</span></h1>
-            <p>Sistem Peminjaman Ruangan.</p>
+            <p>Sistem Informasi Peminjaman Ruangan UNTIRTA.</p>
             <div class="d-flex">
-            <a href="{{ route('login') }}" class="btn btn-outline-primary me-2">
-            <i class="bi bi-box-arrow-in-right me-1"></i> Login
-            </a>
-            <a href="{{ route('register') }}" class="btn btn-outline-primary register-btn">
-              REGISTER <i class="bi bi-person-plus"></i>
-            </a>
+              <a href="#featured-services" class="btn btn-primary me-2">
+                <i class="bi bi-book me-1"></i> Cara Peminjaman
+              </a>
             </div>
           </div>
         </div>
@@ -114,48 +115,57 @@
     <section id="featured-services" class="featured-services section">
 
       <div class="container">
-
         <div class="section-title text-center mb-5">
-          <h2>Kenapa Menggunakan SIJARU?</h2>
-          <p>Sistem Informasi Peminjaman Ruangan UNTIRTA memberikan kemudahan dan transparansi bagi seluruh civitas akademika.</p>
+          <h2>Cara Menggunakan SIJARU</h2>
+          <p>Ikuti langkah mudah berikut untuk melakukan peminjaman ruangan di UNTIRTA melalui platform SIJARU.</p>
         </div>
 
         <div class="row gy-4">
 
+          <!-- Step 1: Login -->
           <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
-            <div class="service-item position-relative">
-              <div class="icon"><i class="bi bi-calendar-check icon"></i></div>
-              <h4><a href="#" class="stretched-link">Booking Cepat & Mudah</a></h4>
-              <p>Ajukan peminjaman ruangan hanya dalam beberapa klik. Semua ruangan terdaftar dan siap dipesan secara online.</p>
+            <div class="service-item position-relative text-center">
+              <div class="icon"><i class="bi bi-box-arrow-in-right icon"></i></div>
+              <h4><a href="#" class="stretched-link">Login Akun</a></h4>
+              <p>Masuk menggunakan akun yang telah terdaftar untuk mengakses sistem peminjaman ruangan.</p>
             </div>
-          </div><!-- End Feature Item -->
+          </div>
 
+          <!-- Step 2: Pilih Ruangan -->
           <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="200">
-            <div class="service-item position-relative">
-              <div class="icon"><i class="bi bi-eye icon"></i></div>
-              <h4><a href="#" class="stretched-link">Jadwal Transparan</a></h4>
-              <p>Lihat ketersediaan ruangan secara real-time melalui kalender interaktif yang terintegrasi dengan sistem.</p>
+            <div class="service-item position-relative text-center">
+              <div class="icon"><i class="bi bi-building icon"></i></div>
+              <h4><a href="#" class="stretched-link">Pilih Ruangan</a></h4>
+              <p>Telusuri daftar ruangan yang tersedia dan pilih ruangan sesuai kebutuhan acara Anda.</p>
             </div>
-          </div><!-- End Feature Item -->
+          </div>
 
+          <!-- Step 3: Ajukan Peminjaman -->
           <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="300">
-            <div class="service-item position-relative">
-              <div class="icon"><i class="bi bi-house-door icon"></i></div>
-              <h4><a href="#" class="stretched-link">Multi-Ruangan</a></h4>
-              <p>Dari aula besar hingga lab komputer, semua tipe ruangan tersedia dan dapat difilter sesuai kebutuhan.</p>
+            <div class="service-item position-relative text-center">
+              <div class="icon"><i class="bi bi-pencil-square icon"></i></div>
+              <h4><a href="#" class="stretched-link">Ajukan Peminjaman</a></h4>
+              <p>Isi formulir peminjaman dengan lengkap dan kirimkan permohonan untuk diproses admin.</p>
             </div>
-          </div><!-- End Feature Item -->
+          </div>
 
+          <!-- Step 4: Tunggu Persetujuan -->
           <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="400">
-            <div class="service-item position-relative">
-              <div class="icon"><i class="bi bi-check2-square icon"></i></div>
-              <h4><a href="#" class="stretched-link">Sistem Persetujuan</a></h4>
-              <p>Setiap pengajuan akan dikonfirmasi oleh admin dan pihak berwenang, memastikan keteraturan dan kejelasan alur.</p>
+            <div class="service-item position-relative text-center">
+              <div class="icon"><i class="bi bi-hourglass-split icon"></i></div>
+              <h4><a href="#" class="stretched-link">Tunggu Persetujuan</a></h4>
+              <p>Permintaan Anda akan ditinjau oleh admin, dan status peminjaman akan diinformasikan melalui sistem.</p>
             </div>
-          </div><!-- End Feature Item -->
+          </div>
 
         </div>
 
+      </div>
+
+      <div class="text-center mb-4" style="margin-top: 1.5rem;">
+        <a href="#faq" class="btn btn-outline-secondary btn-sm">
+          <i class="bi bi-question-circle me-1"></i> Butuh Bantuan? Lihat FAQ
+        </a>
       </div>
 
     </section><!-- /Featured Introduction Section -->
@@ -235,12 +245,12 @@
 
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="350">
             <div class="ruangan-item service-item text-center shadow-sm rounded">
-              <img src="assets/img/ruangan/LabKom.jpg" class="img-fluid rounded-top" alt="Ruang 302">
+              <img src="assets/img/ruangan/BR.jpg" class="img-fluid rounded-top" alt="Ruang 302">
               <div class="ruangan-info p-3">
-                <h4>LabKom</h4>
-                <p>Gedung LabKom</p>
-                <a href="assets/img/ruangan/LabKom.jpg" class="glightbox preview-link" title="Lihat Foto"><i class="bi bi-zoom-in"></i></a>
-                <a href="ruang-302.html" class="details-link" title="Detail"><i class="bi bi-link-45deg"></i></a>
+                <h4>Ruang Kelas BR</h4>
+                <p>Gedung BR</p>
+                <a href="assets/img/ruangan/BR.jpg" class="glightbox preview-link" title="Lihat Foto"><i class="bi bi-zoom-in"></i></a>
+                <a href="{{ route('ruang.br') }}" class="details-link" title="Detail"><i class="bi bi-link-45deg"></i></a>
               </div>
             </div>
           </div>
@@ -283,262 +293,168 @@
         </div>
       </div>
     </section>
-    
-
-    <!-- Peminjaman Ruangan Section -->
-    <section id="peminjaman" class="section light-background">
-
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Peminjaman Ruangan</h2>
-        <p><span>Formulir</span> <span class="description-title">Peminjaman</span></p>
-      </div>
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <div class="row gy-4">
-
-          <div class="col-lg-7 mx-auto">
-            <form action="/peminjaman" method="POST" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
-              <div class="row gy-4">
-
-                <div class="col-md-6">
-                  <label for="nama-peminjam" class="pb-2">Nama Peminjam</label>
-                  <input type="text" name="nama" id="nama-peminjam" class="form-control" required>
-                </div>
-
-                <div class="col-md-6">
-                  <label for="email" class="pb-2">Email</label>
-                  <input type="email" name="email" id="email" class="form-control" required>
-                </div>
-
-                <div class="col-md-6">
-                  <label for="tanggal" class="pb-2">Tanggal Peminjaman</label>
-                  <input type="date" name="tanggal" id="tanggal" class="form-control" required>
-                </div>
-
-                <div class="col-md-6">
-                  <label for="waktu" class="pb-2">Waktu</label>
-                  <input type="time" name="waktu" id="waktu" class="form-control" required>
-                </div>
-
-                <div class="col-md-12">
-                  <label for="ruangan" class="pb-2">Ruangan</label>
-                  <select name="ruangan" id="ruangan" class="form-select" required>
-                    <option value="" disabled selected>-- Pilih Ruangan --</option>
-                    <option value="Ruang 101">Ruang 101</option>
-                    <option value="Ruang 202">Ruang 202</option>
-                    <option value="Ruang 305">Ruang 305</option>
-                  </select>
-                </div>
-
-                <div class="col-md-12">
-                  <label for="keperluan" class="pb-2">Keperluan</label>
-                  <textarea name="keperluan" id="keperluan" class="form-control" rows="5" required></textarea>
-                </div>
-
-                <div class="col-md-12">
-                  <label for="jumlah" class="pb-2">Jumlah Peserta</label>
-                  <input type="number" name="jumlah" id="jumlah" class="form-control" required>
-                </div>
-
-                <div class="col-md-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Pengajuan peminjaman berhasil dikirim. Terima kasih!</div>
-
-                  <button type="submit">Ajukan Peminjaman</button>
-                </div>
-
-              </div>
-            </form>
-          </div>
-
-        </div>
-      </div>
-
-    </section>
-    <!-- /Peminjaman Ruangan Section -->
 
     <!-- Faq Section -->
     <section id="faq" class="faq section light-background">
 
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>F.A.Q</h2>
-        <p><span>Frequently Asked</span> <span class="description-title">Questions</span></p>
-      </div><!-- End Section Title -->
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+      <h2>F.A.Q</h2>
+      <p><span>Frequently Asked</span> <span class="description-title">Questions</span></p>
+    </div><!-- End Section Title -->
 
-      <div class="container">
+    <div class="container">
 
-        <div class="row justify-content-center">
+      <div class="row justify-content-center">
+        <div class="col-lg-10" data-aos="fade-up" data-aos-delay="100">
 
-          <div class="col-lg-10" data-aos="fade-up" data-aos-delay="100">
+          <div class="faq-container">
 
-            <div class="faq-container">
-
-              <div class="faq-item faq-active">
-                <h3>Non consectetur a erat nam at lectus urna duis?</h3>
-                <div class="faq-content">
-                  <p>Feugiat pretium nibh ipsum consequat. Tempus iaculis urna id volutpat lacus laoreet non curabitur gravida. Venenatis lectus magna fringilla urna porttitor rhoncus dolor purus non.</p>
-                </div>
-                <i class="faq-toggle bi bi-chevron-right"></i>
-              </div><!-- End Faq item-->
-
-              <div class="faq-item">
-                <h3>Feugiat scelerisque varius morbi enim nunc faucibus?</h3>
-                <div class="faq-content">
-                  <p>Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.</p>
-                </div>
-                <i class="faq-toggle bi bi-chevron-right"></i>
-              </div><!-- End Faq item-->
-
-              <div class="faq-item">
-                <h3>Dolor sit amet consectetur adipiscing elit pellentesque?</h3>
-                <div class="faq-content">
-                  <p>Eleifend mi in nulla posuere sollicitudin aliquam ultrices sagittis orci. Faucibus pulvinar elementum integer enim. Sem nulla pharetra diam sit amet nisl suscipit. Rutrum tellus pellentesque eu tincidunt. Lectus urna duis convallis convallis tellus. Urna molestie at elementum eu facilisis sed odio morbi quis</p>
-                </div>
-                <i class="faq-toggle bi bi-chevron-right"></i>
-              </div><!-- End Faq item-->
-
-              <div class="faq-item">
-                <h3>Ac odio tempor orci dapibus. Aliquam eleifend mi in nulla?</h3>
-                <div class="faq-content">
-                  <p>Dolor sit amet consectetur adipiscing elit pellentesque habitant morbi. Id interdum velit laoreet id donec ultrices. Fringilla phasellus faucibus scelerisque eleifend donec pretium. Est pellentesque elit ullamcorper dignissim. Mauris ultrices eros in cursus turpis massa tincidunt dui.</p>
-                </div>
-                <i class="faq-toggle bi bi-chevron-right"></i>
-              </div><!-- End Faq item-->
-
-              <div class="faq-item">
-                <h3>Tempus quam pellentesque nec nam aliquam sem et tortor?</h3>
-                <div class="faq-content">
-                  <p>Molestie a iaculis at erat pellentesque adipiscing commodo. Dignissim suspendisse in est ante in. Nunc vel risus commodo viverra maecenas accumsan. Sit amet nisl suscipit adipiscing bibendum est. Purus gravida quis blandit turpis cursus in</p>
-                </div>
-                <i class="faq-toggle bi bi-chevron-right"></i>
-              </div><!-- End Faq item-->
-
-              <div class="faq-item">
-                <h3>Perspiciatis quod quo quos nulla quo illum ullam?</h3>
-                <div class="faq-content">
-                  <p>Enim ea facilis quaerat voluptas quidem et dolorem. Quis et consequatur non sed in suscipit sequi. Distinctio ipsam dolore et.</p>
-                </div>
-                <i class="faq-toggle bi bi-chevron-right"></i>
-              </div><!-- End Faq item-->
-
+            <!-- FAQ Item 1 -->
+            <div class="faq-item">
+              <h3>Kapan waktu paling lambat mengajukan peminjaman ruangan?</h3>
+              <div class="faq-content">
+                <p>Pengajuan peminjaman harus dilakukan minimal 7 (tujuh) hari sebelum tanggal kegiatan.</p>
+              </div>
+              <i class="faq-toggle bi bi-chevron-right"></i>
             </div>
 
-          </div><!-- End Faq Column-->
+            <!-- FAQ Item 2 -->
+            <div class="faq-item">
+              <h3>Dokumen apa saja yang perlu diunggah saat mengajukan peminjaman?</h3>
+              <div class="faq-content">
+                <ul class="ps-4">
+                  <li>Surat permohonan peminjaman yang ditandatangani pejabat terkait (Wakil Dekan III, Koordinator Kemahasiswaan, atau unit masing-masing).</li>
+                  <li>Surat harus bertanda tangan asli dan stempel basah.</li>
+                </ul>
+              </div>
+              <i class="faq-toggle bi bi-chevron-right"></i>
+            </div>
+            
+            <!-- FAQ Item 3 -->
+            <div class="faq-item">
+              <h3>Berapa lama proses verifikasi pengajuan peminjaman?</h3>
+              <div class="faq-content">
+                <p>Pengajuan akan diverifikasi maksimal dalam 3 (tiga) hari kerja sejak tanggal pengajuan.</p>
+              </div>
+              <i class="faq-toggle bi bi-chevron-right"></i>
+            </div>
 
-        </div>
+            <!-- FAQ Item 4 -->
+            <div class="faq-item">
+              <h3>Apa yang terjadi jika tidak ada konfirmasi setelah pengajuan?</h3>
+              <div class="faq-content">
+                <p>Jika dalam 3 (tiga) hari tidak ada konfirmasi, pengajuan akan otomatis ditolak dan dibatalkan tanpa pemberitahuan lebih lanjut.</p>
+              </div>
+              <i class="faq-toggle bi bi-chevron-right"></i>
+            </div>
 
+            <!-- FAQ Item 5 -->
+            <div class="faq-item">
+              <h3>Bagaimana jika peminjam ingin membatalkan pengajuan?</h3>
+              <div class="faq-content">
+                <p>Jika peminjaman batal, pemohon wajib menginformasikan pembatalan kepada bagian Rumah Tangga atau BUKK. Jika tidak, dapat dikenai teguran dan sanksi administratif.</p>
+              </div>
+              <i class="faq-toggle bi bi-chevron-right"></i>
+            </div>
+
+            <!-- FAQ Item 6 -->
+            <div class="faq-item">
+              <h3>Siapa yang bertanggung jawab jika ada kerusakan pada ruangan?</h3>
+              <div class="faq-content">
+                <p>Segala kerusakan yang terjadi akibat penggunaan ruangan menjadi tanggung jawab penuh peminjam, baik sengaja maupun tidak sengaja.</p>
+              </div>
+              <i class="faq-toggle bi bi-chevron-right"></i>
+            </div>
+
+            <!-- FAQ Item 7 -->
+            <div class="faq-item">
+              <h3>Bagaimana kondisi ruangan setelah peminjaman selesai?</h3>
+              <div class="faq-content">
+                <p>Peminjam wajib mengembalikan kondisi ruangan dalam keadaan bersih, rapi, dan sebagaimana kondisi awal sebelum dipinjam.</p>
+              </div>
+              <i class="faq-toggle bi bi-chevron-right"></i>
+            </div>
+
+            <!-- FAQ Item 8 -->
+            <div class="faq-item">
+              <h3>Apa sanksi jika melanggar ketentuan peminjaman?</h3>
+              <div class="faq-content">
+                <p>Peminjam yang melanggar ketentuan tidak diperkenankan untuk melakukan peminjaman ruangan/kendaraan lagi di kemudian hari.</p>
+              </div>
+              <i class="faq-toggle bi bi-chevron-right"></i>
+            </div>
+
+          </div>
+
+        </div><!-- End Faq Column -->
       </div>
+
+    </div>
 
     </section><!-- /Faq Section -->
 
+
     <!-- Contact Section -->
-    <section id="contact" class="contact section">
+    <section id="contact" class="contact section light-background">
 
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Contact</h2>
-        <p><span>Need Help?</span> <span class="description-title">Contact Us</span></p>
-      </div><!-- End Section Title -->
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+      <h2>Contact</h2>
+      <p><span>Need Help?</span> <span class="description-title">Contact Us</span></p>
+    </div><!-- End Section Title -->
 
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+      <div class="row gy-4 justify-content-center">
 
-        <div class="row gy-4">
+        <div class="col-lg-6">
+          <div class="info-wrap">
 
-          <div class="col-lg-5">
-
-            <div class="info-wrap">
-              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
-                <i class="bi bi-geo-alt flex-shrink-0"></i>
-                <div>
-                  <h3>Address</h3>
-                  <p>A108 Adam Street, New York, NY 535022</p>
-                </div>
-              </div><!-- End Info Item -->
-
-              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
-                <i class="bi bi-telephone flex-shrink-0"></i>
-                <div>
-                  <h3>Call Us</h3>
-                  <p>+1 5589 55488 55</p>
-                </div>
-              </div><!-- End Info Item -->
-
-              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
-                <i class="bi bi-envelope flex-shrink-0"></i>
-                <div>
-                  <h3>Email Us</h3>
-                  <p>info@example.com</p>
-                </div>
-              </div><!-- End Info Item -->
-
-              <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d48389.78314118045!2d-74.006138!3d40.710059!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a22a3bda30d%3A0xb89d1fe6bc499443!2sDowntown%20Conference%20Center!5e0!3m2!1sen!2sus!4v1676961268712!5m2!1sen!2sus" frameborder="0" style="border:0; width: 100%; height: 270px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-          </div>
-
-          <div class="col-lg-7">
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
-              <div class="row gy-4">
-
-                <div class="col-md-6">
-                  <label for="name-field" class="pb-2">Your Name</label>
-                  <input type="text" name="name" id="name-field" class="form-control" required="">
-                </div>
-
-                <div class="col-md-6">
-                  <label for="email-field" class="pb-2">Your Email</label>
-                  <input type="email" class="form-control" name="email" id="email-field" required="">
-                </div>
-
-                <div class="col-md-12">
-                  <label for="subject-field" class="pb-2">Subject</label>
-                  <input type="text" class="form-control" name="subject" id="subject-field" required="">
-                </div>
-
-                <div class="col-md-12">
-                  <label for="message-field" class="pb-2">Message</label>
-                  <textarea class="form-control" name="message" rows="10" id="message-field" required=""></textarea>
-                </div>
-
-                <div class="col-md-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
-
-                  <button type="submit">Send Message</button>
-                </div>
-
+            <div class="info-item d-flex mb-4" data-aos="fade-up" data-aos-delay="200">
+              <i class="bi bi-geo-alt flex-shrink-0 me-3 fs-4 text-primary"></i>
+              <div>
+                <h5 class="mb-1">Address</h5>
+                <p class="mb-0">Jl. Jenderal Sudirman Km 3, Kotabumi, Kec. Purwakarta, Kota Cilegon, Banten 42435</p>
               </div>
-            </form>
-          </div><!-- End Contact Form -->
+            </div>
 
+            <div class="info-item d-flex mb-4" data-aos="fade-up" data-aos-delay="300">
+              <i class="bi bi-telephone flex-shrink-0 me-3 fs-4 text-primary"></i>
+              <div>
+                <h5 class="mb-1">Call Us</h5>
+                <p class="mb-0">+62254 280330</p>
+              </div>
+            </div>
+
+            <div class="info-item d-flex mb-4" data-aos="fade-up" data-aos-delay="400">
+              <i class="bi bi-envelope flex-shrink-0 me-3 fs-4 text-primary"></i>
+              <div>
+                <h5 class="mb-1">Email Us</h5>
+                <p class="mb-0">pusdainfo@untirta.ac.id</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="map-responsive shadow-sm rounded overflow-hidden">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3967.9883110570104!2d106.02950537355092!3d-5.996339958909738!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e418e2782651571%3A0x249411dd80bfd66e!2sEngineering%20Faculty%20of%20Sultan%20Ageng%20Tirtayasa%20University!5e0!3m2!1sen!2sus!4v1745619912127!5m2!1sen!2sus"
+              width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
         </div>
 
       </div>
+    </div>
 
     </section><!-- /Contact Section -->
 
   </main>
 
   <footer id="footer" class="footer">
-
-    <div class="footer-newsletter">
-      <div class="container">
-        <div class="row justify-content-center text-center">
-          <div class="col-lg-6">
-            <h4>Join Our Newsletter</h4>
-            <p>Subscribe to our newsletter and receive the latest news about our products and services!</p>
-            <form action="forms/newsletter.php" method="post" class="php-email-form">
-              <div class="newsletter-form"><input type="email" name="email"><input type="submit" value="Subscribe"></div>
-              <div class="loading">Loading</div>
-              <div class="error-message"></div>
-              <div class="sent-message">Your subscription request has been sent. Thank you!</div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <div class="container footer-top">
       <div class="row gy-4">
@@ -589,13 +505,13 @@
     </div>
 
     <div class="container copyright text-center mt-4">
-      <p>© <span>Copyright</span> <strong class="px-1 sitename">BizLand</strong> <span>All Rights Reserved</span></p>
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">SIJARU UNTIRTA</strong> <span>All Rights Reserved</span></p>
       <div class="credits">
         <!-- All the links in the footer should remain intact. -->
         <!-- You can delete the links only if you've purchased the pro version. -->
         <!-- Licensing information: https://bootstrapmade.com/license/ -->
         <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        Designed by <a href="https://bootstrapmade.com/">Kelompok 4 Kelas B</a>
       </div>
     </div>
 

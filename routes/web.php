@@ -6,8 +6,9 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RuanganController;
 
-// === Auth Routes ===
+// === Auth ===
 Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
@@ -15,7 +16,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/forgot-password', [AuthController::class, 'showForgotForm'])->name('password.request');
 Route::post('/forgot-password', [AuthController::class, 'submitForgotForm'])->name('password.submit');
 
-// === User Routes (pakai role dan auth) ===
+// === User Routes ===
 Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/user/dashboard', [UserController::class, 'dashboard'])->name('user.dashboard');
     Route::get('/user/peminjaman', [UserController::class, 'peminjamanForm'])->name('user.peminjaman');
@@ -25,55 +26,20 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::post('/user/profile', [UserController::class, 'updateProfile'])->name('user.profile.update');
 
     Route::get('/user/ruangan', [UserController::class, 'ruangan'])->name('user.ruangan');
+});
 
-// === Admin Routes (pakai role dan auth) ===
+// === Admin Routes ===
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/admin/peminjaman', [AdminController::class, 'listPeminjaman'])->name('admin.peminjaman');
-    
     Route::get('/admin/ruangan', [AdminController::class, 'indexRuangan'])->name('admin.ruangan');
-    Route::get('/admin/ruangan/tambah', [AdminController::class, 'createRuangan'])->name('admin.ruangan.create');
-    Route::post('/admin/ruangan', [AdminController::class, 'storeRuangan'])->name('admin.ruangan.store');
-    Route::get('/admin/ruangan/{id}/edit', [AdminController::class, 'editRuangan'])->name('admin.ruangan.edit');
-    Route::put('/admin/ruangan/{id}', [AdminController::class, 'updateRuangan'])->name('admin.ruangan.update');
-    Route::delete('/admin/ruangan/{id}', [AdminController::class, 'deleteRuangan'])->name('admin.ruangan.delete');
-
     Route::get('/admin/profile', [AdminController::class, 'profile'])->name('admin.profile');
     Route::post('/admin/profile', [AdminController::class, 'updateProfile'])->name('admin.profile.update');
-});
 
-    // Route untuk halaman detail ruangan
-    Route::get('/user/ruang-aula', function () {
-        return view('pages.user.ruang-aula');
-    })->name('user.ruangan-aula');
-
-    Route::get('/user/ruang-dekanat', function () {
-        return view('pages.user.ruang-dekanat');
-    })->name('user.ruangan-dekanat');
-
-    Route::get('/user/ruang-vicon', function () {
-        return view('pages.user.ruang-vicon');
-    })->name('user.ruangan-vicon');
-
-    Route::get('/user/ruang-coe', function () {
-        return view('pages.user.ruang-coe');
-    })->name('user.ruangan-coe');
-
-    Route::get('/user/ruang-U', function () {
-        return view('pages.user.ruang-U');
-    })->name('user.ruangan-U');
-
-    Route::get('/user/ruang-LabKom', function () {
-        return view('pages.user.ruang-LabKom');
-    })->name('user.ruangan-LabKom');
-
-    Route::get('/user/pengajuan', function () {
-        return view('pages.user.pengajuan');
-    })->name('user.pengajuan');
-
-    // Route tambahan untuk lihat daftar pinjaman
-    Route::get('/user/peminjaman', function () {
-        return view('pages.user.peminjaman');
-    })->name('user.peminjaman.saya');
-});
-
+    Route::get('/admin/gedung', [RuanganController::class, 'index'])->name('admin.gedung');
+    Route::get('/admin/gedung/create', [RuanganController::class, 'create'])->name('admin.gedung.create');
+    Route::post('/admin/gedung/store', [RuanganController::class, 'store'])->name('admin.gedung.store');
+    Route::get('/admin/gedung/edit/{id_ruang}', [RuanganController::class, 'edit'])->name('admin.gedung.edit');
+    Route::put('/admin/gedung/update/{id_ruang}', [RuanganController::class, 'update'])->name('admin.gedung.update');
+    Route::delete('/admin/gedung/delete/{id_ruang}', [RuanganController::class, 'destroy'])->name('admin.gedung.delete');
+   });

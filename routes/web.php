@@ -34,4 +34,5 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/ruangan', [AdminController::class, 'indexRuangan'])->name('admin.ruangan');
     Route::get('/admin/profile', [AdminController::class, 'profile'])->name('admin.profile');
     Route::post('/admin/profile', [AdminController::class, 'updateProfile'])->name('admin.profile.update');
+    Route::get('/admin/notifikasi', [AdminController::class, 'notifikasi'])->name('admin.notifikasi');
    });

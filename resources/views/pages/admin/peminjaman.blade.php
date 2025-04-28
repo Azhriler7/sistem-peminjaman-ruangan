@@ -35,7 +35,8 @@
             <a href="https://www.facebook.com/untirtabantenofficial"><i class="bi bi-facebook"></i></a>
             <a href="https://www.instagram.com/untirta_official"><i class="bi bi-instagram"></i></a>
             <a href="https://www.linkedin.com/school/universitassultanagengtirtayasa"><i class="bi bi-linkedin"></i></a>
-            <a href="{{ route('akun_user') }}" class="akun"><i class="bi bi-person"></i></a>
+            <a href="{{ route('admin.profile') }}" class="akun"><i class="bi bi-person"></i></a>
+            <a href="{{( route'notifikasi')}}"><i class="bi bi-bell"></i></a>
           </div>
         </div>
       </div>

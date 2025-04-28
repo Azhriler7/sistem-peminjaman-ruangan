@@ -4,13 +4,13 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Detail Ruangan - Aula Fakultas Teknik</title>
+  <title>Detail Ruangan - Lab Komputer</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
+  <link href="{{ asset('assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -18,17 +18,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Open+Sans&family=Montserrat&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/aos/aos.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
   <!-- Main CSS File -->
-  <link href="assets/css/main.css" rel="stylesheet">
+  <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
 </head>
 
-<body class="ruangan-aula-page">
+<body class="ruang-LabKom-page">
 
   <!-- ======= Header ======= -->
   <header id="header" class="header sticky-top">
@@ -52,8 +52,8 @@
 
     <div class="branding d-flex align-items-center">
       <div class="container position-relative d-flex align-items-center justify-content-between">
-        <a href="index.html" class="logo d-flex align-items-center">
-          <h1 class="sitename">SIJARU</h1>
+        <a href="{{ url('/user/dashboard#hero') }}" class="logo d-flex align-items-center">
+          <img src="{{ asset('assets/img/logo.png') }}" alt="Logo SIJARU">
         </a>
         <nav id="navmenu" class="navmenu">
           <ul>
@@ -84,8 +84,8 @@
         <h1 class="mb-2 mb-lg-0">Detail Ruangan</h1>
         <nav class="breadcrumbs">
           <ol>
-            <li><a href="index.html">Home</a></li>
-            <li class="current">Aula Fakultas Teknik</li>
+            <li><a href="{{ url('/user/dashboard#hero') }}">Home</a></li>
+            <li class="current">Lab Kom</li>
           </ol>
         </nav>
       </div>
@@ -96,11 +96,18 @@
       <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="row gy-4">
 
+          <!-- Tombol Back -->
+          <div class="d-flex justify-content-start mb-3">
+            <a href="{{ url('/user/dashboard#ruangan') }}" class="text-decoration-none text-primary small">
+              ← Back
+            </a>
+          </div>
+
           <div class="col-lg-8">
             <div class="portfolio-details-slider swiper">
               <div class="swiper-wrapper align-items-center">
                 <div class="swiper-slide">
-                  <img src="assets/img/ruangan/aula.jpg" class="img-fluid" alt="Aula Fakultas Teknik">
+                  <img src="{{ asset('assets/img/ruangan/exFK.jpg') }}" class="img-fluid" alt="Aula Fakultas Teknik">
                 </div>
               </div>
               <div class="swiper-pagination"></div>
@@ -108,22 +115,24 @@
           </div>
 
           <div class="col-lg-4">
+
             <div class="portfolio-info" data-aos="fade-up" data-aos-delay="200">
               <h3>Informasi Ruangan</h3>
               <ul>
-                <li><strong>Nama Ruangan:</strong> Aula Fakultas Teknik</li>
-                <li><strong>Gedung:</strong> Aula Utama</li>
-                <li><strong>Kapasitas:</strong> 100 orang</li>
-                <li><strong>Fasilitas:</strong> Proyektor, Mic, Sound System, AC</li>
+                <li><strong>Nama Ruangan:</strong> Laboratorium Komputer </li>
+                <li><strong>Gedung:</strong> Gedung LabKom </li>
+                <li><strong>Kapasitas:</strong> Sekitar 40 orang per ruangan</li>
+                <li><strong>Fasilitas:</strong> Komputer Desktop, Whiteboard, AC, Meja Kursi Lab, Jaringan Internet </li>
+                <li><strong>Deskripsi Ruangan:</strong> Laboratorium Komputer digunakan untuk kegiatan praktikum, pelatihan software, dan ujian berbasis komputer. </li>
               </ul>
             </div>
+
             <div class="portfolio-description" data-aos="fade-up" data-aos-delay="300">
-              <h4>Deskripsi Ruangan</h4>
-              <p>
-                Aula ini digunakan untuk kegiatan besar seperti seminar, workshop, dan acara seremonial. Terletak di Gedung Aula Utama dan memiliki akses parkir yang mudah.
-              </p>
-              <div class="mt-4">
-                <a href="login.html" class="btn btn-primary w-100">Booking Ruangan</a>
+              <!-- Tombol Booking -->
+              <div class="d-grid">
+                <a href="{{ route('user.pengajuan') }}" class="btn btn-primary btn-lg">
+                  <i class="bi bi-pencil-square me-1"></i> Ajukan Peminjaman
+                </a>
               </div>
             </div>
           </div>
@@ -138,7 +147,7 @@
   <footer id="footer" class="footer">
     <div class="container text-center py-4">
       <p>&copy; <strong>SIJARU UNTIRTA</strong>. All Rights Reserved</p>
-      <div class="credits">Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a></div>
+      <div class="credits">Designed by <a href="https://bootstrapmade.com/">Kelompok 4 Kelas B</a></div>
     </div>
   </footer>
 
@@ -153,12 +162,11 @@
   </div>
 
   <!-- Vendor JS Files -->
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/js/main.js"></script>
+  <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
+  <script src="{{ asset('assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+  <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+  <script src="{{ asset('assets/js/main.js') }}"></script>
 
 </body>
-
 </html>

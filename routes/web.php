@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RuanganController;
 
 // === Auth ===
 Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
@@ -34,4 +35,11 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/ruangan', [AdminController::class, 'indexRuangan'])->name('admin.ruangan');
     Route::get('/admin/profile', [AdminController::class, 'profile'])->name('admin.profile');
     Route::post('/admin/profile', [AdminController::class, 'updateProfile'])->name('admin.profile.update');
+
+    Route::get('/admin/gedung', [RuanganController::class, 'index'])->name('admin.gedung');
+    Route::get('/admin/gedung/create', [RuanganController::class, 'create'])->name('admin.gedung.create');
+    Route::post('/admin/gedung/store', [RuanganController::class, 'store'])->name('admin.gedung.store');
+    Route::get('/admin/gedung/edit/{id_ruang}', [RuanganController::class, 'edit'])->name('admin.gedung.edit');
+    Route::put('/admin/gedung/update/{id_ruang}', [RuanganController::class, 'update'])->name('admin.gedung.update');
+    Route::delete('/admin/gedung/delete/{id_ruang}', [RuanganController::class, 'destroy'])->name('admin.gedung.delete');
    });

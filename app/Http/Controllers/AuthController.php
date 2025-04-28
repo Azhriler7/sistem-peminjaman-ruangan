@@ -9,7 +9,7 @@ class AuthController extends Controller
 {
     public function showLoginForm()
     {
-        return view('pages.login'); // Sesuaikan dengan view login kamu
+        return view('pages.login'); 
     }
 
     public function login(Request $request)

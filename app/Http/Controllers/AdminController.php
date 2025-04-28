@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Ruangan;
 
 class AdminController extends Controller
 {
@@ -64,6 +65,8 @@ class AdminController extends Controller
     public function deleteRuangan($id)
     {
         // hapus gedung
+        $ruangan = Ruangan::findOrFail($id);
+        $ruangan->delete();
         return back()->with('success', 'Gedung berhasil dihapus');
     }
 

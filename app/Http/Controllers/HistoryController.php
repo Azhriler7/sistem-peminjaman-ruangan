@@ -21,7 +21,7 @@ class HistoryController extends Controller
     public function adminHistory()
     {
         $peminjaman = Peminjaman::latest()->get();
-        return view('pages.admin.history', compact('peminjaman'));
+        return view('pages.admin.data_histori', compact('peminjaman'));
     }
 
     // Export CSV untuk admin

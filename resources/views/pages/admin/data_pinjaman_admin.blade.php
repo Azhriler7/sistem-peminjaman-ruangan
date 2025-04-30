@@ -33,7 +33,7 @@
                 <a href="https://www.instagram.com/untirta_official"><i class="bi bi-instagram"></i></a>
                 <a href="https://www.linkedin.com/school/universitassultanagengtirtayasa"><i class="bi bi-linkedin"></i></a>
                 <a href="{{ route('admin.profile') }}" class="akun"><i class="bi bi-person"></i></a>
-                <a href="{{( route'notifikasi')}}"><i class="bi bi-bell"></i></a>
+                <a href="{{ route('admin.notifikasi')}}"><i class="bi bi-bell"></i></a>
             </div>
         </div>
     </div>
@@ -42,7 +42,7 @@
     <div class="branding bg-white border-bottom py-3">
         <div class="container d-flex align-items-center justify-content-between flex-wrap">
             <!-- Logo -->
-            <a href="{{ route('home') }}" class="logo d-flex align-items-center text-decoration-none">
+            <a href="{{ route('admin.dashboard') }}" class="logo d-flex align-items-center text-decoration-none">
                 <h1 class="sitename m-0">SIJARU</h1>
             </a>
       

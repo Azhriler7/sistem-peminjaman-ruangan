@@ -10,7 +10,7 @@ class NotifikasiController extends Controller
     public function index()
     {
         $notifikasi = Notifikasi::latest()->get();
-        return view('admin.notifikasi', compact('notifikasi'));
+        return view('pages.admin.notifikasi', compact('notifikasi'));
     }
 
     public function markAsRead($id)

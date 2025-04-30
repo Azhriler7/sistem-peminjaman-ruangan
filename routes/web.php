@@ -54,7 +54,10 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::post('/profile', [AdminController::class, 'updateProfile'])->name('admin.profile.update');
 
     // Peminjaman
-    Route::get('/peminjaman', [AdminController::class, 'listPeminjaman'])->name('admin.peminjaman');
+    Route::get('/peminjaman', [AdminController::class, 'dataPeminjaman'])->name('admin.peminjaman');
+
+    //data pinjaman
+    Route::get('/admin/data-pinjaman', [AdminController::class, 'dataPinjamanAdmin'])->name('admin.data.pinjaman');
 
     // Riwayat & Export
     Route::get('/history', [HistoryController::class, 'adminHistory'])->name('admin.history');
@@ -62,13 +65,15 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/history/export/csv', [HistoryController::class, 'exportCsv'])->name('admin.history.export.csv');
 
     // Manajemen Gedung & Ruangan
-    Route::get('/gedung', [RuanganController::class, 'index'])->name('admin.gedung');
-    Route::get('/gedung/create', [RuanganController::class, 'create'])->name('admin.gedung.create');
-    Route::post('/gedung/store', [RuanganController::class, 'store'])->name('admin.gedung.store');
-    Route::get('/gedung/edit/{id_ruang}', [RuanganController::class, 'edit'])->where('id_ruang', '[0-9]+')->name('admin.gedung.edit');
-    Route::put('/gedung/update/{id_ruang}', [RuanganController::class, 'update'])->where('id_ruang', '[0-9]+')->name('admin.gedung.update');
-    Route::delete('/gedung/delete/{id_ruang}', [RuanganController::class, 'destroy'])->where('id_ruang', '[0-9]+')->name('admin.gedung.delete');
+    Route::get('/ruangan', [RuanganController::class, 'index'])->name('admin.ruangan');
+    Route::get('/ruangan/create', [RuanganController::class, 'create'])->name('admin.ruangan.create');
+    Route::post('/ruangan/store', [RuanganController::class, 'store'])->name('admin.ruangan.store');
+    Route::get('/ruangan/edit/{id}', [RuanganController::class, 'edit'])->name('admin.ruangan.edit');
+    Route::put('/ruangan/update/{id}', [RuanganController::class, 'update'])->name('admin.ruangan.update');
+    Route::delete('/ruangan/delete/{id}', [RuanganController::class, 'destroy'])->name('admin.ruangan.delete');
+
 
     // Notifikasi
     Route::get('/notifikasi', [NotifikasiController::class, 'index'])->name('admin.notifikasi');
+    Route::post('/notifikasi/{id}/read', [NotifikasiController::class, 'markAsRead'])->name('admin.notifikasi.read');
 });

@@ -55,8 +55,8 @@
             <li class="dropdown">
               <a href="#"><span>Data Pinjaman</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
               <ul>
-                <li><a href="{{ route('user.peminjaman.saya') }}">Pinjaman Masuk</a></li>
-                <li><a href="{{ route('user.peminjaman.saya') }}">Data Histori Peminjaman</a></li>
+                <li><a href="{{ route('admin.peminjaman') }}">Pinjaman Masuk</a></li>
+                <li><a href="{{ route('admin.peminjaman') }}">Data Histori Peminjaman</a></li>
               </ul>
             </li>
             <li><a href="#contact">Kontak</a></li>

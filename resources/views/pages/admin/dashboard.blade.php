@@ -72,8 +72,8 @@
             <li class="dropdown">
               <a href="#"><span>Data Pinjaman</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
               <ul>
-                <li><a href="{{ route('admin.peminjaman') }}">Pinjaman Masuk</a></li>
-                <li><a href="{{ route('admin.peminjaman') }}">Data Histori Peminjaman</a></li>
+                <li><a href="{{ route('admin.data.pinjaman') }}">Pinjaman Masuk</a></li>
+                <li><a href="{{ route('admin.history') }}">Data Histori Peminjaman</a></li>
               </ul>
             </li>
             <li><a href="#contact">Kontak</a></li>
@@ -176,7 +176,7 @@
 
         <div class="d-flex justify-content-between align-items-center mb-4">
           <h2 class="fw-bold">Daftar Ruangan</h2>
-          <a href="{{ route('admin.gedung.create') }}" class="btn btn-primary">
+          <a href="{{ route('admin.ruangan.create') }}" class="btn btn-primary">
             <i class="bi bi-plus-circle"></i> Tambah Ruangan
           </a>
         </div>
@@ -303,7 +303,7 @@
         <td>{{ $r->fasilitas }}</td>
         <td>{{ $r->deskripsi }}</td>
         <td>
-            <img src="{{ asset('storage/' . $ruangan->gambar) }}" alt="{{ $rruangan->nama_ruangan }}" width="80" class="img-thumbnail">
+            <img src="{{ asset('storage/' . $r->gambar) }}" alt="{{ $r->nama_ruangan }}" width="80" class="img-thumbnail">
         </td>
         <td>
             <a href="{{ route('admin.ruangan.edit', $r->id) }}" class="btn btn-sm btn-outline-primary me-1">Edit</a>

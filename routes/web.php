@@ -8,6 +8,8 @@ use App\Http\Controllers\RuanganController;
 use App\Http\Controllers\RequestPasswordController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\NotifikasiController;
+use App\Http\Controllers\Auth;
+
 
 // ========== AUTH ==========
 Route::get('/', [AuthController::class, 'showLogin'])->name('login');

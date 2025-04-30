@@ -24,12 +24,28 @@ Route::middleware(['auth', 'role:user'])->prefix('user')->group(function () {
     Route::get('/peminjaman', [UserController::class, 'peminjamanForm'])->name('user.peminjaman');
     Route::post('/peminjaman', [UserController::class, 'submitPeminjaman'])->name('user.peminjaman.submit');
 
+    Route::get('/user/data-pinjaman', [UserController::class, 'dataPinjaman'])->name('user.data-pinjaman');
+
+
     Route::get('/profile', [UserController::class, 'profile'])->name('user.profile');
     Route::post('/profile', [UserController::class, 'updateProfile'])->name('user.profile.update');
 
     Route::get('/kalender', [UserController::class, 'kalender'])->name('user.kalender');
     Route::get('/history', [HistoryController::class, 'userHistory'])->name('user.history');
     Route::get('/gedung', [UserController::class, 'gedung'])->name('user.gedung');
+
+    // Tambahkan di dalam Route::prefix('user')->group(...)
+
+Route::get('/ruangan/aula', [UserController::class, 'ruanganAula'])->name('user.ruangan-aula');
+Route::get('/ruangan/dekanat', [UserController::class, 'ruanganDekanat'])->name('user.ruangan-dekanat');
+Route::get('/ruangan/vicon', [UserController::class, 'ruanganVicon'])->name('user.ruangan-vicon');
+Route::get('/ruangan/coe', [UserController::class, 'ruanganCoE'])->name('user.ruangan-coe');
+Route::get('/ruangan/u', [UserController::class, 'ruanganU'])->name('user.ruangan-U');
+Route::get('/ruangan/labkom', [UserController::class, 'ruanganLabKom'])->name('user.ruangan-LabKom');
+
+Route::get('/pengajuan', [UserController::class, 'pengajuan'])->name('user.pengajuan');
+
+
 });
 
 // ========== ADMIN ==========

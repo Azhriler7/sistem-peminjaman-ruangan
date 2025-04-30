@@ -15,8 +15,9 @@ class UserController extends Controller
     public function dashboard()
     {
         $totalPeminjaman = Peminjaman::where('user_id', Auth::id())->count();
-        $peminjamanTerakhir = Peminjaman::where('user_id', Auth::id())->latest()->first();
-        return view('pages.user.dashboard', compact('totalPeminjaman', 'peminjamanTerakhir'));
+        $peminjamanTerakhir = Peminjaman::where('user_id', Auth::id())->latest()->first() ?? null;
+        $ruangan = Ruangan::all();
+        return view('pages.user.dashboard', compact('totalPeminjaman', 'peminjamanTerakhir', 'ruangan'));
     }
 
     public function peminjamanForm()
@@ -111,4 +112,51 @@ class UserController extends Controller
         $ruangan = Ruangan::all();
         return view('pages.user.gedung', compact('ruangan'));
     }
+
+    public function ruanganAula()
+{
+    return view('pages.user.ruang-aula');
+}
+
+public function ruanganDekanat()
+{
+    return view('pages.user.ruang-dekanat');
+}
+
+public function ruanganVicon()
+{
+    return view('pages.user.ruang-vicon');
+}
+
+public function ruanganCoE()
+{
+    return view('pages.user.ruang-coe');
+}
+
+public function ruanganU()
+{
+    return view('pages.user.ruang-u');
+}
+
+public function ruanganLabKom()
+{
+    return view('pages.user.ruang-labkom');
+}
+
+public function pengajuan()
+{
+    return view('pages.user.pengajuan');
+}
+
+public function dataPinjaman()
+{
+    $pinjaman = Peminjaman::with('ruangan')
+        ->where('user_id', Auth::id())
+        ->orderBy('tanggal_peminjaman', 'desc')
+        ->get();
+
+    return view('pages.user.data_pinjaman_user', compact('pinjaman'));
+}
+
+
 }

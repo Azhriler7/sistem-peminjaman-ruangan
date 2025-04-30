@@ -21,9 +21,10 @@ return new class extends Migration
             $table->string('nama_acara');
             $table->dateTime('waktu_mulai');
             $table->dateTime('waktu_selesai');
-            $table->string('surat_permohonan')->nullable(); // file
+            $table->string('surat_permohonan')->nullable(); 
             $table->text('catatan')->nullable();
             $table->enum('status', ['pending', 'diterima', 'ditolak'])->default('pending');
+            $table->string('kontak');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

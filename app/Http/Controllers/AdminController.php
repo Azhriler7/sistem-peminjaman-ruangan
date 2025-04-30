@@ -90,7 +90,7 @@ class AdminController extends Controller
     public function notifikasi()
     {
         $requests = RequestPassword::latest()->get();
-        return view('pages.admin.notifikasi.index', compact('requests'));
+        return view('pages.admin.notifikasi', compact('requests'));
     }
 
     // Menampilkan riwayat peminjaman

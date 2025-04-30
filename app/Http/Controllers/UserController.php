@@ -114,49 +114,47 @@ class UserController extends Controller
     }
 
     public function ruanganAula()
-{
-    return view('pages.user.ruang-aula');
-}
+    {
+        return view('pages.user.ruang-aula');
+    }
 
-public function ruanganDekanat()
-{
-    return view('pages.user.ruang-dekanat');
-}
+    public function ruanganDekanat()
+    {
+        return view('pages.user.ruang-dekanat');
+    }
 
-public function ruanganVicon()
-{
-    return view('pages.user.ruang-vicon');
-}
+    public function ruanganVicon()
+    {
+        return view('pages.user.ruang-vicon');
+    }
 
-public function ruanganCoE()
-{
-    return view('pages.user.ruang-coe');
-}
+    public function ruanganCoE()
+    {
+        return view('pages.user.ruang-coe');
+    }
 
-public function ruanganU()
-{
-    return view('pages.user.ruang-u');
-}
+    public function ruanganU()
+    {
+        return view('pages.user.ruang-u');
+    }
 
-public function ruanganLabKom()
-{
-    return view('pages.user.ruang-labkom');
-}
+    public function ruanganLabKom()
+    {
+        return view('pages.user.ruang-labkom');
+    }
 
-public function pengajuan()
-{
-    return view('pages.user.pengajuan');
-}
+    public function pengajuan()
+    {
+        return view('pages.user.pengajuan');
+    }
 
-public function dataPinjaman()
-{
-    $pinjaman = Peminjaman::with('ruangan')
-        ->where('user_id', Auth::id())
-        ->orderBy('tanggal_peminjaman', 'desc')
-        ->get();
+    public function dataPinjaman()
+    {
+        $pinjaman = Peminjaman::with('ruangan')
+            ->where('user_id', Auth::id())
+            ->orderBy('tanggal_peminjaman', 'desc')
+            ->get();
 
-    return view('pages.user.data_pinjaman_user', compact('pinjaman'));
-}
-
-
+        return view('pages.user.data_pinjaman_user', compact('pinjaman'));
+    }
 }

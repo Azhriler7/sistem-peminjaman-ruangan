@@ -71,7 +71,7 @@
             <li class="dropdown">
                 <a href="#"><span>Data Pinjaman</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
               <ul>
-                <li><a href="{{ route('user.peminjaman') }}">Pinjaman Saya</a></li>
+                <li><a href="{{ route('peminjaman.form') }}">Pinjaman Saya</a></li>
               </ul>
               <ul>
                 <li><a href="{{ route('user.data-pinjaman') }}">Data Histori Peminjaman</a></li>

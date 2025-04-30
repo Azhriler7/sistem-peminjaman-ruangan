@@ -17,6 +17,7 @@ class Peminjaman extends Model
         'nama_peminjam',
         'nama_ruangan',
         'tanggal_peminjaman',
+        'kontak',
         'nama_acara',
         'waktu_mulai',
         'waktu_selesai',

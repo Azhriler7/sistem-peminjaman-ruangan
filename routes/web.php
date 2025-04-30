@@ -8,6 +8,7 @@ use App\Http\Controllers\RuanganController;
 use App\Http\Controllers\RequestPasswordController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\NotifikasiController;
+use App\Http\Controllers\PeminjamanController;
 
 // ========== AUTH ==========
 Route::get('/', [AuthController::class, 'showLogin'])->name('login');
@@ -21,10 +22,11 @@ Route::post('/forgot-password', [RequestPasswordController::class, 'submitReques
 // ========== USER ==========
 Route::middleware(['auth', 'role:user'])->prefix('user')->group(function () {
     Route::get('/dashboard', [UserController::class, 'dashboard'])->name('user.dashboard');
-    Route::get('/peminjaman', [UserController::class, 'peminjamanForm'])->name('user.peminjaman');
-    Route::post('/peminjaman', [UserController::class, 'submitPeminjaman'])->name('user.peminjaman.submit');
+    Route::get('/peminjaman', [UserController::class, 'peminjamanForm'])->name('peminjaman.form');
+    Route::post('/peminjaman', [UserController::class, 'submitPeminjaman'])->name('peminjaman.store');
 
-    Route::get('/user/data-pinjaman', [UserController::class, 'dataPinjaman'])->name('user.data-pinjaman');
+
+    Route::get('/data-pinjaman', [UserController::class, 'dataPinjaman'])->name('user.data-pinjaman');
 
 
     Route::get('/profile', [UserController::class, 'profile'])->name('user.profile');
@@ -34,17 +36,14 @@ Route::middleware(['auth', 'role:user'])->prefix('user')->group(function () {
     Route::get('/history', [HistoryController::class, 'userHistory'])->name('user.history');
     Route::get('/gedung', [UserController::class, 'gedung'])->name('user.gedung');
 
-    // Tambahkan di dalam Route::prefix('user')->group(...)
+    Route::get('/ruangan/aula', [UserController::class, 'ruanganAula'])->name('user.ruangan-aula');
+    Route::get('/ruangan/dekanat', [UserController::class, 'ruanganDekanat'])->name('user.ruangan-dekanat');
+    Route::get('/ruangan/vicon', [UserController::class, 'ruanganVicon'])->name('user.ruangan-vicon');
+    Route::get('/ruangan/coe', [UserController::class, 'ruanganCoE'])->name('user.ruangan-coe');
+    Route::get('/ruangan/u', [UserController::class, 'ruanganU'])->name('user.ruangan-U');
+    Route::get('/ruangan/labkom', [UserController::class, 'ruanganLabKom'])->name('user.ruangan-LabKom');
 
-Route::get('/ruangan/aula', [UserController::class, 'ruanganAula'])->name('user.ruangan-aula');
-Route::get('/ruangan/dekanat', [UserController::class, 'ruanganDekanat'])->name('user.ruangan-dekanat');
-Route::get('/ruangan/vicon', [UserController::class, 'ruanganVicon'])->name('user.ruangan-vicon');
-Route::get('/ruangan/coe', [UserController::class, 'ruanganCoE'])->name('user.ruangan-coe');
-Route::get('/ruangan/u', [UserController::class, 'ruanganU'])->name('user.ruangan-U');
-Route::get('/ruangan/labkom', [UserController::class, 'ruanganLabKom'])->name('user.ruangan-LabKom');
-
-Route::get('/pengajuan', [UserController::class, 'pengajuan'])->name('user.pengajuan');
-
+    Route::get('/pengajuan', [UserController::class, 'pengajuan'])->name('user.pengajuan');
 
 });
 

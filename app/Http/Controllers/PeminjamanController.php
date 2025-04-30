@@ -21,6 +21,7 @@ class PeminjamanController extends Controller
             'nama_peminjam' => 'required',
             'nama_ruangan' => 'required',
             'tanggal_peminjaman' => 'required|date',
+            'kontak' => 'required|string',
             'nama_acara' => 'required',
             'waktu_mulai' => 'required|date',
             'waktu_selesai' => 'required|date|after:waktu_mulai',

@@ -2,20 +2,29 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class User extends Authenticatable
 {
-    protected $fillable = ['username', 'email', 'password', 'role'];
+    use HasFactory, Notifiable;
+
+    protected $fillable = [
+        'username',
+        'email',
+        'password',
+        'nama',
+        'nim',
+        'jurusan',
+        'foto_profil',
+        'role',
+    ];
+
+    protected $hidden = ['password', 'remember_token'];
 
     public function peminjaman()
     {
-        return $this->hasMany(Peminjaman::class, 'iduser');
-    }
-
-    public function akses()
-    {
-        return $this->hasMany(Akses::class, 'id_user');
+        return $this->hasMany(Peminjaman::class);
     }
 }

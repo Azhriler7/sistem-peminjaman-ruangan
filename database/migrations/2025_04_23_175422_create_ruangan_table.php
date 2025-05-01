@@ -12,13 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('ruangan', function (Blueprint $table) {
-            $table->id(); // HARUS PAKAI "id" sebagai PK
-            $table->string('nama_ruang');
-            $table->integer('kapasitas');
-            $table->text('deskripsi')->nullable();
+            $table->id();
+            $table->string('nama_ruangan');
+            $table->string('gedung'); // Gedung tempat ruangan berada
+            $table->integer('kapasitas')->nullable(); // Jumlah orang
+            $table->string('fasilitas')->nullable(); // Meja, proyektor, dll
+            $table->text('deskripsi')->nullable(); // Deskripsi tambahan
+            $table->string('gambar')->nullable(); // Path ke gambar
             $table->timestamps();
         });        
-        
     }
 
     /**

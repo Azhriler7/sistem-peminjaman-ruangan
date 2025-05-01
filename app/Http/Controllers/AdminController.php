@@ -3,115 +3,140 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\Models\User;
+use App\Models\Peminjaman;
 use App\Models\Ruangan;
+use App\Models\RequestPassword;
+use App\Models\KalenderAcara;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
-    public function dashboard()
+    // Dashboard admin
+    public function adminDashboard()
     {
-        return view('pages.admin.dashboard');
+        $totalPeminjaman = Peminjaman::count();
+        $pendingRequests = Peminjaman::where('status', 'menunggu')->count();
+        $totalRuangan = Ruangan::count();
+        $ruangan = Ruangan::all();
+
+        return view('pages.admin.dashboard', compact(
+            'totalPeminjaman',
+            'pendingRequests',
+            'totalRuangan',
+            'ruangan'
+        ));
     }
 
-    public function listPeminjaman()
+    // Tampilkan semua peminjaman
+    public function dataPeminjaman()
     {
-        return view('pages.admin.peminjaman');
+        $peminjaman = Peminjaman::latest()->get();
+        return view('pages.admin.peminjaman', compact('peminjaman'));
     }
 
-    public function verifikasi(Request $request, $id)
+    // Verifikasi peminjaman (terima/tolak)
+    public function verifikasiPeminjaman(Request $request, $id)
     {
-        // logika verifikasi peminjaman berdasarkan ID
-        return back()->with('success', 'Status berhasil diperbarui');
+        $request->validate([
+            'status' => 'required|in:diterima,ditolak',
+        ]);
+
+        $peminjaman = Peminjaman::findOrFail($id);
+        $peminjaman->status = $request->status;
+        $peminjaman->save();
+
+        // Tambah ke kalender jika diterima
+        if ($request->status === 'diterima') {
+            KalenderAcara::create([
+                'peminjaman_id' => $peminjaman->id,
+                'nama_acara' => $peminjaman->nama_acara,
+                'tanggal' => $peminjaman->tanggal_peminjaman,
+                'waktu_mulai' => $peminjaman->waktu_mulai,
+                'waktu_selesai' => $peminjaman->waktu_selesai,
+                'ruangan_id' => $peminjaman->ruangan_id,
+            ]);
+        }
+
+        return back()->with('success', 'Status peminjaman diperbarui.');
     }
 
-    public function kalender()
+    // Tampilkan semua request password dari user
+    public function requestPassword()
     {
-        return view('pages.admin.kalender');
+        $requests = RequestPassword::where('status', 'menunggu')->latest()->get();
+        return view('pages.admin.password_requests', compact('requests'));
     }
 
-    public function history()
+    // Verifikasi perubahan password
+    public function prosesPassword(Request $request, $id)
     {
-        return view('pages.admin.history');
+        $requestData = RequestPassword::findOrFail($id);
+
+        if ($request->action === 'terima') {
+            DB::table('users')->where('username', $requestData->username)->update([
+                'password' => $requestData->new_password, // Sudah di-enkripsi saat disimpan
+            ]);
+            $requestData->status = 'diterima';
+        } else {
+            $requestData->status = 'ditolak';
+        }
+
+        $requestData->save();
+
+        return back()->with('success', 'Request password berhasil diproses.');
     }
 
-    public function indexRuangan()
-    {
-        return view('pages.admin.gedung.index');
-    }
-
-    public function createRuangan()
-    {
-        return view('pages.admin.gedung.create');
-    }
-
-    public function storeGedung(Request $request)
-    {
-        // validasi dan simpan gedung baru
-        return redirect()->route('admin.gedung')->with('success', 'Gedung baru berhasil ditambahkan');
-    }
-
-    public function editRuangan($id)
-    {
-        return view('pages.admin.gedung.edit', compact('id'));
-    }
-
-    public function updateRuangan(Request $request, $id)
-    {
-        // update data gedung
-        return redirect()->route('admin.gedung')->with('success', 'Gedung berhasil diperbarui');
-    }
-
-    public function deleteRuangan($id)
-    {
-        // hapus gedung
-        $ruangan = Ruangan::findOrFail($id);
-        $ruangan->delete();
-        return back()->with('success', 'Gedung berhasil dihapus');
-    }
-
+    // Tampilkan semua notifikasi request
     public function notifikasi()
     {
-        return view('pages.admin.notifikasi');
+        $requests = RequestPassword::latest()->get();
+        return view('pages.admin.notifikasi', compact('requests'));
     }
 
-    // ===============================
-    // === Fitur Edit Profile Admin ===
-    // ===============================
+    // Menampilkan riwayat peminjaman
+    public function history()
+    {
+        $history = Peminjaman::whereIn('status', ['diterima', 'ditolak'])->latest()->get();
+        return view('pages.admin.data_histori', compact('history'));
+    }
 
+    //profil admin
     public function profile()
     {
-        return view('pages.admin.profile');
+        $admin = Auth::user();
+        return view('pages.admin.profile', compact('admin'));
     }
 
     public function updateProfile(Request $request)
     {
-        $user = User::find(Auth::id());
+        $admin = Auth::user();
 
-        // Validasi inputan
         $request->validate([
             'username' => 'required|string|max:255',
-            'name' => 'required|string|max:255',
+            'nama' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'phone' => 'nullable|string|max:15',
-            'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'foto_profil' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        // Update data user
-        $user->username = $request->input('username');
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        $user->phone = $request->input('phone');
+        $admin->username = $request->username;
+        $admin->nama = $request->nama;
+        $admin->email = $request->email;
 
-        // Jika ada foto profil yang di-upload
-        if ($request->hasFile('profile_picture')) {
-            $imageName = time().'.'.$request->profile_picture->extension();
-            $request->profile_picture->move(public_path('images/profile_pictures'), $imageName);
-            $user->profile_picture = 'images/profile_pictures/'.$imageName;
+        if ($request->hasFile('foto_profil')) {
+            $file = $request->file('foto_profil');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $path = $file->storeAs('foto_profil', $filename, 'public');
+            $admin->foto_profil = $path;
         }
 
-        $user->save();
+        $admin->save();
 
         return redirect()->route('admin.profile')->with('success', 'Profil berhasil diperbarui');
+    }
+    public function dataPinjamanAdmin()
+    {
+        $peminjaman = Peminjaman::latest()->get();
+        return view('pages.admin.data_pinjaman_admin', compact('peminjaman'));
     }
 }

@@ -11,12 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('status', function (Blueprint $table) {
-            $table->id(); // status_id
-            $table->string('status');
+        Schema::create('request_password', function (Blueprint $table) {
+            $table->id();
+            $table->string('username');
+            $table->string('email');
+            $table->string('new_password'); // disimpan hash
+            $table->enum('status', ['pending', 'diterima', 'ditolak'])->default('pending');
             $table->timestamps();
         });
-        
     }
 
     /**
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('status');
+        Schema::dropIfExists('request_password');
     }
 };

@@ -35,7 +35,7 @@
             <a href="https://www.instagram.com/untirta_official"><i class="bi bi-instagram"></i></a>
             <a href="https://www.linkedin.com/school/universitassultanagengtirtayasa"><i class="bi bi-linkedin"></i></a>
             <a href="{{ route('admin.profile') }}" class="akun"><i class="bi bi-person"></i></a>
-            <a href="{{( route'notifikasi')}}"><i class="bi bi-bell"></i></a>
+            <a href="{{ route('admin.notifikasi')}}"><i class="bi bi-bell"></i></a>
           </div>
         </div>
       </div>
@@ -71,7 +71,7 @@
       <div class="notif-header">Notifikasi</div>
       <div id="notif-list">
         <!-- Notifikasi akan muncul di sini -->
-        @foreach ($notifications as $notif)
+        @foreach ($notifikasi as $notif)
           <div class="notif-item d-flex justify-content-between align-items-center">
             <div class="notif-content d-flex justify-content-between align-items-center w-100">
               <div>

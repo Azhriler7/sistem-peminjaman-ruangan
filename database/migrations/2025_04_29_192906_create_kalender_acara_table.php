@@ -11,26 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('peminjaman', function (Blueprint $table) {
+        Schema::create('kalender_acara', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('ruangan_id');
-            $table->string('nama_peminjam');
-            $table->string('nama_ruangan');
-            $table->date('tanggal_peminjaman');
             $table->string('nama_acara');
             $table->dateTime('waktu_mulai');
             $table->dateTime('waktu_selesai');
-            $table->string('surat_permohonan')->nullable(); 
-            $table->text('catatan')->nullable();
-            $table->enum('status', ['pending', 'diterima', 'ditolak'])->default('pending');
-            $table->string('kontak');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('ruangan_id')->references('id')->on('ruangan')->onDelete('cascade');
         });
-        
     }
 
     /**
@@ -38,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('peminjaman');
+        Schema::dropIfExists('kalender_acara');
     }
 };

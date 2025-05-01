@@ -36,7 +36,7 @@
             <a href="https://www.instagram.com/untirta_official"><i class="bi bi-instagram"></i></a>
             <a href="https://www.linkedin.com/school/universitassultanagengtirtayasa"><i class="bi bi-linkedin"></i></a>
             <a href="{{ route('admin.profile') }}" class="akun"><i class="bi bi-person"></i></a>
-            <a href="{{( route'notifikasi')}}"><i class="bi bi-bell"></i></a>
+            <a href="{{ route('admin.notifikasi')}}"><i class="bi bi-bell"></i></a>
           </div>
         </div>
       </div>
@@ -73,13 +73,14 @@
                 <div class="card-header d-flex flex-wrap justify-content-between align-items-center">
                     <h3 class="mb-0">Data Histori Pinjaman</h3>
                     <div class="d-flex gap-2">
-                        <button id="btn-csv" class="btn btn-success">
-                            <i class="bi bi-file-earmark-spreadsheet"></i> Export CSV
-                        </button>
-                        <button id="btn-pdf" class="btn btn-danger">
-                            <i class="bi bi-file-earmark-pdf"></i> Export PDF
-                        </button>
-                    </div>
+                      <a href="{{ route('admin.history.export.csv') }}" class="btn btn-success">
+                          <i class="bi bi-file-earmark-spreadsheet"></i> Export CSV
+                      </a>
+                      <a href="{{ route('admin.history.export.pdf') }}" class="btn btn-danger">
+                          <i class="bi bi-file-earmark-pdf"></i> Export PDF
+                      </a>
+                  </div>
+                  
                 </div>
                 <div class="card-body">
                     <table id="tabelPinjaman" class="table table-striped table-bordered">
@@ -115,6 +116,6 @@
         <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
     
         <!-- DataTables Setup -->
-        <script src="data_histori.js"></script>
+        <script src="{{ asset('js/data_histori.js') }}"></script>
 </body>
 </html>

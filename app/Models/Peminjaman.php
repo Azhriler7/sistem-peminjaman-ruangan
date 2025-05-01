@@ -3,26 +3,42 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Peminjaman extends Model
 {
+    use HasFactory;
+
+    protected $table = 'peminjaman';
+
     protected $fillable = [
-        'iduser', 'tanggal_acara', 'id_ruang', 
-        'nama_acara', 'status_acara', 'waktu_mulai', 'waktu_selesai'
+        'user_id',
+        'ruangan_id',
+        'nama_peminjam',
+        'nama_ruangan',
+        'tanggal_peminjaman',
+        'kontak',
+        'nama_acara',
+        'waktu_mulai',
+        'waktu_selesai',
+        'surat_permohonan',
+        'catatan',
+        'status',
     ];
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'iduser');
+        return $this->belongsTo(User::class);
     }
 
     public function ruangan()
     {
-        return $this->belongsTo(Ruangan::class, 'id_ruang');
+        return $this->belongsTo(Ruangan::class);
     }
-    
-    public function status()
+
+    public function history()
     {
-        return $this->belongsTo(Status::class, 'status_acara');
+        return $this->hasOne(HistoryPeminjaman::class);
     }
 }
+

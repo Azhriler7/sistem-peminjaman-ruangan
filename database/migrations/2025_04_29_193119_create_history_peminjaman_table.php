@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('akses', function (Blueprint $table) {
+        Schema::create('history_peminjaman', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_user')->constrained('users')->onDelete('cascade');
-            $table->foreignId('id_ruang')->constrained('ruangan')->onDelete('cascade');
-            $table->timestamp('waktu_akses')->useCurrent();
+            $table->unsignedBigInteger('peminjaman_id');
+            $table->enum('status_final', ['diterima', 'ditolak']);
+            $table->timestamp('waktu_konfirmasi')->nullable();
             $table->timestamps();
+
+            $table->foreign('peminjaman_id')->references('id')->on('peminjaman')->onDelete('cascade');
         });
-        
     }
 
     /**
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('akses');
+        Schema::dropIfExists('history_peminjaman');
     }
 };

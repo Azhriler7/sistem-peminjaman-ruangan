@@ -96,7 +96,7 @@
                           </div>
                           <div class="d-flex justify-content-between align-items-center mt-2">
                             <button type="submit" class="btn btn-primary">LOGIN</button>
-                            <a href="{{ route('password.request') }}" class="text-decoration-none">Lupa Password?</a>
+                            <a href="{{ route('forgot-password') }}">Lupa Password?</a>
                         </div> 
                       </form>
                   </div>

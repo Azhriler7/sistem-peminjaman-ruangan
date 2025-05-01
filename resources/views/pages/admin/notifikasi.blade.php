@@ -6,9 +6,9 @@
     <title>Notifikasi</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="{{ asset('notifikasi.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/notifikasi.css') }}" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="shortcut icon" href="{{ asset('icon/Untirta-Logo-Transparan.webp') }}" type="image/x-icon">
     <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -93,6 +93,6 @@
       </div>
     </div>
 
-    <script src="{{ asset('js/notifikasi.js') }}"></script>
+    <script src="{{ asset('assets/js/notifikasi.js') }}"></script>
   </body>
 </html>

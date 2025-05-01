@@ -7,9 +7,9 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
         <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
-        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link href="data_pinjaman.css" rel="stylesheet">
+        <link href="{{ asset('assets/css/data-pinjaman.css') }}" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
     <link rel="shortcut icon" href="icon/Untirta-Logo-Transparan.webp" type="image/x-icon">
@@ -116,6 +116,6 @@
         <script src="https://cdn.datatables.net/buttons/2.4.1/js/buttons.print.min.js"></script>
     
         <!-- DataTables Setup -->
-        <script src="{{ asset('js/data_histori.js') }}"></script>
+        <script src="{{ asset('assets/js/data_histori.js') }}"></script>
 </body>
 </html>

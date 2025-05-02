@@ -35,7 +35,7 @@
           <a href="https://www.facebook.com/untirtabantenofficial" class="facebook"><i class="bi bi-facebook"></i></a>
           <a href="https://www.instagram.com/untirta_official" class="instagram"><i class="bi bi-instagram"></i></a>
           <a href="https://www.linkedin.com/school/universitassultanagengtirtayasa" class="linkedin"><i class="bi bi-linkedin"></i></a>
-          <a href="{{ route('user.profile') }}" class="akun"><i class="bi bi-person"></i></a>
+          <a href="{{ route('admin.profile') }}" class="akun"><i class="bi bi-person"></i></a>
         </div>
       </div>
     </div>
@@ -55,8 +55,8 @@
             <li class="dropdown">
               <a href="#"><span>Data Pinjaman</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
               <ul>
-                <li><a href="{{ route('user.peminjaman.saya') }}">Pinjaman Masuk</a></li>
-                <li><a href="{{ route('user.peminjaman.saya') }}">Data Histori Peminjaman</a></li>
+                <li><a href="{{ route('admin.data.pinjaman') }}">Pinjaman Masuk</a></li>
+                <li><a href="{{ route('admin.history') }}">Data Histori Peminjaman</a></li>
               </ul>
             </li>
             <li><a href="#contact">Kontak</a></li>
@@ -72,7 +72,7 @@
   <main class="main py-5" style="background-color: #f8f9fa;">
     <!-- Tombol Back -->
     <div class="d-flex justify-content-start mb-3 ps-5">
-        <a href="{{ url('/admin/dashboard#ruangan') }}" class="text-decoration-none text-primary small">
+        <a href="{{ route('admin.dashboard') }}" class="text-decoration-none text-primary small">
             ← Back
         </a>
     </div>
@@ -89,49 +89,58 @@
             <div class="card shadow-sm border-0" style="border-radius: 1rem;">
             <div class="card-body p-4">
 
-                <form action="{{ route('admin.ruangan.store') }}" method="POST" enctype="multipart/form-data" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+                <form action="{{ route('admin.ruangan.update', $ruangan->id) }}" method="POST" enctype="multipart/form-data" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
                 @csrf
+                @method('PUT')
                 
                 <!-- Nama Ruangan -->
                 <div class="mb-3">
-                    <label for="nama_ruangan" class="form-label">Nama Ruangan</label>
-                    <input type="text" name="nama_ruangan" id="nama_ruangan" class="form-control" placeholder="Contoh: Aula Fakultas Teknik" required>
-                </div>
+                  <label for="nama_ruangan" class="form-label">Nama Ruangan</label>
+                  <input type="text" name="nama_ruangan" id="nama_ruangan" class="form-control" 
+                         value="{{ old('nama_ruangan', $ruangan->nama_ruangan) }}" 
+                         placeholder="Contoh: Aula Fakultas Teknik" required>
+              </div>
 
                 <!-- Gedung -->
                 <div class="mb-3">
                     <label for="gedung" class="form-label">Gedung</label>
-                    <input type="text" name="gedung" id="gedung" class="form-control" placeholder="Contoh: Gedung Aula Utama" required>
+                    <input type="text" name="gedung" id="gedung" class="form-control" value="{{ old('gedung', $ruangan->nama_ruangan) }}" placeholder="Contoh: Gedung Aula Utama" required>
                 </div>
 
                 <!-- Kapasitas -->
                 <div class="mb-3">
                     <label for="kapasitas" class="form-label">Kapasitas </label>
-                    <input type="number" name="kapasitas" id="kapasitas" class="form-control" placeholder="Contoh: 100" required>
+                    <input type="number" name="kapasitas" id="kapasitas" class="form-control" value="{{ old('kapasitas', $ruangan->nama_ruangan) }}"  placeholder="Contoh: 100" required>
                 </div>
 
                 <!-- Fasilitas -->
                 <div class="mb-3">
                     <label for="fasilitas" class="form-label">Fasilitas</label>
-                    <input type="text" name="fasilitas" id="fasilitas" class="form-control" placeholder="Contoh: Proyektor, Mic, Sound System, AC" required>
+                    <input type="text" name="fasilitas" id="fasilitas" class="form-control" value="{{ old('fasilitas', $ruangan->nama_ruangan) }}" placeholder="Contoh: Proyektor, Mic, Sound System, AC" required>
                 </div>
 
                 <!-- Deskripsi Ruangan -->
                 <div class="mb-3">
                     <label for="deskripsi" class="form-label">Deskripsi Ruangan</label>
-                    <textarea name="deskripsi" id="deskripsi" class="form-control" rows="4" placeholder="Tulis deskripsi ruangan..." required></textarea>
+                    <textarea name="deskripsi" id="deskripsi" class="form-control" rows="4" value="{{ old('deskripsi', $ruangan->nama_ruangan) }}" placeholder="Tulis deskripsi ruangan..." required></textarea>
                 </div>
 
                 <!-- Upload Gambar -->
                 <div class="mb-3">
-                    <label for="gambar" class="form-label">Upload Gambar Ruangan</label>
-                    <input type="file" name="gambar" id="gambar" class="form-control" accept="image/*" required>
-                </div>
+                  <label for="gambar" class="form-label">Upload Gambar Ruangan</label>
+                  <input type="file" name="gambar" id="gambar" class="form-control" accept="image/*">
+                  @if ($ruangan->gambar)
+                      <div class="mt-2">
+                          <p class="text-muted small mb-1">Gambar saat ini:</p>
+                          <img src="{{ asset('storage/' . $ruangan->gambar) }}" alt="Gambar Ruangan" width="200">
+                      </div>
+                  @endif
+              </div>
 
                 <!-- Submit -->
                 <div class="text-center mt-4">
                     <button type="submit" class="btn btn-primary btn-lg">
-                    <i class="bi bi-plus-circle"></i> Tambah Ruangan
+                    <i class="bi bi-plus-circle"></i> simpan perubahan
                     </button>
                 </div>
 

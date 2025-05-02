@@ -54,7 +54,7 @@ class UserController extends Controller
             'status' => 'menunggu',
         ]);
 
-        return redirect()->route('user.peminjaman')->with('success', 'Peminjaman berhasil diajukan');
+        return redirect()->route('pages.user.data_pinjaman_user')->with('success', 'Peminjaman berhasil diajukan');
     }
 
     public function kalender()
@@ -146,6 +146,7 @@ class UserController extends Controller
     public function pengajuan()
     {
         return view('pages.user.pengajuan');
+        return redirect()->route('pages.user.data_pinjaman_user')->with('success', 'Peminjaman berhasil diajukan');
     }
 
     public function dataPinjaman()

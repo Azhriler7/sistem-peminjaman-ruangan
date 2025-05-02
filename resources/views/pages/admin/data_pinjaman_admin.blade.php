@@ -7,9 +7,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
-    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="{{ asset('data_pinjaman_admin.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/data_pinjaman_admin.css') }}" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="shortcut icon" href="{{ asset('icon/Untirta-Logo-Transparan.webp') }}" type="image/x-icon">
     <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -33,7 +33,7 @@
                 <a href="https://www.instagram.com/untirta_official"><i class="bi bi-instagram"></i></a>
                 <a href="https://www.linkedin.com/school/universitassultanagengtirtayasa"><i class="bi bi-linkedin"></i></a>
                 <a href="{{ route('admin.profile') }}" class="akun"><i class="bi bi-person"></i></a>
-                <a href="{{( route'notifikasi')}}"><i class="bi bi-bell"></i></a>
+                <a href="{{ route('admin.notifikasi')}}"><i class="bi bi-bell"></i></a>
             </div>
         </div>
     </div>
@@ -42,7 +42,7 @@
     <div class="branding bg-white border-bottom py-3">
         <div class="container d-flex align-items-center justify-content-between flex-wrap">
             <!-- Logo -->
-            <a href="{{ route('home') }}" class="logo d-flex align-items-center text-decoration-none">
+            <a href="{{ route('admin.dashboard') }}" class="logo d-flex align-items-center text-decoration-none">
                 <h1 class="sitename m-0">SIJARU</h1>
             </a>
       
@@ -89,7 +89,7 @@
     <!-- JavaScript External File -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
-    <script src="{{ asset('js/data_pinjaman_admin.js') }}"></script>
+    <script src="{{ asset('https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js') }}"></script>
+    <script src="{{ asset('assets/js/data_pinjaman_admin.js') }}"></script>
 </body>
 </html>

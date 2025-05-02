@@ -2,61 +2,63 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\View\View;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display the user's profile form.
-     */
-    public function edit(Request $request): View
+    // Menampilkan halaman profil berdasarkan role
+    public function show()
     {
-        return view('profile.edit', [
-            'user' => $request->user(),
-        ]);
-    }
+        $user = Auth::user(); // perbaikan: pakai Auth::
 
-    /**
-     * Update the user's profile information.
-     */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
-    {
-        $request->user()->fill($request->validated());
-
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        if ($user->role === 'admin') {
+            return view('pages.admin.profile', compact('user'));
+        } elseif ($user->role === 'user') {
+            return view('pages.user.profile', compact('user'));
         }
 
-        $request->user()->save();
-
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        abort(403, 'Role tidak dikenali.');
     }
 
-    /**
-     * Delete the user's account.
-     */
-    public function destroy(Request $request): RedirectResponse
+    // Update profil user/admin
+/**
+ * @param \Illuminate\Http\Request $request
+ * @return \Illuminate\Http\RedirectResponse
+ */
+    public function update(Request $request)
     {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current_password'],
+        /** @var \App\Models\User $user */
+        $user = Auth::user(); // perbaikan: pakai Auth::
+
+        $validated = $request->validate([
+            'username'     => 'required|string|max:255',
+            'email'        => 'required|email',
+            'nama'         => 'nullable|string|max:255',
+            'nim'          => 'nullable|string|max:20',
+            'phone'        => 'nullable|string|max:20',
+            'foto_profil'  => 'nullable|image|max:5120',
         ]);
 
-        $user = $request->user();
+        // Proses upload gambar
+        if ($request->hasFile('foto_profil')) {
+            // Hapus foto lama jika ada
+            if ($user->foto_profil && Storage::disk('public')->exists($user->foto_profil)) {
+                Storage::disk('public')->delete($user->foto_profil);
+            }
+        
+            // Simpan foto baru
+            $file = $request->file('foto_profil');
+            $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('profile_photos', $filename, 'public');
+        
+            // Simpan path ke dalam array validated
+            $validated['foto_profil'] = $path;
+        }
 
-        Auth::logout();
+        $user->update($validated);
 
-        $user->delete();
-
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return Redirect::to('/');
+        return back()->with('success', 'Profil berhasil diperbarui.');
     }
-
-    
 }

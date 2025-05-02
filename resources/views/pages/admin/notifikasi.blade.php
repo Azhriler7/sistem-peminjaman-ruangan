@@ -6,9 +6,9 @@
     <title>Notifikasi</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="{{ asset('notifikasi.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/notifikasi.css') }}" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="shortcut icon" href="{{ asset('icon/Untirta-Logo-Transparan.webp') }}" type="image/x-icon">
     <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -35,7 +35,7 @@
             <a href="https://www.instagram.com/untirta_official"><i class="bi bi-instagram"></i></a>
             <a href="https://www.linkedin.com/school/universitassultanagengtirtayasa"><i class="bi bi-linkedin"></i></a>
             <a href="{{ route('admin.profile') }}" class="akun"><i class="bi bi-person"></i></a>
-            <a href="{{( route'notifikasi')}}"><i class="bi bi-bell"></i></a>
+            <a href="{{ route('admin.notifikasi')}}"><i class="bi bi-bell"></i></a>
           </div>
         </div>
       </div>
@@ -71,7 +71,7 @@
       <div class="notif-header">Notifikasi</div>
       <div id="notif-list">
         <!-- Notifikasi akan muncul di sini -->
-        @foreach ($notifications as $notif)
+        @foreach ($notifikasi as $notif)
           <div class="notif-item d-flex justify-content-between align-items-center">
             <div class="notif-content d-flex justify-content-between align-items-center w-100">
               <div>
@@ -93,6 +93,6 @@
       </div>
     </div>
 
-    <script src="{{ asset('js/notifikasi.js') }}"></script>
+    <script src="{{ asset('assets/js/notifikasi.js') }}"></script>
   </body>
 </html>

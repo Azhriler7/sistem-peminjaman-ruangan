@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Peminjaman;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,6 +15,8 @@ class DatabaseSeeder extends Seeder
         // Panggil seeder UserSeeder
         $this->call([
             UserSeeder::class,
+            RuanganSeeder::class,
+            PeminjamanSeeder::class,
         ]);
     }
 }

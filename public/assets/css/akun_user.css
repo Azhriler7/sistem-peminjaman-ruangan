@@ -1,146 +1,146 @@
 /* Header Section */
 header.header {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-  z-index: 1000;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    z-index: 1000;
 }
 
 .topbar {
-  background-color: #007bff;
-  color: #fff;
-  font-size: 14px;
-  padding: 6px 0;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 14px;
+    padding: 6px 0;
 }
 
 .topbar .contact-info i,
 .topbar .contact-info a,
 .topbar .contact-info span,
 .topbar .social-links a {
-  color: #fff;
+    color: #fff;
 }
 
 .branding {
-  background-color: #fff;
-  border-bottom: 1px solid #eee;
-  padding: 10px 0; 
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
 }
 
 .logo h1.sitename {
-  font-size: 24px;
-  font-weight: bold;
-  color: #000;
-  margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+    margin: 0;
 }
 
 a.logo {
-  text-decoration: none !important;
-  color: inherit !important;
+    text-decoration: none !important;
+    color: inherit !important;
 }
 
 .navmenu ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  gap: 20px;  
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 20px;
 }
 
 .navmenu ul li {
-  position: relative;
+    position: relative;
 }
 
 .navmenu ul li a {
-  color: black;
-  text-decoration: none;
-  font-weight: 500;
+    color: black;
+    text-decoration: none;
+    font-weight: 500;
 }
 
 .navmenu ul li a:hover,
 .navmenu ul li a.active {
-  color: #007bff;
-  text-decoration: none;
+    color: #007bff;
+    text-decoration: none;
 }
 
 .navmenu .dropdown ul {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: #fff;
-  display: none;
-  flex-direction: column;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  padding: 10px 0;
-  z-index: 1000;
-  min-width: 180px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #fff;
+    display: none;
+    flex-direction: column;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+    z-index: 1000;
+    min-width: 180px;
 }
 
 .navmenu .dropdown:hover ul {
-  display: flex;
+    display: flex;
 }
 
 .navmenu .dropdown ul li {
-  padding: 5px 20px;
+    padding: 5px 20px;
 }
 
 .navmenu .dropdown ul li a {
-  color: #333;
-  font-weight: 400;
+    color: #333;
+    font-weight: 400;
 }
 
 .navmenu .mobile-nav-toggle {
-  font-size: 24px;
-  cursor: pointer;
-  display: none;
+    font-size: 24px;
+    cursor: pointer;
+    display: none;
 }
 
 @media (max-width: 1200px) {
-  .branding {
-      padding: 10px 0;  
-  }
+    .branding {
+        padding: 10px 0;
+    }
 
-  .navmenu ul {
-      gap: 15px;  
-  }
+    .navmenu ul {
+        gap: 15px;
+    }
 
-  .logo h1.sitename {
-      font-size: 22px; 
-  }
+    .logo h1.sitename {
+        font-size: 22px;
+    }
 }
 
 @media (max-width: 768px) {
-  .navmenu ul {
-      display: none;
-      flex-direction: column;
-      background: #fff;
-      width: 100%;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      border-top: 1px solid #ddd;
-  }
+    .navmenu ul {
+        display: none;
+        flex-direction: column;
+        background: #fff;
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        border-top: 1px solid #ddd;
+    }
 
-  .navmenu ul li {
-      margin: 10px 0;
-      text-align: center;
-  }
+    .navmenu ul li {
+        margin: 10px 0;
+        text-align: center;
+    }
 
-  .navmenu.active ul {
-      display: flex;
-  }
+    .navmenu.active ul {
+        display: flex;
+    }
 
-  .navmenu .mobile-nav-toggle {
-      display: block;
-  }
+    .navmenu .mobile-nav-toggle {
+        display: block;
+    }
 }
 
 .topbar .social-links a {
-  color: #fff;
-  margin-left: 20px; 
-  font-size: 16px;    
+    color: #fff;
+    margin-left: 20px;
+    font-size: 16px;
 }
 
 .topbar .social-links i {
-  font-size: 18px;
+    font-size: 18px;
 }
 
 /* Global Styles for Consistent Box Sizing */
@@ -154,7 +154,7 @@ body {
     margin-top: 20px;
     background-color: #f2f6fc;
     color: #69707a;
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 
 /* Card Styles */
@@ -166,7 +166,8 @@ body {
 }
 
 /* Ensure Consistent Height and Padding on All Cards */
-.card .card-header, .card-body {
+.card .card-header,
+.card-body {
     padding: 1.25rem 1.5rem;
     height: auto; /* Ensures height adjusts according to content */
 }
@@ -197,8 +198,8 @@ body {
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-.col-md-6{
-  width: 100%;
+.col-md-6 {
+    width: 100%;
 }
 
 .form-control:focus {
@@ -207,7 +208,9 @@ body {
 }
 
 /* Ensure Consistent Size for Name, NIM, and Phone Number Fields */
-#inputFirstName, #inputOrgName, #inputPhone {
+#inputFirstName,
+#inputOrgName,
+#inputPhone {
     width: 100%;
     padding: 0.75rem 1.25rem;
     font-size: 1rem;
@@ -255,7 +258,7 @@ button.btn-primary:hover {
     margin: 0;
     padding: 0;
     display: flex;
-    gap: 20px;  
+    gap: 20px;
 }
 
 .navmenu ul li {
@@ -281,7 +284,7 @@ button.btn-primary:hover {
     background: #fff;
     display: none;
     flex-direction: column;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     padding: 10px 0;
     z-index: 1000;
     min-width: 180px;
@@ -308,15 +311,15 @@ button.btn-primary:hover {
 
 @media (max-width: 1200px) {
     .branding {
-        padding: 10px 0;  
+        padding: 10px 0;
     }
 
     .navmenu ul {
-        gap: 15px;  
+        gap: 15px;
     }
 
     .logo h1.sitename {
-        font-size: 22px; 
+        font-size: 22px;
     }
 }
 

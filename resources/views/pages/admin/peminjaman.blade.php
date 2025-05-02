@@ -14,14 +14,14 @@
       <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Open+Sans&family=Montserrat&display=swap" rel="stylesheet">
 
       <!-- Bootstrap & Icons -->
-      <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
       <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
 
       <!-- DataTables CSS -->
       <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
 
       <!-- Custom CSS untuk Data Pinjaman -->
-      <link href="assets/css/data_pinjaman.css" rel="stylesheet">
+      <link href="{{ asset('assets/css/data-pinjaman.css') }}" rel="stylesheet">
     </head>
 
     <header id="header" class="header sticky-top">
@@ -40,7 +40,7 @@
             <a href="https://www.instagram.com/untirta_official"><i class="bi bi-instagram"></i></a>
             <a href="https://www.linkedin.com/school/universitassultanagengtirtayasa"><i class="bi bi-linkedin"></i></a>
             <a href="{{ route('admin.profile') }}" class="akun"><i class="bi bi-person"></i></a>
-            <a href="{{( route'notifikasi')}}"><i class="bi bi-bell"></i></a>
+            <a href="{{ route('admin.notifikasi')}}"><i class="bi bi-bell"></i></a>
           </div>
         </div>
       </div>
@@ -93,13 +93,13 @@
 
   <!-- JQuery dan Bootstrap JS -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
   <!-- DataTables JS -->
   <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 
   <!-- Custom JS untuk Data Pinjaman -->
-  <script src="assets/js/data_pinjaman.js"></script>
+  <script src="{{ asset('assets/js/data-pinjaman.js') }}"></script>
 </body>
 </html>

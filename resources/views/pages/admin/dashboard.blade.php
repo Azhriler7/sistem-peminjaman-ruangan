@@ -52,7 +52,7 @@
           <a href="https://www.instagram.com/untirta_official" class="instagram"><i class="bi bi-instagram"></i></a>
           <a href="https://www.linkedin.com/school/universitassultanagengtirtayasa" class="linkedin"><i class="bi bi-linkedin"></i></a>
           <a href="{{ route('admin.profile') }}" class="akun"><i class="bi bi-person"></i></a>
-          <a href="{{( route'notifikasi')}}"><i class="bi bi-bell"></i></a>
+          <a href="{{ route('admin.notifikasi')}}"><i class="bi bi-bell"></i></a>
         </div>
       </div>
     </div><!-- End Top Bar -->
@@ -72,8 +72,8 @@
             <li class="dropdown">
               <a href="#"><span>Data Pinjaman</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
               <ul>
-                <li><a href="{{ route('user.peminjaman.saya') }}">Pinjaman Masuk</a></li>
-                <li><a href="{{ route('user.peminjaman.saya') }}">Data Histori Peminjaman</a></li>
+                <li><a href="{{ route('admin.data.pinjaman') }}">Pinjaman Masuk</a></li>
+                <li><a href="{{ route('admin.history') }}">Data Histori Peminjaman</a></li>
               </ul>
             </li>
             <li><a href="#contact">Kontak</a></li>
@@ -198,7 +198,31 @@
                   </tr>
                 </thead>
                 <tbody>
+
+                  @foreach ($ruangan as $index => $r)
+    <tr>
+        <td>{{ $index + 1 }}</td>
+        <td>{{ $r->nama_ruangan }}</td>
+        <td>{{ $r->gedung }}</td>
+        <td>{{ $r->kapasitas }} orang</td>
+        <td>{{ $r->fasilitas }}</td>
+        <td>{{ $r->deskripsi }}</td>
+        <td>
+            <img src="{{ asset('storage/' . $r->gambar) }}" alt="{{ $r->nama_ruangan }}" width="80" class="img-thumbnail">
+        </td>
+        <td>
+            <a href="{{ route('admin.ruangan.edit', $r->id) }}" class="btn btn-sm btn-outline-primary me-1">Edit</a>
+            <form action="{{ route('admin.ruangan.delete', $r->id) }}" method="POST" style="display:inline;">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Yakin ingin menghapus ruangan ini?')">Hapus</button>
+            </form>
+        </td>
+    </tr>
+    @endforeach
+
                   <!-- Data Dummy Ruangan -->
+                  <!--
                   <tr>
                     <td>1</td>
                     <td>Aula Fakultas Teknik</td>
@@ -281,7 +305,7 @@
                       <a href="#" class="btn btn-sm btn-outline-primary me-1">Edit</a>
                       <a href="#" class="btn btn-sm btn-outline-danger">Hapus</a>
                     </td>
-                  </tr>
+                  </tr> -->
                 </tbody>
               </table>
             </div>
@@ -291,31 +315,9 @@
       </div>
     </section>
 
-
-    <!-- Semisal isi tabel dibuat dinamis 
     <tbody>
-    @foreach ($ruanganList as $index => $ruangan)
-    <tr>
-        <td>{{ $index + 1 }}</td>
-        <td>{{ $ruangan->nama_ruangan }}</td>
-        <td>{{ $ruangan->gedung }}</td>
-        <td>{{ $ruangan->kapasitas }} orang</td>
-        <td>{{ $ruangan->fasilitas }}</td>
-        <td>{{ $ruangan->deskripsi }}</td>
-        <td>
-            <img src="{{ asset('storage/' . $ruangan->gambar) }}" alt="{{ $ruangan->nama_ruangan }}" width="80" class="img-thumbnail">
-        </td>
-        <td>
-            <a href="{{ route('admin.ruangan.edit', $ruangan->id) }}" class="btn btn-sm btn-outline-primary me-1">Edit</a>
-            <form action="{{ route('admin.ruangan.delete', $ruangan->id) }}" method="POST" style="display:inline;">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Yakin ingin menghapus ruangan ini?')">Hapus</button>
-            </form>
-        </td>
-    </tr>
-    @endforeach
-    </tbody> -->
+    
+    </tbody>
 
     <section id="peminjaman" class="peminjaman">
       <div class="container" data-aos="fade-up" data-aos-delay="100">

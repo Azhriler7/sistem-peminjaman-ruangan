@@ -4,59 +4,90 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Ruangan;
+use Illuminate\Support\Facades\Storage;
 
 class RuanganController extends Controller
 {
+    // Tampilkan semua ruangan
     public function index()
     {
-        $ruangans = Ruangan::all();
-        return view('pages.admin.gedung.index', compact('ruangans'));
+        $ruangan = Ruangan::all();
+        return view('pages.admin.ruangan', compact('ruangan'));
     }
 
+    // Tampilkan form tambah ruangan
     public function create()
     {
-        return view('pages.admin.gedung.create');
+        return view('pages.admin.tambah-ruangan');
     }
 
+    // Simpan ruangan baru
     public function store(Request $request)
     {
         $request->validate([
-            'id_ruang' => 'required|unique:ruangans,id_ruang',
-            'nama_ruang' => 'required|string|max:255',
-            'kapasitas' => 'required|integer|min:1',
+            'nama_ruangan' => 'required|string|max:255',
+            'gedung' => 'required|string|max:255',
+            'kapasitas' => 'required|integer',
+            'fasilitas' => 'nullable|string',
             'deskripsi' => 'nullable|string',
+            'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
-
-        Ruangan::create($request->all());
-
-        return redirect()->route('admin.gedung')->with('success', 'Ruangan berhasil ditambahkan');
+    
+        $data = $request->all();
+    
+        if ($request->hasFile('gambar')) {
+            $data['gambar'] = $request->file('gambar')->store('ruangan', 'public');
+        }
+    
+        Ruangan::create($data);
+    
+        return redirect()->route('admin.dashboard')->with('success', 'Ruangan berhasil ditambahkan.');
     }
 
-    public function edit($id_ruang)
+    // Tampilkan form edit
+    public function edit($id)
     {
-        $ruangan = Ruangan::where('id_ruang', $id_ruang)->firstOrFail();
-        return view('pages.admin.gedung.edit', compact('ruangan'));
+        $ruangan = Ruangan::findOrFail($id);
+        return view('pages.admin.edit-ruangan', compact('ruangan'));
     }
 
-    public function update(Request $request, $id_ruang)
-    {
-        $request->validate([
-            'nama_ruang' => 'required|string|max:255',
-            'kapasitas' => 'required|integer|min:1',
-            'deskripsi' => 'nullable|string',
-        ]);
+    // Update ruangan
+    public function update(Request $request, $id)
+{
+    $request->validate([
+        'nama_ruangan' => 'required|string|max:255',
+        'gedung' => 'required|string|max:255',
+        'kapasitas' => 'required|integer',
+        'fasilitas' => 'nullable|string',
+        'deskripsi' => 'nullable|string',
+        'gambar' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+    ]);
 
-        $ruangan = Ruangan::where('id_ruang', $id_ruang)->firstOrFail();
-        $ruangan->update($request->only('nama_ruang', 'kapasitas', 'deskripsi'));
+    $ruangan = Ruangan::findOrFail($id);
+    $data = $request->only(['nama_ruangan', 'gedung', 'kapasitas', 'fasilitas', 'deskripsi']);
 
-        return redirect()->route('admin.gedung')->with('success', 'Ruangan berhasil diperbarui');
+    if ($request->hasFile('gambar')) {
+        // Hapus gambar lama jika ada
+        if ($ruangan->gambar && Storage::exists('public/' . $ruangan->gambar)) {
+            Storage::delete('public/' . $ruangan->gambar);
+        }
+
+        // Simpan gambar baru
+        $path = $request->file('gambar')->store('gambar_ruangan', 'public');
+        $data['gambar'] = $path;
     }
 
-    public function destroy($id_ruang)
+    $ruangan->update($data);
+
+    return redirect()->route('admin.dashboard')->with('success', 'Ruangan berhasil diperbarui.');
+}
+
+    // Hapus ruangan
+    public function destroy($id)
     {
-        $ruangan = Ruangan::where('id_ruang', $id_ruang)->firstOrFail();
+        $ruangan = Ruangan::findOrFail($id);
         $ruangan->delete();
 
-        return back()->with('success', 'Ruangan berhasil dihapus');
+        return redirect()->route('admin.dashboard')->with('success', 'Ruangan berhasil dihapus.');
     }
 }

@@ -47,6 +47,7 @@
           <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
           <a href="{{ route('admin.profile') }}" class="akun"><i class="bi bi-person"></i></a>
           <a href="{{ route('admin.notifikasi')}}"><i class="bi bi-bell"></i></a>
+          <a href="{{ route('admin.notifikasi')}}"><i class="bi bi-bell"></i></a>
         </div>
       </div>
     </div>
@@ -101,7 +102,7 @@
             <div class="portfolio-details-slider swiper">
               <div class="swiper-wrapper align-items-center">
                 <div class="swiper-slide">
-                  <img src="assets/img/ruangan/aula.jpg" class="img-fluid" alt="Aula Fakultas Teknik">
+                  <img src="{{ asset('assets/img/ruangan/aula.jpg') }}" class="img-fluid" alt="Aula Fakultas Teknik">
                 </div>
               </div>
               <div class="swiper-pagination"></div>

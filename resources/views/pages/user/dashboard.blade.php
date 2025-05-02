@@ -71,9 +71,6 @@
             <li class="dropdown">
                 <a href="#"><span>Data Pinjaman</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
               <ul>
-                <li><a href="{{ route('peminjaman.form') }}">Pinjaman Saya</a></li>
-              </ul>
-              <ul>
                 <li><a href="{{ route('user.data-pinjaman') }}">Data Histori Peminjaman</a></li>
               </ul>
             </li>
@@ -188,7 +185,7 @@
           <div class="ruangan-info p-3">
             <h4>{{ $item->nama_ruangan }}</h4>
             <p>{{ $item->gedung }}</p>
-            <a href="{{ route('user.ruangan-detail', $item->id) }}" class="btn btn-outline-primary btn-sm">
+            <a href="{{ route('user.ruangan-coe', $item->id) }}" class="btn btn-outline-primary btn-sm">
               View Detail
             </a>
           </div>

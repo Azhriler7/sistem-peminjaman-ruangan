@@ -4,32 +4,61 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
+    // Menampilkan halaman profil berdasarkan role
     public function show()
     {
-        $user = Auth::user();
-        return view('user.profile', compact('user'));
-    }
+        $user = Auth::user(); // perbaikan: pakai Auth::
 
-    public function update(Request $request)
-    {
-        $user = Auth::user();
-
-        $request->validate([
-            'nama' => 'required',
-            'nim' => 'required',
-            'jurusan' => 'required',
-            'foto_profil' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-        ]);
-
-        if ($request->hasFile('foto_profil')) {
-            $user->foto_profil = $request->file('foto_profil')->store('profil', 'public');
+        if ($user->role === 'admin') {
+            return view('pages.admin.profile', compact('user'));
+        } elseif ($user->role === 'user') {
+            return view('pages.user.profile', compact('user'));
         }
 
-        $user->update($request->only('nama', 'nim', 'jurusan', 'foto_profil'));
+        abort(403, 'Role tidak dikenali.');
+    }
 
-        return back()->with('success', 'Profil diperbarui.');
+    // Update profil user/admin
+/**
+ * @param \Illuminate\Http\Request $request
+ * @return \Illuminate\Http\RedirectResponse
+ */
+    public function update(Request $request)
+    {
+        /** @var \App\Models\User $user */
+        $user = Auth::user(); // perbaikan: pakai Auth::
+
+        $validated = $request->validate([
+            'username'     => 'required|string|max:255',
+            'email'        => 'required|email',
+            'nama'         => 'nullable|string|max:255',
+            'nim'          => 'nullable|string|max:20',
+            'phone'        => 'nullable|string|max:20',
+            'foto_profil'  => 'nullable|image|max:5120',
+        ]);
+
+        // Proses upload gambar
+        if ($request->hasFile('foto_profil')) {
+            // Hapus foto lama jika ada
+            if ($user->foto_profil && Storage::disk('public')->exists($user->foto_profil)) {
+                Storage::disk('public')->delete($user->foto_profil);
+            }
+        
+            // Simpan foto baru
+            $file = $request->file('foto_profil');
+            $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('profile_photos', $filename, 'public');
+        
+            // Simpan path ke dalam array validated
+            $validated['foto_profil'] = $path;
+        }
+
+        $user->update($validated);
+
+        return back()->with('success', 'Profil berhasil diperbarui.');
     }
 }

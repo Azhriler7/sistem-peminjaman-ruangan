@@ -60,30 +60,29 @@
           <div class="card shadow-sm border-0" style="border-radius: 1rem;">
             <div class="card-body p-4">
               <form action="{{ route('peminjaman.store')}}" method="POST" enctype="multipart/form-data" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
-              @csrf
-              <div class="row gy-4">
-
-                <!-- Nama Pemohon -->
-                <div class="col-md-6">
-                  <label for="nama" class="form-label">Nama Peminjam</label>
-                  <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-person"></i></span>
-                    <input type="text" name="nama" id="nama" class="form-control" required>
+                @csrf
+                <div class="row gy-4">
+              
+                  <!-- Nama Peminjam -->
+                  <div class="col-md-6">
+                    <label for="nama_peminjam" class="form-label">Nama Peminjam</label>
+                    <div class="input-group">
+                      <span class="input-group-text"><i class="bi bi-person"></i></span>
+                      <input type="text" name="nama_peminjam" id="nama_peminjam" class="form-control" required>
+                    </div>
                   </div>
-                </div>
-
-                <!-- Nama Acara -->
-                <div class="col-md-6">
-                  <label for="acara" class="form-label">Nama Acara</label>
-                  <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-calendar-event"></i></span>
-                    <input type="text" name="acara" id="acara" class="form-control" required>
+              
+                  <!-- Nama Acara -->
+                  <div class="col-md-6">
+                    <label for="nama_acara" class="form-label">Nama Acara</label>
+                    <div class="input-group">
+                      <span class="input-group-text"><i class="bi bi-calendar-event"></i></span>
+                      <input type="text" name="nama_acara" id="nama_acara" class="form-control" required>
+                    </div>
                   </div>
-                </div>
-
-                <!-- Pilih Ruangan (Select Search) -->
-                <!-- Pilih Ruangan (Input + Datalist untuk Search) -->
-                <div class="col-md-12">
+              
+                  <!-- Pilih Ruangan -->
+                  <div class="col-md-12">
                     <label for="search_ruangan" class="form-label">Nama Ruangan</label>
                     <div class="input-group">
                       <input type="text" id="search_ruangan" class="form-control" placeholder="Cari Nama atau ID Ruangan..." onkeyup="filterRuangan()" autocomplete="off">
@@ -91,66 +90,67 @@
                         <i class="bi bi-search"></i>
                       </button>
                     </div>
-
-                    <!-- Dropdown hasil pencarian -->
+              
+                    <input type="hidden" name="ruangan_id" id="ruangan_id">
+                    <input type="hidden" name="nama_ruangan" id="nama_ruangan">
+              
                     <div class="mt-2" id="list_ruangan" style="display: none; border: 1px solid #ccc; border-radius: 5px;">
                       <ul class="list-group" id="ruanganOptions" style="cursor: pointer;">
-                        <li class="list-group-item" onclick="pilihRuangan('A001 - Aula Fakultas Teknik')">A001 - Aula Fakultas Teknik</li>
-                        <li class="list-group-item" onclick="pilihRuangan('D002 - Aula Dekanat')">D002 - Aula Dekanat</li>
-                        <li class="list-group-item" onclick="pilihRuangan('V003 - VICON Gedung Vicon')">V003 - VICON Gedung Vicon</li>
-                        <li class="list-group-item" onclick="pilihRuangan('C004 - Ruang CoE')">C004 - Ruang CoE</li>
-                        <li class="list-group-item" onclick="pilihRuangan('R005 - Ruang R (Labkom)')">R005 - Ruang R (Labkom)</li>
-                        <li class="list-group-item" onclick="pilihRuangan('B006 - Ruang BR (Gedung BR)')">B006 - Ruang BR (Gedung BR)</li>
+                        <li class="list-group-item" onclick="pilihRuangan('A001', 'Aula Fakultas Teknik')">A001 - Aula Fakultas Teknik</li>
+                        <li class="list-group-item" onclick="pilihRuangan('D002', 'Aula Dekanat')">D002 - Aula Dekanat</li>
+                        <li class="list-group-item" onclick="pilihRuangan('V003', 'VICON Gedung Vicon')">V003 - VICON Gedung Vicon</li>
+                        <li class="list-group-item" onclick="pilihRuangan('C004', 'Ruang CoE')">C004 - Ruang CoE</li>
+                        <li class="list-group-item" onclick="pilihRuangan('R005', 'Ruang R (Labkom)')">R005 - Ruang R (Labkom)</li>
+                        <li class="list-group-item" onclick="pilihRuangan('B006', 'Ruang BR (Gedung BR)')">B006 - Ruang BR (Gedung BR)</li>
                       </ul>
                     </div>
-                </div>
-
-                <!-- Kontak Penanggung Jawab -->
-                <div class="col-md-6">
-                  <label for="kontak" class="form-label">Kontak Penanggung Jawab</label>
-                  <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-telephone"></i></span>
-                    <input type="text" name="kontak" id="kontak" class="form-control" required>
+                  </div>
+              
+                  <!-- Kontak -->
+                  <div class="col-md-6">
+                    <label for="kontak" class="form-label">Kontak Penanggung Jawab</label>
+                    <div class="input-group">
+                      <span class="input-group-text"><i class="bi bi-telephone"></i></span>
+                      <input type="text" name="kontak" id="kontak" class="form-control" required>
+                    </div>
+                  </div>
+              
+                  <!-- Tanggal Peminjaman -->
+                  <div class="col-md-6">
+                    <label for="tanggal_peminjaman" class="form-label">Tanggal Peminjaman</label>
+                    <input type="date" name="tanggal_peminjaman" id="tanggal_peminjaman" class="form-control" required>
+                  </div>
+              
+                  <!-- Waktu Mulai -->
+                  <div class="col-md-6">
+                    <label for="waktu_mulai" class="form-label">Waktu Mulai</label>
+                    <input type="time" name="waktu_mulai" id="waktu_mulai" class="form-control" required>
+                  </div>
+              
+                  <!-- Waktu Selesai -->
+                  <div class="col-md-6">
+                    <label for="waktu_selesai" class="form-label">Waktu Selesai</label>
+                    <input type="time" name="waktu_selesai" id="waktu_selesai" class="form-control" required>
+                  </div>
+              
+                  <!-- Surat Permohonan -->
+                  <div class="col-md-12">
+                    <label for="surat_permohonan" class="form-label">Upload Surat Permohonan</label>
+                    <input type="file" name="surat_permohonan" id="surat_permohonan" class="form-control" accept=".pdf,.doc,.docx">
+                  </div>
+              
+                  <!-- Catatan -->
+                  <div class="col-md-12">
+                    <label for="catatan" class="form-label">Catatan Tambahan (Optional)</label>
+                    <textarea name="catatan" id="catatan" class="form-control" rows="4" placeholder="Tulis keterangan tambahan jika diperlukan..."></textarea>
+                  </div>
+              
+                  <!-- Submit -->
+                  <div class="col-md-12 text-center">
+                    <button type="submit" class="btn btn-primary btn-lg mt-3">Ajukan Peminjaman</button>
                   </div>
                 </div>
-
-                <!-- Tanggal -->
-                <div class="col-md-6">
-                  <label for="tanggal" class="form-label">Tanggal Peminjaman</label>
-                  <input type="date" name="tanggal" id="tanggal" class="form-control" required>
-                </div>
-
-                <!-- Waktu Mulai -->
-                <div class="col-md-6">
-                  <label for="waktu_mulai" class="form-label">Waktu Mulai</label>
-                  <input type="time" name="waktu_mulai" id="waktu_mulai" class="form-control" required>
-                </div>
-
-                <!-- Waktu Selesai -->
-                <div class="col-md-6">
-                  <label for="waktu_selesai" class="form-label">Waktu Selesai</label>
-                  <input type="time" name="waktu_selesai" id="waktu_selesai" class="form-control" required>
-                </div>
-
-                <!-- Upload Surat -->
-                <div class="col-md-12">
-                  <label for="surat" class="form-label">Upload Surat Permohonan</label>
-                  <input type="file" name="surat" id="surat" class="form-control" accept=".pdf,.doc,.docx" required>
-                </div>
-
-                <!-- Catatan -->
-                <div class="col-md-12">
-                  <label for="catatan" class="form-label">Catatan Tambahan (Optional)</label>
-                  <textarea name="catatan" id="catatan" class="form-control" rows="4" placeholder="Tulis keterangan tambahan jika diperlukan..."></textarea>
-                </div>
-
-                <!-- Submit -->
-                <div class="col-md-12 text-center">
-                  <button type="submit" class="btn btn-primary btn-lg mt-3">Ajukan Peminjaman</button>
-                </div>
-
-              </div>
-            </form>
+              </form>              
 
             </div>
           </div>
@@ -173,35 +173,32 @@
   <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
   <script src="{{ asset('assets/js/main.js') }}"></script>
   <script>
-  // Filter ruangan sesuai input
-  function filterRuangan() {
-    var input = document.getElementById("search_ruangan").value.toLowerCase();
-    var list = document.getElementById("list_ruangan");
-    var items = document.querySelectorAll("#ruanganOptions li");
-    let ada = false;
-
-    items.forEach(function(item) {
-      if (item.innerHTML.toLowerCase().includes(input)) {
-        item.style.display = "";
-        ada = true;
-      } else {
-        item.style.display = "none";
-      }
-    });
-
-    if (input.length > 0 && ada) {
-      list.style.display = "block";
-    } else {
-      list.style.display = "none";
+    function filterRuangan() {
+      var input = document.getElementById("search_ruangan").value.toLowerCase();
+      var list = document.getElementById("list_ruangan");
+      var items = document.querySelectorAll("#ruanganOptions li");
+      let ada = false;
+    
+      items.forEach(function(item) {
+        if (item.innerHTML.toLowerCase().includes(input)) {
+          item.style.display = "";
+          ada = true;
+        } else {
+          item.style.display = "none";
+        }
+      });
+    
+      list.style.display = input.length > 0 && ada ? "block" : "none";
     }
-  }
-
-  // Kalau user klik salah satu pilihan
-  function pilihRuangan(value) {
-    document.getElementById("search_ruangan").value = value;
-    document.getElementById("list_ruangan").style.display = "none";
-  }
-  </script>
+    
+    function pilihRuangan(id, nama) {
+      document.getElementById("search_ruangan").value = `${id} - ${nama}`;
+      document.getElementById("ruangan_id").value = id;
+      document.getElementById("nama_ruangan").value = nama;
+      document.getElementById("list_ruangan").style.display = "none";
+    }
+    </script>
+    
 
 </body>
 

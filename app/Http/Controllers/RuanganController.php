@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Ruangan;
+use Illuminate\Support\Facades\Storage;
 
 class RuanganController extends Controller
 {
@@ -40,7 +41,7 @@ class RuanganController extends Controller
     
         Ruangan::create($data);
     
-        return redirect()->route('admin.ruangan')->with('success', 'Ruangan berhasil ditambahkan.');
+        return redirect()->route('admin.dashboard')->with('success', 'Ruangan berhasil ditambahkan.');
     }
 
     // Tampilkan form edit
@@ -63,15 +64,22 @@ class RuanganController extends Controller
     ]);
 
     $ruangan = Ruangan::findOrFail($id);
-    $data = $request->all();
+    $data = $request->only(['nama_ruangan', 'gedung', 'kapasitas', 'fasilitas', 'deskripsi']);
 
     if ($request->hasFile('gambar')) {
-        $data['gambar'] = $request->file('gambar')->store('ruangan', 'public');
+        // Hapus gambar lama jika ada
+        if ($ruangan->gambar && Storage::exists('public/' . $ruangan->gambar)) {
+            Storage::delete('public/' . $ruangan->gambar);
+        }
+
+        // Simpan gambar baru
+        $path = $request->file('gambar')->store('gambar_ruangan', 'public');
+        $data['gambar'] = $path;
     }
 
     $ruangan->update($data);
 
-    return redirect()->route('admin.ruangan')->with('success', 'Ruangan berhasil diperbarui.');
+    return redirect()->route('admin.dashboard')->with('success', 'Ruangan berhasil diperbarui.');
 }
 
     // Hapus ruangan
@@ -80,6 +88,6 @@ class RuanganController extends Controller
         $ruangan = Ruangan::findOrFail($id);
         $ruangan->delete();
 
-        return redirect()->route('admin.ruangan')->with('success', 'Ruangan berhasil dihapus.');
+        return redirect()->route('admin.dashboard')->with('success', 'Ruangan berhasil dihapus.');
     }
 }

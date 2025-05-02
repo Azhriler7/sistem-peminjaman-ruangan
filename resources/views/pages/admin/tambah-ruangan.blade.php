@@ -72,7 +72,7 @@
   <main class="main py-5" style="background-color: #f8f9fa;">
     <!-- Tombol Back -->
     <div class="d-flex justify-content-start mb-3 ps-5">
-        <a href="{{ url('/admin/dashboard#ruangan') }}" class="text-decoration-none text-primary small">
+        <a href="{{ route('admin.dashboard') }}" class="text-decoration-none text-primary small">
             ← Back
         </a>
     </div>

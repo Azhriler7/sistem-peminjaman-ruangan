@@ -315,31 +315,9 @@
       </div>
     </section>
 
-
-    <!-- Semisal isi tabel dibuat dinamis 
     <tbody>
-    @foreach ($ruangan as $index => $r)
-    <tr>
-        <td>{{ $index + 1 }}</td>
-        <td>{{ $r->nama_ruangan }}</td>
-        <td>{{ $r->gedung }}</td>
-        <td>{{ $r->kapasitas }} orang</td>
-        <td>{{ $r->fasilitas }}</td>
-        <td>{{ $r->deskripsi }}</td>
-        <td>
-            <img src="{{ asset('storage/' . $r->gambar) }}" alt="{{ $r->nama_ruangan }}" width="80" class="img-thumbnail">
-        </td>
-        <td>
-            <a href="{{ route('admin.ruangan.edit', $r->id) }}" class="btn btn-sm btn-outline-primary me-1">Edit</a>
-            <form action="{{ route('admin.ruangan.delete', $r->id) }}" method="POST" style="display:inline;">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Yakin ingin menghapus ruangan ini?')">Hapus</button>
-            </form>
-        </td>
-    </tr>
-    @endforeach
-    </tbody> -->
+    
+    </tbody>
 
     <section id="peminjaman" class="peminjaman">
       <div class="container" data-aos="fade-up" data-aos-delay="100">

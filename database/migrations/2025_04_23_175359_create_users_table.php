@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('nama')->nullable();
             $table->string('nim')->nullable();
             $table->string('jurusan')->nullable();
-            $table->string('foto_profil')->nullable(); // path foto
+            $table->string('foto_profil')->nullable(); 
             $table->enum('role', ['user', 'admin'])->default('user');
             $table->rememberToken();
             $table->timestamps();

@@ -60,8 +60,8 @@
         <nav id="navmenu" class="navmenu">
           <ul>
             <li><a href={{ route('admin.dashboard') }}>Home</a></li>
-            <li><a href={{ route('admin.ruangan') }}>Ruangan</a></li>
-            <li><a href={{ route('admin.dashboard') }}>Status Ruangan</a></li>
+            <li><a href={{ route('admin.dashboard#ruangan') }}>Ruangan</a></li>
+            <li><a href={{ route('admin.ruangan') }}>Status Ruangan</a></li>
             <li><a href={{ route('admin.peminjaman') }}>Peminjaman</a></li>
             <li class="dropdown">
               <a href="#"><span>Riwayat</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>

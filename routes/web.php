@@ -23,6 +23,8 @@ Route::post('/forgot-password', [RequestPasswordController::class, 'submitReques
 // ========== USER ==========
 Route::middleware(['auth', 'role:user'])->prefix('user')->group(function () {
     Route::get('/dashboard', [UserController::class, 'dashboard'])->name('user.dashboard');
+    Route::get('/dashboard#ruangan', [UserController::class,'dashboard'])->name('user.dashboard#ruangan');
+    Route::get('/dashboard#contact', [UserController::class,'dashboard'])->name('user.dashboard#contact');
     Route::get('/peminjaman', [UserController::class, 'peminjamanForm'])->name('peminjaman.form');
     Route::post('/peminjaman', [UserController::class, 'submitPeminjaman'])->name('peminjaman.store');
     Route::get('/data_pinjaman_user', [PeminjamanController::class, 'dataPinjaman'])->name('user.data-pinjaman');
@@ -68,12 +70,13 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/history/export/csv', [HistoryController::class, 'exportCsv'])->name('admin.history.export.csv');
 
     // Manajemen Ruangan
-    Route::get('/ruangan', [RuanganController::class, 'index'])->name('admin.ruangan');
+    Route::get('/dashboard#ruangan', [RuanganController::class, 'index'])->name('admin.dashboard#ruangan');
     Route::get('/ruangan/create', [RuanganController::class, 'create'])->name('admin.ruangan.create');
     Route::post('/ruangan/store', [RuanganController::class, 'store'])->name('admin.ruangan.store');
     Route::get('/ruangan/edit/{id}', [RuanganController::class, 'edit'])->name('admin.ruangan.edit');
     Route::put('/ruangan/update/{id}', [RuanganController::class, 'update'])->name('admin.ruangan.update');
     Route::delete('/ruangan/delete/{id}', [RuanganController::class, 'destroy'])->name('admin.ruangan.delete');
+    Route::get('/ruangan', [RuanganController::class,''])->name('admin.ruangan');
 
     //pengajuan
     Route::get('/pengajuan', [UserController::class, 'pengajuan'])->name('user.pengajuan');

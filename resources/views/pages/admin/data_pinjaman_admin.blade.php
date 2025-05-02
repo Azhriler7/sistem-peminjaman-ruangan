@@ -42,7 +42,7 @@
     <div class="branding bg-white border-bottom py-3">
         <div class="container d-flex align-items-center justify-content-between flex-wrap">
             <!-- Logo -->
-            <a href="{{ route('admin.dashboard') }}" class="logo d-flex align-items-center text-decoration-none">
+            <a href="{{ route('home') }}" class="logo d-flex align-items-center text-decoration-none">
                 <h1 class="sitename m-0">SIJARU</h1>
             </a>
       

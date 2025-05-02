@@ -57,7 +57,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/peminjaman', [AdminController::class, 'dataPeminjaman'])->name('admin.peminjaman');
 
     //data pinjaman
-    Route::get('/admin/data-pinjaman', [AdminController::class, 'dataPinjamanAdmin'])->name('admin.data.pinjaman');
+    Route::get('data-pinjaman', [AdminController::class, 'dataPinjamanAdmin'])->name('admin.data.pinjaman');
 
     // Riwayat & Export
     Route::get('/history', [HistoryController::class, 'adminHistory'])->name('admin.history');
@@ -72,8 +72,13 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::put('/ruangan/update/{id}', [RuanganController::class, 'update'])->name('admin.ruangan.update');
     Route::delete('/ruangan/delete/{id}', [RuanganController::class, 'destroy'])->name('admin.ruangan.delete');
 
+    //pengajuan
+    Route::get('/pengajuan', [UserController::class, 'pengajuan'])->name('user.pengajuan');
 
     // Notifikasi
     Route::get('/notifikasi', [NotifikasiController::class, 'index'])->name('admin.notifikasi');
     Route::post('/notifikasi/{id}/read', [NotifikasiController::class, 'markAsRead'])->name('admin.notifikasi.read');
+
+    // Kontak
+    Route::get('/dashboard#contact', [AdminController::class,'adminDashboard'])->name('admin.dashboard#contact');
 });

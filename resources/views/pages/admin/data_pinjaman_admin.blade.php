@@ -48,16 +48,16 @@
       
             <nav id="navmenu" class="navmenu">
                 <ul>
-                    <li><a href="#hero">Home</a></li>
-                    <li><a href="#about">Ruangan</a></li>
-                    <li><a href="#peminjaman">Peminjaman</a></li>
+                    <li><a href={{route('admin.dashboard')}}>Home</a></li>
+                    <li><a href={{route('admin.ruangan')}}>Ruangan</a></li>
+                    <li><a href={{route('admin.peminjaman')}}>Peminjaman</a></li>
                     <li class="dropdown">
                         <a href="#"><span>Data Pinjam</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Data Histori Peminjaman</a></li>
+                            <li><a href={{route('admin.history')}}>Data Histori Peminjaman</a></li>
                         </ul>
                     </li>
-                    <li><a href="#contact">Kontak</a></li>
+                    <li><a href={{route('admin.dashboard#contact')}}>Kontak</a></li>
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
@@ -89,7 +89,7 @@
     <!-- JavaScript External File -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <script src="{{ assets('https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js') }}"></script>
+    <script src="{{ asset('https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js') }}"></script>
     <script src="{{ asset('assets/js/data_pinjaman_admin.js') }}"></script>
 </body>
 </html>

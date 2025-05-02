@@ -60,7 +60,7 @@
     <div class="branding d-flex align-items-cente">
       
       <div class="container position-relative d-flex align-items-center justify-content-between">
-        <a href="#hero" class="logo d-flex align-items-center">
+        <a href={{ route('admin.dashboard') }} class="logo d-flex align-items-center">
           <img src="{{ asset('assets/img/logo.png') }}" alt="">
         </a>
 
@@ -70,7 +70,7 @@
             <li><a href="#ruangan">Ruangan</a></li>
             <li><a href="#peminjaman">Peminjaman</a></li>
             <li class="dropdown">
-              <a href="#"><span>Data Pinjaman</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+              <a href="{{ route('admin.data.pinjaman')}}"><span>Data Pinjaman</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
               <ul>
                 <li><a href="{{ route('admin.data.pinjaman') }}">Pinjaman Masuk</a></li>
                 <li><a href="{{ route('admin.history') }}">Data Histori Peminjaman</a></li>
@@ -198,7 +198,31 @@
                   </tr>
                 </thead>
                 <tbody>
+
+                  @foreach ($ruangan as $index => $r)
+    <tr>
+        <td>{{ $index + 1 }}</td>
+        <td>{{ $r->nama_ruangan }}</td>
+        <td>{{ $r->gedung }}</td>
+        <td>{{ $r->kapasitas }} orang</td>
+        <td>{{ $r->fasilitas }}</td>
+        <td>{{ $r->deskripsi }}</td>
+        <td>
+            <img src="{{ asset('storage/' . $r->gambar) }}" alt="{{ $r->nama_ruangan }}" width="80" class="img-thumbnail">
+        </td>
+        <td>
+            <a href="{{ route('admin.ruangan.edit', $r->id) }}" class="btn btn-sm btn-outline-primary me-1">Edit</a>
+            <form action="{{ route('admin.ruangan.delete', $r->id) }}" method="POST" style="display:inline;">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Yakin ingin menghapus ruangan ini?')">Hapus</button>
+            </form>
+        </td>
+    </tr>
+    @endforeach
+
                   <!-- Data Dummy Ruangan -->
+                  <!--
                   <tr>
                     <td>1</td>
                     <td>Aula Fakultas Teknik</td>
@@ -281,7 +305,7 @@
                       <a href="#" class="btn btn-sm btn-outline-primary me-1">Edit</a>
                       <a href="#" class="btn btn-sm btn-outline-danger">Hapus</a>
                     </td>
-                  </tr>
+                  </tr> -->
                 </tbody>
               </table>
             </div>

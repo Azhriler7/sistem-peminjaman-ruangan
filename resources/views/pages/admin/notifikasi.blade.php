@@ -44,15 +44,15 @@
       <div class="branding bg-white border-bottom py-3">
         <div class="container d-flex align-items-center justify-content-between flex-wrap">
           <!-- Logo -->
-          <a href="{{ asset('icon/Untirta-Logo-Transparan.webp') }}" class="logo d-flex align-items-center text-decoration-none">
+          <a href="{{ route('admin.dashboard') }}" class="logo d-flex align-items-center text-decoration-none">
             <h1 class="sitename m-0">SIJARU</h1>
           </a>
 
           <nav id="navmenu" class="navmenu">
             <ul>
-              <li><a href="#hero">Home</a></li>
-              <li><a href="#about">Ruangan</a></li>
-              <li><a href="#peminjaman">Peminjaman</a></li>
+              <li><a href={{route('admin.dashboard')}}>Home</a></li>
+              <li><a href={{route('admin.dashboard#ruangan')}}>Ruangan</a></li>
+              <li><a href={{route('admin.peminjaman')}}>Peminjaman</a></li>
               <li class="dropdown">
                 <a href="#"><span>Data Pinjam</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                 <ul class="dropdown-menu">

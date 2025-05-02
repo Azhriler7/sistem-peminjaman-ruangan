@@ -53,7 +53,7 @@ Route::middleware(['auth', 'role:user'])->prefix('user')->group(function () {
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'adminDashboard'])->name('admin.dashboard');
 
-    // ✅ Profile Admin
+    // Profile Admin
     Route::get('/profile', [ProfileController::class, 'show'])->name('admin.profile');
     Route::put('/profile', [ProfileController::class, 'update'])->name('admin.profile.update');
 
@@ -76,5 +76,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     // Notifikasi
     Route::get('/notifikasi', [NotifikasiController::class, 'index'])->name('admin.notifikasi');
     Route::post('/notifikasi/{id}/read', [NotifikasiController::class, 'markAsRead'])->name('admin.notifikasi.read');
+    Route::post('/request-password/{id}/approve', [RequestPasswordController::class, 'approve'])->name('request-password.approve');
+
 });
 

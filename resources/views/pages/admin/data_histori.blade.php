@@ -51,7 +51,7 @@
     
           <nav id="navmenu" class="navmenu">
             <ul>
-              <li><a href="#hero">Home</a></li>
+              <li><a href="{{ route('admin.dashboard')}}">Home</a></li>
               <li><a href="#about">Ruangan</a></li>
               <li><a href="#peminjaman">Peminjaman</a></li>
               <li class="dropdown">

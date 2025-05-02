@@ -67,14 +67,14 @@
           <ul>
             <li><a href="#hero" class="active">Home</a></li>
             <li><a href="#ruangan">Ruangan</a></li>
-            <li><a href="#peminjaman">Peminjaman</a></li>
+            <li><a href="{{ route('user.pengajuan.create')}}">Peminjaman</a></li>
             <li class="dropdown">
                 <a href="#"><span>Data Pinjaman</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
               <ul>
                 <li><a href="{{ route('user.data-pinjaman') }}">Data Histori Peminjaman</a></li>
               </ul>
             </li>
-            <li><a href="#contact">Kontak</a></li>
+            <li><a href="{{ route('logout')}}" method="POST">Kontak</a></li>
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>

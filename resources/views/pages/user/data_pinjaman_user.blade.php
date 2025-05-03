@@ -58,7 +58,7 @@
                 <li><a href="{{ route('user.data-pinjaman') }}">Data Histori Peminjaman</a></li>
               </ul>
             </li>
-            <li><a href="user.dashboard#contact" method="POST">Kontak</a></li>
+            <li><a href="{{ route('user.dashboard') }}#contact">Kontak</a></li>
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
@@ -90,7 +90,6 @@
             <small>{{ \Carbon\Carbon::parse($item->waktu_mulai)->format('H:i') }} - {{ \Carbon\Carbon::parse($item->waktu_selesai)->format('H:i') }}</small>
           </td>
           <td>
-            {{ $item->ruangan->nama_ruangan ?? '-' }} <br>
             <small>{{ $item->ruangan->gedung ?? '-' }}</small>
           </td>
           <td>{{ $item->nama_acara }}</td>

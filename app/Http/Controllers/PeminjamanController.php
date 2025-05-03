@@ -12,10 +12,11 @@ class PeminjamanController extends Controller
 {
     // Halaman user: menampilkan semua peminjaman milik user yang login
     public function dataPeminjamanUser()
-    {
-        $peminjamans = Peminjaman::where('user_id', Auth::id())->latest()->get();
-        return view('pages.user.data_pinjaman_user', compact('peminjamans'));
-    }
+{
+    $peminjamans = Peminjaman::with('ruangan')->latest()->get();
+
+    return view('pages.user.data_pinjaman_user', compact('peminjamans'));
+}
 
     // Halaman admin: menampilkan semua peminjaman
     public function dataPinjamanAdmin()
@@ -37,7 +38,6 @@ class PeminjamanController extends Controller
             'nama_peminjam' => 'required|string|max:255',
             'nama_acara' => 'required|string|max:255',
             'ruangan_id' => 'required|integer',
-            'nama_ruangan' => 'required|string',
             'kontak' => 'required|string|max:255',
             'tanggal_peminjaman' => 'required|date',
             'waktu_mulai' => 'required',
@@ -56,7 +56,6 @@ class PeminjamanController extends Controller
             'nama_peminjam' => $request->nama_peminjam,
             'nama_acara' => $request->nama_acara,
             'ruangan_id' => $request->ruangan_id,
-            'nama_ruangan' => $request->nama_ruangan,
             'kontak' => $request->kontak,
             'tanggal_peminjaman' => $request->tanggal_peminjaman,
             'waktu_mulai' => $request->waktu_mulai,

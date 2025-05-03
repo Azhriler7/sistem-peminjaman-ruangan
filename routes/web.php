@@ -46,7 +46,7 @@ Route::middleware(['auth', 'role:user'])->prefix('user')->group(function () {
     Route::get('/ruangan/labkom', [UserController::class, 'ruanganLabKom'])->name('user.ruangan-LabKom');
 
     Route::get('/pengajuan', [PeminjamanController::class, 'create'])->name('user.pengajuan.create');
-    Route::post('/pengajuan', [PeminjamanController::class, 'store'])->name('user.pengajuan');
+    Route::post('/pengajuan', [PeminjamanController::class, 'storePengajuan'])->name('user.pengajuan');
     Route::get('/data-pinjaman', [PeminjamanController::class, 'dataPeminjamanUser'])->name('user.data-pinjaman');
 
     

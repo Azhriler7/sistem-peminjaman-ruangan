@@ -66,8 +66,8 @@
 
         <nav id="navmenu" class="navmenu">
           <ul>
-            <li><a href={{route('admin.dashboard')}}>Home</a></li>
-            <li><a href={{route('admin.dashboard#ruangan')}}>Ruangan</a></li>
+            <li><a href=#hero>Home</a></li>
+            <li><a href=#ruangan>Ruangan</a></li>
             <li class="dropdown">
                 <a href="#"><span>Data Pinjam</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                 <ul class="dropdown-menu">

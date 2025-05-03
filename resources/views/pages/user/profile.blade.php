@@ -56,10 +56,10 @@
                     <li class="dropdown">
                         <a href="#"><span>Data Pinjam</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{route('user.data-pinjaman')}}">Data Histori Peminjaman</a></li>
+                            <li><a href={{route('user.data-pinjaman')}}>Data Histori Peminjaman</a></li>
                         </ul>
                     </li>
-                    <li><a href="#contact">Kontak</a></li>
+                    <li><a href={{route('user.dashboard#contact')}}>Kontak</a></li>
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>

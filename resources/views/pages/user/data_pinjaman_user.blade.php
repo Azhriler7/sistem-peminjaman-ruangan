@@ -51,14 +51,14 @@
           <ul>
             <li><a href={{route('user.dashboard')}}>Home</a></li>
                     <li><a href={{route('user.dashboard#ruangan')}}>Ruangan</a></li>
-                    <li><a href={{route('user.pengajuan')}}>Peminjaman</a></li>
+            <li><a href="{{ route('user.pengajuan.create')}}">Peminjaman</a></li>
             <li class="dropdown">
-              <a href="#"><span>Data Pinjam</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-              <ul class="dropdown-menu">
-                <li><a href="{{route('user.data-pinjaman')}}">Data Histori Peminjaman</a></li>
+                <a href="#"><span>Data Pinjaman</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+              <ul>
+                <li><a href="{{ route('user.data-pinjaman') }}">Data Histori Peminjaman</a></li>
               </ul>
             </li>
-            <li><a href="#contact">Kontak</a></li>
+            <li><a href="user.dashboard#contact" method="POST">Kontak</a></li>
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
@@ -69,7 +69,7 @@
   <main class="container bg-white p-4 rounded shadow mt-4">
     <h3 class="mb-3">DATA PINJAMAN</h3>
 
-    <a href="{{ route('user.pengajuan')}}" class="btn btn-primary btn-add mb-3">+ Tambah Pinjaman</a>
+    <a href="{{ route('user.pengajuan.create')}}" class="btn btn-primary btn-add mb-3">+ Tambah Pinjaman</a>
 
     <table id="tabelPinjaman" class="table table-bordered table-striped">
       <thead>

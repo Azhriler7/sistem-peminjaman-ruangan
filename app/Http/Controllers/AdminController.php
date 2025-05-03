@@ -11,8 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
-{
-    // Dashboard admin
+{    // Dashboard admin
     public function adminDashboard()
     {
         $totalPeminjaman = Peminjaman::count();

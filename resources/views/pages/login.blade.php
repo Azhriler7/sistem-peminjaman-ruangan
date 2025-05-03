@@ -44,7 +44,6 @@
           <a href="https://www.facebook.com/untirtabantenofficial" class="facebook"><i class="bi bi-facebook"></i></a>
           <a href="https://www.instagram.com/untirta_official" class="instagram"><i class="bi bi-instagram"></i></a>
           <a href="https://www.linkedin.com/school/universitassultanagengtirtayasa" class="linkedin"><i class="bi bi-linkedin"></i></a>
-          <a href="{{ route('user.dashboard') }}"><i class="bi bi-person"></i></a>
         </div>
       </div>
     </div><!-- End Top Bar -->

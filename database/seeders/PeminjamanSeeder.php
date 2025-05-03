@@ -19,7 +19,6 @@ class PeminjamanSeeder extends Seeder
                 'user_id' => 1,
                 'ruangan_id' => 1,
                 'nama_peminjam' => 'User ' . $i,
-                'nama_ruangan' => 'Ruang A' . $i,
                 'tanggal_peminjaman' => $tanggal->toDateString(),
                 'kontak' => '0812345678' . $i,
                 'nama_acara' => 'Acara Seminar ' . $i,

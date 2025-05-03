@@ -61,3 +61,31 @@ function goToRoomPage() {
 document.querySelector('.mobile-nav-toggle').addEventListener('click', function() {
     document.getElementById('navmenu').classList.toggle('active');
 });
+
+function goToRoomPage() {
+    window.location.href = '/admin/ruangan'; // sesuaikan dengan route Anda
+  }
+  
+  function approvePasswordRequest(userEmail) {
+    if (confirm('Setujui permintaan ubah password dari ' + userEmail + '?')) {
+      fetch(`/admin/approve-password?email=${encodeURIComponent(userEmail)}`, {
+        method: 'POST',
+        headers: {
+          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+          'Content-Type': 'application/json'
+        }
+      }).then(res => {
+        if (res.ok) {
+          alert('Permintaan disetujui.');
+          location.reload();
+        } else {
+          alert('Gagal menyetujui permintaan.');
+        }
+      });
+    }
+  }
+  
+  function viewPeminjamanDetail(id) {
+    window.location.href = `/admin/peminjaman/${id}`; // sesuaikan route detail Anda
+  }
+  

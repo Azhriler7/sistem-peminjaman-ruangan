@@ -16,7 +16,6 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('ruangan_id');
             $table->string('nama_peminjam');
-            $table->string('nama_ruangan');
             $table->date('tanggal_peminjaman');
             $table->string('nama_acara');
             $table->dateTime('waktu_mulai');

@@ -44,22 +44,22 @@
       <div class="branding bg-white border-bottom py-3">
         <div class="container d-flex align-items-center justify-content-between flex-wrap">
           <!-- Logo -->
-          <a href="{{ asset('icon/Untirta-Logo-Transparan.webp') }}" class="logo d-flex align-items-center text-decoration-none">
+          <a href="{{ route('admin.dashboard') }}" class="logo d-flex align-items-center text-decoration-none">
             <h1 class="sitename m-0">SIJARU</h1>
           </a>
 
           <nav id="navmenu" class="navmenu">
             <ul>
-              <li><a href="#hero">Home</a></li>
-              <li><a href="#about">Ruangan</a></li>
-              <li><a href="#peminjaman">Peminjaman</a></li>
+              <li><a href={{route('admin.dashboard')}}>Home</a></li>
+              <li><a href={{route('admin.dashboard#ruangan')}}>Ruangan</a></li>
+              <li><a href={{route('admin.peminjaman')}}>Peminjaman</a></li>
               <li class="dropdown">
                 <a href="#"><span>Data Pinjam</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Data Histori Peminjaman</a></li>
+                  <li><a href={{route('admin.history')}}>Data Histori Peminjaman</a></li>
                 </ul>
               </li>
-              <li><a href="#contact">Kontak</a></li>
+              <li><a href={{route('admin.dashboard#contact')}}>Kontak</a></li>
             </ul>
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
           </nav>
@@ -67,31 +67,63 @@
       </div>
     </header>
 
-    <div class="notif-container">
-      <div class="notif-header">Notifikasi</div>
-      <div id="notif-list">
-        <!-- Notifikasi akan muncul di sini -->
-        @foreach ($notifikasi as $notif)
-          <div class="notif-item d-flex justify-content-between align-items-center">
-            <div class="notif-content d-flex justify-content-between align-items-center w-100">
-              <div>
-                <div class="notif-title">{{ $notif->title }}</div>
-                <div class="notif-from">From: {{ $notif->from }}</div>
-              </div>
-              @if ($notif->type == 'ruangan')
-                <button class="btn btn-primary" onclick="goToRoomPage()">
-                  <i class="bi bi-arrow-right-circle"></i> Ke Ruangan
-                </button>
-              @elseif ($notif->type == 'password')
-                <button class="btn btn-success" onclick="approvePasswordRequest('{{ $notif->from }}')">
-                  <i class="bi bi-check2-circle"></i> 
-                </button>
-              @endif
-            </div>
+    <!-- Bagian notifikasi -->
+<!-- Dalam bagian notifikasi -->
+<div class="notif-container">
+  <div class="notif-header">Notifikasi</div>
+  <div id="notif-list">
+    @foreach ($notifikasi as $notif)
+      <div class="notif-item d-flex justify-content-between align-items-center mb-2 p-3 border rounded">
+        <div class="notif-content d-flex justify-content-between align-items-center w-100">
+          <div>
+            <div class="notif-title fw-bold">{{ $notif->title }}</div>
+            <div class="notif-from text-muted">Dari: {{ $notif->from }}</div>
           </div>
-        @endforeach
+
+          {{-- Aksi Berdasarkan Tipe Notifikasi --}}
+          @if ($notif->type == 'ruangan')
+            <a href="{{ route('admin.dashboard') }}#ruangan" class="btn btn-primary ms-3">
+              <i class="bi bi-arrow-right-circle"></i> Lihat Ruangan
+            </a>
+
+          @elseif ($notif->type == 'password')
+            @php
+              $requestPassword = \App\Models\RequestPassword::where('username', $notif->from)->where('status', 'pending')->first();
+            @endphp
+
+            @if($requestPassword)
+              <form action="{{ route('notifikasi.update', $requestPassword->id) }}" method="POST" class="d-flex gap-2 ms-3">
+                @csrf
+                @method('PUT')
+                <input type="hidden" name="status" value="diterima">
+                <button type="submit" class="btn btn-success">
+                  <i class="bi bi-check2-circle"></i> Setujui
+                </button>
+              </form>
+
+              <form action="{{ route('notifikasi.update', $requestPassword->id) }}" method="POST" class="ms-2">
+                @csrf
+                @method('PUT')
+                <input type="hidden" name="status" value="ditolak">
+                <button type="submit" class="btn btn-danger">
+                  <i class="bi bi-x-circle"></i> Tolak
+                </button>
+              </form>
+            @else
+              <span class="badge bg-secondary ms-3">Sudah diproses</span>
+            @endif
+
+          @elseif ($notif->type == 'peminjaman')
+            <a href="{{ route('admin.peminjaman') }}" class="btn btn-warning ms-3">
+              <i class="bi bi-info-circle"></i> Detail Peminjaman
+            </a>
+          @endif
+        </div>
       </div>
-    </div>
+    @endforeach
+  </div>
+</div>
+
 
     <script src="{{ asset('assets/js/notifikasi.js') }}"></script>
   </body>

@@ -60,7 +60,7 @@
     <div class="branding d-flex align-items-cente">
       
       <div class="container position-relative d-flex align-items-center justify-content-between">
-        <a href="#hero" class="logo d-flex align-items-center">
+        <a href={{ route('admin.dashboard') }} class="logo d-flex align-items-center">
           <img src="{{ asset('assets/img/logo.png') }}" alt="">
         </a>
 
@@ -68,11 +68,11 @@
           <ul>
             <li><a href="#hero" class="active">Home</a></li>
             <li><a href="#ruangan">Ruangan</a></li>
-            <li><a href="#peminjaman">Peminjaman</a></li>
+            <li><a href="#peminjaman">kalender peminjaman</a></li>
             <li class="dropdown">
-              <a href="#"><span>Data Pinjaman</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+              <a href="{{ route('admin.data-pinjaman')}}"><span>Data Pinjaman</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
               <ul>
-                <li><a href="{{ route('admin.data.pinjaman') }}">Pinjaman Masuk</a></li>
+                <li><a href="{{ route('admin.data-pinjaman') }}">Pinjaman Masuk</a></li>
                 <li><a href="{{ route('admin.history') }}">Data Histori Peminjaman</a></li>
               </ul>
             </li>

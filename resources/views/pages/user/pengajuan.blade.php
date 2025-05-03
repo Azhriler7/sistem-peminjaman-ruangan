@@ -59,7 +59,7 @@
         <div class="col-lg-8">
           <div class="card shadow-sm border-0" style="border-radius: 1rem;">
             <div class="card-body p-4">
-              <form action="{{ route('peminjaman.store')}}" method="POST" enctype="multipart/form-data" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+              <form action="{{ route('user.pengajuan')}}" method="POST" enctype="multipart/form-data" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
                 @csrf
                 <div class="row gy-4">
               

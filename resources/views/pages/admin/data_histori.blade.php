@@ -45,22 +45,22 @@
       <div class="branding bg-white border-bottom py-3">
         <div class="container d-flex align-items-center justify-content-between flex-wrap">
           <!-- Logo -->
-          <a href="index.html" class="logo d-flex align-items-center text-decoration-none">
+          <a href={{route('admin.dashboard')}} class="logo d-flex align-items-center text-decoration-none">
             <h1 class="sitename m-0">SIJARU</h1>
           </a>
     
           <nav id="navmenu" class="navmenu">
             <ul>
-              <li><a href="#hero">Home</a></li>
-              <li><a href="#about">Ruangan</a></li>
-              <li><a href="#peminjaman">Peminjaman</a></li>
+              <li><a href={{route('admin.dashboard')}}>Home</a></li>
+              <li><a href={{route('admin.dashboard#ruangan')}}>Ruangan</a></li>
+              <li><a href={{route('admin.peminjaman')}}>Peminjaman</a></li>
               <li class="dropdown">
                 <a href="#"><span>Data Pinjam</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                 <ul class="dropdown-menu">
                   <li><a href="#">Data Histori Peminjaman</a></li>
                 </ul>
               </li>
-              <li><a href="#contact">Kontak</a></li>
+              <li><a href={{route('admin.dashboard#contact')}}>Kontak</a></li>
             </ul>
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
           </nav>
@@ -72,14 +72,6 @@
             <div class="card shadow">
                 <div class="card-header d-flex flex-wrap justify-content-between align-items-center">
                     <h3 class="mb-0">Data Histori Pinjaman</h3>
-                    <div class="d-flex gap-2">
-                      <a href="{{ route('admin.history.export.csv') }}" class="btn btn-success">
-                          <i class="bi bi-file-earmark-spreadsheet"></i> Export CSV
-                      </a>
-                      <a href="{{ route('admin.history.export.pdf') }}" class="btn btn-danger">
-                          <i class="bi bi-file-earmark-pdf"></i> Export PDF
-                      </a>
-                  </div>
                   
                 </div>
                 <div class="card-body">
@@ -93,6 +85,37 @@
                             <th>Status Acara</th>
                         </tr>
                     </thead>
+                    <tbody>
+                      @forelse ($peminjaman as $index => $item)
+                      <tr>
+                          <td>{{ $index + 1 }}</td>
+                          <td>
+                              {{ \Carbon\Carbon::parse($item->tanggal_peminjaman)->format('d-m-Y') }}<br>
+                              <small>{{ $item->waktu_mulai }} - {{ $item->waktu_selesai }}</small>
+                          </td>
+                          <td>
+                              {{ $item->nama_ruangan }}<br>
+                              <small>{{ $item->ruangan->gedung ?? '-' }}</small>
+                          </td>
+                          <td>{{ $item->nama_acara }}</td>
+                          <td>
+                            <span class="badge text-dark 
+                            @if($item->status === 'approved') bg-success
+                            @elseif($item->status === 'rejected') bg-danger
+                            @else bg-warning
+                            @endif
+                        ">
+                            {{ ucfirst($item->status) }}
+                        </span>
+                          </td>
+                      </tr>
+                      @empty
+                      <tr>
+                          <td colspan="5" class="text-center">Tidak ada data histori</td>
+                      </tr>
+                      @endforelse
+                  </tbody>
+                  
                     </table>
                 </div>
             </div>

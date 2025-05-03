@@ -65,16 +65,16 @@
 
         <nav id="navmenu" class="navmenu">
           <ul>
-            <li><a href="#hero" class="active">Home</a></li>
-            <li><a href="#ruangan">Ruangan</a></li>
-            <li><a href="#peminjaman">Peminjaman</a></li>
+            <li><a href={{route('user.dashboard')}}>Home</a></li>
+                    <li><a href={{route('user.dashboard#ruangan')}}>Ruangan</a></li>
+            <li><a href="{{ route('user.pengajuan.create')}}">Peminjaman</a></li>
             <li class="dropdown">
                 <a href="#"><span>Data Pinjaman</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
               <ul>
                 <li><a href="{{ route('user.data-pinjaman') }}">Data Histori Peminjaman</a></li>
               </ul>
             </li>
-            <li><a href="#contact">Kontak</a></li>
+            <li><a href="#contact" method="POST">Kontak</a></li>
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
@@ -166,36 +166,7 @@
     </section><!-- /Featured Introduction Section -->
 
 
-    <!-- Jika ingin section ini menjadi dinamis (otomatis muncul berdasarkan data dari database), 
-    maka gunakan looping foreach pada data ruangan yang dikirim dari controller.
-
-    Pastikan controller mengirimkan data ruangan ke view, contoh:
-    $ruangan = Ruangan::all();
-    return view('pages.user.dashboard', compact('ruangan'));
-
-    Berikut contoh penggunaan dynamic card:
     
-
-    <div class="container">
-  <div class="row gy-4">
-    @forelse ($ruangan as $item)
-      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-        <div class="ruangan-item service-item text-center shadow-sm rounded">
-          <img src="{{ asset('storage/' . $item->gambar) }}" class="img-fluid rounded-top" alt="{{ $item->nama_ruangan }}">
-          <div class="ruangan-info p-3">
-            <h4>{{ $item->nama_ruangan }}</h4>
-            <p>{{ $item->gedung }}</p>
-            <a href="{{ route('user.ruangan-coe', $item->id) }}" class="btn btn-outline-primary btn-sm">
-              View Detail
-            </a>
-          </div>
-        </div>
-      </div>
-    @empty
-      <p class="text-center">Tidak ada ruangan tersedia.</p>
-    @endforelse
-  </div>
-</div>
     
 
     <!-- Ruangan Section -->
@@ -287,6 +258,37 @@
               </div>
             </div>
           </div>
+
+          <!-- Jika ingin section ini menjadi dinamis (otomatis muncul berdasarkan data dari database), 
+    maka gunakan looping foreach pada data ruangan yang dikirim dari controller.
+
+    Pastikan controller mengirimkan data ruangan ke view, contoh:
+    $ruangan = Ruangan::all();
+    return view('pages.user.dashboard', compact('ruangan'));
+
+    Berikut contoh penggunaan dynamic card: -->
+    
+
+    <div class="container">
+      <div class="row gy-4">
+        @forelse ($ruangan as $item)
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="ruangan-item service-item text-center shadow-sm rounded">
+              <img src="{{ asset('storage/' . $item->gambar) }}" class="img-fluid rounded-top" alt="{{ $item->nama_ruangan }}">
+              <div class="ruangan-info p-3">
+                <h4>{{ $item->nama_ruangan }}</h4>
+                <p>{{ $item->gedung }}</p>
+                <a href="{{ route('user.ruangan-coe', $item->id) }}" class="btn btn-outline-primary btn-sm">
+                  View Detail
+                </a>
+              </div>
+            </div>
+          </div>
+        @empty
+          <p class="text-center">Tidak ada ruangan tersedia.</p>
+        @endforelse
+      </div>
+    </div>
 
         </div>
       </div>

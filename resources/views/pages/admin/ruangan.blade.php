@@ -9,23 +9,23 @@
   <meta name="keywords" content="">
 
   <!-- Favicons -->
-  <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
-  <link href="{{ asset('assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+  <link href={{asset('assets/img/favicon.png')}} rel="icon">
+  <link href={{asset('assets/img/apple-touch-icon.png')}} rel="apple-touch-icon">
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Open+Sans&family=Montserrat&display=swap" rel="stylesheet">
+  <link href={{asset('https://fonts.googleapis.com')}} rel="preconnect">
+  <link href={{asset('https://fonts.gstatic.com')}} rel="preconnect" crossorigin>
+  <link href={{asset('https://fonts.googleapis.com/css2?family=Roboto&family=Open+Sans&family=Montserrat&display=swap')}} rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/vendor/aos/aos.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+  <link href={{asset('assets/vendor/bootstrap/css/bootstrap.min.css')}} rel="stylesheet">
+  <link href={{asset('assets/vendor/bootstrap-icons/bootstrap-icons.css')}} rel="stylesheet">
+  <link href={{asset('assets/vendor/aos/aos.css')}} rel="stylesheet">
+  <link href={{asset('assets/vendor/glightbox/css/glightbox.min.css')}} rel="stylesheet">
+  <link href={{asset('assets/vendor/swiper/swiper-bundle.min.css')}} rel="stylesheet">
 
   <!-- Main CSS File -->
-  <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
+  <link href={{asset('assets/css/main.css')}} rel="stylesheet">
 </head>
 
 <body class="ruang-aula-page">
@@ -47,28 +47,29 @@
           <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
           <a href="{{ route('admin.profile') }}" class="akun"><i class="bi bi-person"></i></a>
           <a href="{{ route('admin.notifikasi')}}"><i class="bi bi-bell"></i></a>
+          <a href="{{ route('admin.notifikasi')}}"><i class="bi bi-bell"></i></a>
         </div>
       </div>
     </div>
 
     <div class="branding d-flex align-items-center">
       <div class="container position-relative d-flex align-items-center justify-content-between">
-        <a href="index.html" class="logo d-flex align-items-center">
+        <a href={{ route('admin.dashboard')}} class="logo d-flex align-items-center">
           <h1 class="sitename">SIJARU</h1>
         </a>
         <nav id="navmenu" class="navmenu">
           <ul>
-            <li><a href="{{ url('/') }}#hero">Home</a></li>
-            <li><a href="{{ url('/') }}#ruangan">Ruangan</a></li>
-            <li><a href="{{ url('/') }}#services">Status Ruangan</a></li>
-            <li><a href="{{ url('/') }}#peminjaman">Peminjaman</a></li>
+            <li><a href={{ route('admin.dashboard') }}>Home</a></li>
+            <li><a href={{ route('admin.dashboard#ruangan') }}>Ruangan</a></li>
+            <li><a href={{ route('admin.ruangan') }}>Status Ruangan</a></li>
+            <li><a href={{ route('admin.peminjaman') }}>Peminjaman</a></li>
             <li class="dropdown">
               <a href="#"><span>Riwayat</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
               <ul>
-                <li><a href="{{ url('/') }}#data-pinjaman">Data Histori Peminjaman</a></li>
+                <li><a href={{ route('admin.history') }}>Data Histori Peminjaman</a></li>
               </ul>
             </li>
-            <li><a href="{{ url('/') }}#contact">Kontak</a></li>
+            <li><a href={{ route('admin.dashboard#contact') }}>Kontak</a></li>
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
@@ -85,7 +86,7 @@
         <h1 class="mb-2 mb-lg-0">Detail Ruangan</h1>
         <nav class="breadcrumbs">
           <ol>
-            <li><a href="{{ route('admin.dashboard')}}">Home</a></li>
+            <li><a href={{route('admin.dashboard')}}>Home</a></li>
             <li class="current">Aula Fakultas Teknik</li>
           </ol>
         </nav>
@@ -154,11 +155,11 @@
   </div>
 
   <!-- Vendor JS Files -->
-  <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-  <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
-  <script src="{{ asset('assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
-  <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
-  <script src="{{ asset('assets/js/main.js') }}"></script>
+  <script src={{asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}></script>
+  <script src={{asset('assets/vendor/aos/aos.js')}}></script>
+  <script src={{asset('assets/vendor/glightbox/js/glightbox.min.js')}}></script>
+  <script src={{asset('assets/vendor/swiper/swiper-bundle.min.js')}}></script>
+  <script src={{asset('assets/js/main.js')}}></script>
 
 </body>
 

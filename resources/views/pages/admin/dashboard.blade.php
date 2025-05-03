@@ -66,18 +66,17 @@
 
         <nav id="navmenu" class="navmenu">
           <ul>
-            <li><a href="#hero" class="active">Home</a></li>
-            <li><a href="#ruangan">Ruangan</a></li>
-            <li><a href="#peminjaman">kalender peminjaman</a></li>
+            <li><a href={{route('admin.dashboard')}}>Home</a></li>
+            <li><a href={{route('admin.dashboard#ruangan')}}>Ruangan</a></li>
             <li class="dropdown">
-              <a href="{{ route('admin.data-pinjaman')}}"><span>Data Pinjaman</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-              <ul>
-                <li><a href="{{ route('admin.data-pinjaman') }}">Pinjaman Masuk</a></li>
-                <li><a href="{{ route('admin.history') }}">Data Histori Peminjaman</a></li>
-              </ul>
+                <a href="#"><span>Data Pinjam</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ route('admin.data-pinjaman') }}">Pinjaman Masuk</a></li>
+                    <li><a href={{route('admin.history')}}>Data Histori Peminjaman</a></li>
+                </ul>
             </li>
-            <li><a href="#contact">Kontak</a></li>
-          </ul>
+            <li><a href={{route('admin.dashboard#contact')}}>Kontak</a></li>
+        </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
 

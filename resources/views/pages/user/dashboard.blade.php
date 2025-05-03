@@ -74,7 +74,7 @@
                 <li><a href="{{ route('user.data-pinjaman') }}">Data Histori Peminjaman</a></li>
               </ul>
             </li>
-            <li><a href="#contact" method="POST">Kontak</a></li>
+            <li><a href="user.dashboard#contact" method="POST">Kontak</a></li>
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>

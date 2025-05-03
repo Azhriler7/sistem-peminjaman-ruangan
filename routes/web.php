@@ -47,7 +47,7 @@ Route::middleware(['auth', 'role:user'])->prefix('user')->group(function () {
 
     Route::get('/pengajuan', [PeminjamanController::class, 'create'])->name('user.pengajuan.create');
     Route::post('/pengajuan', [PeminjamanController::class, 'store'])->name('user.pengajuan');
-    Route::get('/data-pinjaman', [PeminjamanController::class, 'index'])->name('user.data-pinjaman');
+    Route::get('/data-pinjaman', [PeminjamanController::class, 'dataPeminjamanUser'])->name('user.data-pinjaman');
 
     
 

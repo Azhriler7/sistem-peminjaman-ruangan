@@ -53,6 +53,7 @@
                     <li class="dropdown">
                         <a href="#"><span>Data Pinjam</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul class="dropdown-menu">
+                            <li><a href="{{ route('admin.data-pinjaman') }}">Pinjaman Masuk</a></li>
                             <li><a href={{route('admin.history')}}>Data Histori Peminjaman</a></li>
                         </ul>
                     </li>

@@ -51,16 +51,16 @@
             </a>
             <nav id="navmenu" class="navmenu">
                 <ul>
-                    <li><a href="#hero">Home</a></li>
-                    <li><a href="#about">Ruangan</a></li>
-                    <li><a href="#peminjaman">Peminjaman</a></li>
+                    <li><a href={{route('admin.dashboard')}}>Home</a></li>
+                    <li><a href={{route('admin.dashboard#ruangan')}}>Ruangan</a></li>
+                    <li><a href={{route('admin.peminjaman')}}>Peminjaman</a></li>
                     <li class="dropdown">
                         <a href="#"><span>Data Pinjam</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Data Histori Peminjaman</a></li>
+                            <li><a href={{route('admin.history')}}>Data Histori Peminjaman</a></li>
                         </ul>
                     </li>
-                    <li><a href="#contact">Kontak</a></li>
+                    <li><a href={{route('admin.dashboard#contact')}}>Kontak</a></li>
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
@@ -79,9 +79,10 @@
                 <div class="card-header">Foto Profil</div>
                 <div class="card-body text-center">
                     <img id="profileImage" class="img-account-profile rounded-circle mb-2"
-     src="{{ $user->foto_profil ? asset('storage/' . $user->foto_profil) : 'http://bootdey.com/img/Content/avatar/avatar1.png' }}"
+     src="http://bootdey.com/img/Content/avatar/avatar1.png"
      alt="Foto Profil"
      style="width: 180px; height: 180px; object-fit: cover;">
+
 
 
 
@@ -95,6 +96,10 @@
                     </form>
 
                     <div class="small text-muted mt-2">JPG atau PNG maksimal 5 MB</div>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-primary btn-sm mt-2">Logout</button>
+                    </form>
                 </div>
             </div>
         </div>

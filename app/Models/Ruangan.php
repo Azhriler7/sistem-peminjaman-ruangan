@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Gedung;
 
 class Ruangan extends Model
 {
@@ -29,4 +30,6 @@ class Ruangan extends Model
     {
         return $this->hasMany(KalenderAcara::class);
     }
+
+
 }

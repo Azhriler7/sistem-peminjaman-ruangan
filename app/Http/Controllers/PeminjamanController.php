@@ -6,25 +6,42 @@ use App\Models\Peminjaman;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
 class PeminjamanController extends Controller
 {
-    public function create()
+    // Halaman user: menampilkan semua peminjaman milik user yang login
+    public function dataPeminjamanUser()
     {
-        return view('pages.user.pengajuan'); // ganti sesuai path blade kamu
+        $peminjamans = Peminjaman::where('user_id', Auth::id())->latest()->get();
+        return view('pages.user.data_pinjaman_user', compact('peminjamans'));
     }
 
-    public function store(Request $request)
+    // Halaman admin: menampilkan semua peminjaman
+    public function dataPinjamanAdmin()
     {
-        $validated = $request->validate([
+        $peminjamans = Peminjaman::with('ruangan')->orderBy('tanggal_peminjaman', 'desc')->get();
+        return view('pages.admin.data_pinjaman_admin', compact('peminjamans'));
+    }
+
+    // Halaman form pengajuan
+    public function create()
+    {
+        return view('pages.user.pengajuan');
+    }
+
+    // Menyimpan pengajuan baru
+    public function storePengajuan(Request $request)
+    {
+        $request->validate([
             'nama_peminjam' => 'required|string|max:255',
             'nama_acara' => 'required|string|max:255',
-            'ruangan_id' => 'required|string',
+            'ruangan_id' => 'required|integer',
             'nama_ruangan' => 'required|string',
             'kontak' => 'required|string|max:255',
             'tanggal_peminjaman' => 'required|date',
             'waktu_mulai' => 'required',
-            'waktu_selesai' => 'required|after:waktu_mulai',
+            'waktu_selesai' => 'required',
             'surat_permohonan' => 'nullable|file|mimes:pdf,doc,docx|max:2048',
             'catatan' => 'nullable|string',
         ]);
@@ -34,32 +51,45 @@ class PeminjamanController extends Controller
             $filePath = $request->file('surat_permohonan')->store('surat_permohonan', 'public');
         }
 
-        $peminjaman = Peminjaman::create([
+        Peminjaman::create([
             'user_id' => Auth::id(),
-            'ruangan_id' => $validated['ruangan_id'],
-            'nama_peminjam' => $validated['nama_peminjam'],
-            'nama_ruangan' => $validated['nama_ruangan'],
-            'tanggal_peminjaman' => $validated['tanggal_peminjaman'],
-            'kontak' => $validated['kontak'],
-            'nama_acara' => $validated['nama_acara'],
-            'waktu_mulai' => $validated['waktu_mulai'],
-            'waktu_selesai' => $validated['waktu_selesai'],
+            'nama_peminjam' => $request->nama_peminjam,
+            'nama_acara' => $request->nama_acara,
+            'ruangan_id' => $request->ruangan_id,
+            'nama_ruangan' => $request->nama_ruangan,
+            'kontak' => $request->kontak,
+            'tanggal_peminjaman' => $request->tanggal_peminjaman,
+            'waktu_mulai' => $request->waktu_mulai,
+            'waktu_selesai' => $request->waktu_selesai,
             'surat_permohonan' => $filePath,
-            'catatan' => $validated['catatan'] ?? null,
-            'status' => 'pending',
+            'catatan' => $request->catatan,
+            'status' => 'menunggu',
         ]);
 
-        return redirect()->route('user.data-pinjaman')->with('success', 'Peminjaman berhasil diajukan!');
-
+        return redirect()->route('user.data_pinjaman')->with('success', 'Pengajuan berhasil dikirim.');
     }
 
-    public function dataPinjaman()
+    // Setujui pengajuan
+    public function approve(Peminjaman $peminjaman)
     {
-        $pinjaman = Peminjaman::with('ruangan')
-            ->where('user_id', Auth::id())
+        $peminjaman->update(['status' => 'diterima']);
+        return redirect()->route('admin.peminjaman')->with('success', 'Peminjaman disetujui.');
+    }
+
+    // Tolak pengajuan
+    public function reject(Peminjaman $peminjaman)
+    {
+        $peminjaman->update(['status' => 'ditolak']);
+        return redirect()->route('admin.peminjaman')->with('success', 'Peminjaman ditolak.');
+    }
+
+    // Menampilkan histori peminjaman yang telah diproses
+    public function history()
+    {
+        $peminjamans = Peminjaman::whereIn('status', ['diterima', 'ditolak'])
             ->orderBy('tanggal_peminjaman', 'desc')
             ->get();
 
-        return view('pages.user.data_pinjaman_user', compact('pinjaman'));
+        return view('pages.admin.history_peminjaman', compact('peminjamans'));
     }
 }

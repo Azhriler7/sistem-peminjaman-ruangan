@@ -16,7 +16,7 @@ class RuanganSeeder extends Seeder
                 'kapasitas' => 30,
                 'fasilitas' => 'AC, Proyektor, Whiteboard',
                 'deskripsi' => 'Ruangan untuk meeting resmi.',
-                'gambar' => null, // atau isi dengan path gambar default jika perlu
+                'gambar' => 'ruangan/exFK.jpg', // atau isi dengan path gambar default jika perlu
             ],
             [
                 'nama_ruangan' => 'Ruang Seminar 2',
@@ -24,7 +24,7 @@ class RuanganSeeder extends Seeder
                 'kapasitas' => 100,
                 'fasilitas' => 'Mic, LCD, Kursi Lipat',
                 'deskripsi' => 'Cocok untuk acara seminar atau workshop.',
-                'gambar' => null,
+                'gambar' => 'ruangan/exFK.jpg',
             ],
         ];
 

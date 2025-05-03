@@ -48,16 +48,15 @@
       
             <nav id="navmenu" class="navmenu">
                 <ul>
-                    <li><a href="{{ route('admin.dashboard')}}">Home</a></li>
-                    <li><a href="#about">Ruangan</a></li>
-                    <li><a href="#peminjaman">Peminjaman</a></li>
+                    <li><a href={{route('admin.dashboard')}}>Home</a></li>
+                    <li><a href={{route('admin.dashboard#ruangan')}}>Ruangan</a></li>
                     <li class="dropdown">
                         <a href="#"><span>Data Pinjam</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Data Histori Peminjaman</a></li>
+                            <li><a href={{route('admin.history')}}>Data Histori Peminjaman</a></li>
                         </ul>
                     </li>
-                    <li><a href="#contact">Kontak</a></li>
+                    <li><a href={{route('admin.dashboard#contact')}}>Kontak</a></li>
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
@@ -66,30 +65,69 @@
 </header>
 
 <body>
-    <div class="container bg-white p-4 rounded shadow">
-        <h3 class="mb-3">DATA PINJAMAN</h3>
-
-        <table id="tabelPinjaman" class="table table-bordered table-striped">
+    <div class="container mt-4">
+        <h2>Data Peminjaman Ruangan</h2>
+    
+        @if(session('success'))
+            <div class="alert alert-success mt-2">
+                {{ session('success') }}
+            </div>
+        @endif
+    
+        <table id="tabelPinjaman" class="table table-bordered table-hover mt-3">
             <thead>
                 <tr>
-                    <th>No</th>
-                    <th>Tanggal Acara <br><small>Waktu Mulai - Selesai</small></th>
-                    <th>Nama Ruang <br><small>Nama Gedung</small></th>
-                    <th>Nama Acara</th>
-                    <th>Status Acara</th>
-                    <th>Aksi</th>
+                  <th>No</th>
+                  <th>Tanggal</th>
+                  <th>Ruangan</th>
+                  <th>Acara</th>
+                  <th>Status</th>
+                  <th>Aksi</th>
                 </tr>
-            </thead>
-            <tbody id="pinjamanBody">
-                <!-- Data will be loaded here via AJAX -->
-            </tbody>
+              </thead>
+              <tbody>
+                @foreach($peminjamans as $pinjaman)
+                  <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $pinjaman->tanggal_peminjaman }}</td>
+                    <td>{{ $pinjaman->nama_ruangan }}</td>
+                    <td>{{ $pinjaman->nama_acara }}</td>
+                    <td><span class="badge {{ $pinjaman->status == 'menunggu' ? 'bg-warning' : ($pinjaman->status == 'diterima' ? 'bg-success' : 'bg-danger') }}">{{ ucfirst($pinjaman->status) }}</span></td>
+                    <td>
+                      @if($pinjaman->status == 'menunggu')
+                        <form action="{{ route('admin.peminjaman.approve', $pinjaman->id) }}" method="POST" style="display:inline;">
+                          @csrf
+                          @method('PUT')
+                          <button class="btn btn-success btn-sm"><i class="bi bi-check2"></i></button>
+                        </form>
+                        <form action="{{ route('admin.peminjaman.reject', $pinjaman->id) }}" method="POST" style="display:inline;">
+                          @csrf
+                          @method('PUT')
+                          <button class="btn btn-danger btn-sm"><i class="bi bi-x-lg"></i></button>
+                        </form>
+                      @endif
+                    </td>
+                  </tr>
+                @endforeach
+              </tbody>
         </table>
     </div>
+        
 
     <!-- JavaScript External File -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-    <script src="{{ asset('https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js') }}"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
     <script src="{{ asset('assets/js/data_pinjaman_admin.js') }}"></script>
+
+    @push('scripts')
+<script>
+    $(document).ready(function () {
+        $('#tabelPinjaman').DataTable({
+            responsive: true
+        });
+    });
+</script>
+    
 </body>
 </html>

@@ -19,13 +19,15 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 // ========== LUPA PASSWORD ==========
 Route::get('/forgot-password', [RequestPasswordController::class, 'showForm'])->name('forgot-password');
 Route::post('/forgot-password', [RequestPasswordController::class, 'submitRequest'])->name('forgot-password.submit');
+Route::post('/request-password', [RequestPasswordController::class, 'store'])->name('request.password');
 
 // ========== USER ==========
 Route::middleware(['auth', 'role:user'])->prefix('user')->group(function () {
     Route::get('/dashboard', [UserController::class, 'dashboard'])->name('user.dashboard');
+    Route::get('/dashboard#ruangan', [UserController::class,'dashboard'])->name('user.dashboard#ruangan');
+    Route::get('/dashboard#contact', [UserController::class,'dashboard'])->name('user.dashboard#contact');
     Route::get('/peminjaman', [UserController::class, 'peminjamanForm'])->name('peminjaman.form');
     Route::post('/peminjaman', [UserController::class, 'submitPeminjaman'])->name('peminjaman.store');
-    Route::get('/data_pinjaman_user', [PeminjamanController::class, 'dataPinjaman'])->name('user.data-pinjaman');
 
     // ✅ Profile User
     Route::get('/profile', [ProfileController::class, 'show'])->name('user.profile');
@@ -45,7 +47,9 @@ Route::middleware(['auth', 'role:user'])->prefix('user')->group(function () {
 
     Route::get('/pengajuan', [PeminjamanController::class, 'create'])->name('user.pengajuan.create');
     Route::post('/pengajuan', [PeminjamanController::class, 'store'])->name('user.pengajuan');
-    Route::get('/data_pinjaman_user', [PeminjamanController::class, 'dataPinjaman'])->name('user.data-pinjaman');
+    Route::get('/data-pinjaman', [PeminjamanController::class, 'index'])->name('user.data-pinjaman');
+
+    
 
 });
 
@@ -58,7 +62,14 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::put('/profile', [ProfileController::class, 'update'])->name('admin.profile.update');
 
     Route::get('/peminjaman', [AdminController::class, 'dataPeminjaman'])->name('admin.peminjaman');
-    Route::get('/data-pinjaman', [AdminController::class, 'dataPinjamanAdmin'])->name('admin.data.pinjaman');
+    Route::post('/admin/peminjaman/{peminjaman}/approve', [PeminjamanController::class, 'approve'])->name('admin.peminjaman.approve');
+    Route::post('/admin/peminjaman/{peminjaman}/reject', [PeminjamanController::class, 'reject'])->name('admin.peminjaman.reject');
+
+
+    //data pinjaman
+    Route::get('/admin/data-pinjaman', [PeminjamanController::class, 'dataPinjamanAdmin'])->name('admin.data-pinjaman');
+    Route::put('/admin/peminjaman/{id}/approve', [PeminjamanController::class, 'approve'])->name('admin.peminjaman.approve');
+Route::put('/admin/peminjaman/{id}/reject', [PeminjamanController::class, 'reject'])->name('admin.peminjaman.reject');
 
     // Riwayat & Export
     Route::get('/history', [HistoryController::class, 'adminHistory'])->name('admin.history');
@@ -66,17 +77,26 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::get('/history/export/csv', [HistoryController::class, 'exportCsv'])->name('admin.history.export.csv');
 
     // Manajemen Ruangan
-    Route::get('/ruangan', [RuanganController::class, 'index'])->name('admin.ruangan');
+    Route::get('/dashboard#ruangan', [RuanganController::class, 'index'])->name('admin.dashboard#ruangan');
     Route::get('/ruangan/create', [RuanganController::class, 'create'])->name('admin.ruangan.create');
     Route::post('/ruangan/store', [RuanganController::class, 'store'])->name('admin.ruangan.store');
     Route::get('/ruangan/edit/{id}', [RuanganController::class, 'edit'])->name('admin.ruangan.edit');
     Route::put('/ruangan/update/{id}', [RuanganController::class, 'update'])->name('admin.ruangan.update');
     Route::delete('/ruangan/delete/{id}', [RuanganController::class, 'destroy'])->name('admin.ruangan.delete');
+    Route::get('/ruangan', [RuanganController::class,''])->name('admin.ruangan');
+
+    //pengajuan
+    Route::get('/pengajuan', [UserController::class, 'pengajuan'])->name('admin.pengajuan');
 
     // Notifikasi
+
     Route::get('/notifikasi', [NotifikasiController::class, 'index'])->name('admin.notifikasi');
-    Route::post('/notifikasi/{id}/read', [NotifikasiController::class, 'markAsRead'])->name('admin.notifikasi.read');
+    Route::put('/notifikasi/{id}', [NotifikasiController::class, 'updateStatus'])->name('notifikasi.update');
+
+    // Kontak
+    Route::get('/dashboard#contact', [AdminController::class,'adminDashboard'])->name('admin.dashboard#contact');
     Route::post('/request-password/{id}/approve', [RequestPasswordController::class, 'approve'])->name('request-password.approve');
 
+    
 });
 

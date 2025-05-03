@@ -62,4 +62,22 @@ class RequestPasswordController extends Controller
 
         return back()->with('info', 'Request ditolak.');
     }
+
+    public function store(Request $request)
+{
+    $request->validate([
+        'username' => 'required',
+        'email' => 'required|email',
+        'new_password' => 'required|min:6',
+    ]);
+
+    RequestPassword::create([
+        'username' => $request->username,
+        'email' => $request->email,
+        'new_password' => Hash::make($request->new_password),
+        'status' => 'pending',
+    ]);
+
+    return redirect()->back()->with('success', 'Permintaan reset password dikirim.');
+}
 }

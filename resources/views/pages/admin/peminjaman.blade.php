@@ -49,22 +49,22 @@
       <div class="branding bg-white border-bottom py-3">
         <div class="container d-flex align-items-center justify-content-between flex-wrap">
           <!-- Logo -->
-          <a href="index.html" class="logo d-flex align-items-center text-decoration-none">
+          <a href={{route('admin.dashboard')}} class="logo d-flex align-items-center text-decoration-none">
             <h1 class="sitename m-0">SIJARU</h1>
           </a>
     
           <nav id="navmenu" class="navmenu">
             <ul>
-              <li><a href="#hero">Home</a></li>
-              <li><a href="#about">Ruangan</a></li>
-              <li><a href="#peminjaman">Peminjaman</a></li>
+              <li><a href={{route('admin.dashboard')}}>Home</a></li>
+              <li><a href={{route('admin.dashboard#ruangan')}}>Ruangan</a></li>
+              <li><a href={{route('admin.peminjaman')}}>Peminjaman</a></li>
               <li class="dropdown">
                 <a href="#"><span>Data Pinjam</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
                 <ul class="dropdown-menu">
-                  <li><a href="#">Data Histori Peminjaman</a></li>
+                  <li><a href={{route('admin.history')}}>Data Histori Peminjaman</a></li>
                 </ul>
               </li>
-              <li><a href="#contact">Kontak</a></li>
+              <li><a href={{route('admin.dashboard#contact')}}>Kontak</a></li>
             </ul>
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
           </nav>
@@ -75,7 +75,7 @@
   <div class="container bg-white p-4 rounded shadow">
     <h3 class="mb-3">DATA PINJAMAN</h3>
 
-    <a href="form-peminjaman.html" class="btn btn-primary btn-add">+ Tambah Pinjaman</a>
+    <a href={{route('user.pengajuan')}} class="btn btn-primary btn-add">+ Tambah Pinjaman</a>
 
     <table id="tabelPinjaman" class="table table-bordered table-striped">
       <thead>
